@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'actionview', '~> 4.2.7.1'
 gem 'activerecord', '~> 4.2.7.1'
 gem 'devise'
+gem 'omniauth'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
