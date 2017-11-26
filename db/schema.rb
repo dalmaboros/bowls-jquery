@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123153449) do
+ActiveRecord::Schema.define(version: 20171125145930) do
+
+  create_table "bowl_scraps", force: :cascade do |t|
+    t.integer  "bowl_id"
+    t.integer  "scrap_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bowls", force: :cascade do |t|
     t.string   "name"

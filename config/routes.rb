@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  root 'home#index', as: 'home'
   resources :scraps
   resources :bowls
   devise_for :users

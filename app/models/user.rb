@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
          :omniauthable
 
   has_many :bowls
-  has_many :scraps, through: :bowls
+  has_many :scraps
 end
