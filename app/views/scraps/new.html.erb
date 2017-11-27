@@ -1,7 +1,25 @@
 <h2>Make a new scrap</h2>
 
-<%= form_for @scrap do |f| %>
+<%= form_for @scrap  do |f| %>
+  <%= f.hidden_field :bowl_ids %>
+
   <%= f.label :description %>:
   <%= f.text_field :description %></p>
+  <%= f.submit %>
+<% end %>
+
+<h2>Nested Form</h2>
+<%= form_for @bowl do |f| %>
+  <%= f.fields_for :scraps do |scraps_form| %>
+    <%= scraps_form.label :desription %>:
+    <%= scraps_form.text_field :description %></p>
+    <%= f.submit "Create Scrap"%>
+    <% end %>
+<% end %>
+
+<h2>Nested Form 2</h2>
+<%= form_for [@bowl, @scrap] do |f| %>
+  <%= f.label :description %>:
+  <%= f.text_field :description %>
   <%= f.submit %>
 <% end %>

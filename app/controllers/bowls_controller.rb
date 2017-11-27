@@ -9,7 +9,7 @@ class BowlsController < ApplicationController
     @bowl = Bowl.find(params[:id])
   end
 
-  def edit
+  def update
     @bowl = Bowl.find(params[:id])
   end
 

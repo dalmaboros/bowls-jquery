@@ -1,0 +1,9 @@
+<h2>Scrap</h2>
+
+<p>Description: <%= @scrap.description %></p>
+
+<% if @scrap.bowls.empty? %>
+  This scrap doesn't have a bowl.
+<% else %>
+  Bowl: <%= @scrap.bowls.first.name %>
+<% end %>

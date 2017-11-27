@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'bowls#index'
   resources :scraps
   resources :bowls do
-    resources :scraps, only: [:new]
+    resources :scraps, only: [:show, :index, :new, :create]
   end
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
