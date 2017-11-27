@@ -1,8 +1,8 @@
-<h2>What a Bunch a Bowls</h2>
+<h2>just a bunch a bowls</h2>
 <ul>
   <% @bowls.each do |bowl| %>
     <li>
-      <%= link_to bowl.name, bowl_path(bowl) %>: <%= bowl.description %>
+      <%= link_to bowl.name, bowl_path(bowl) %>
     </li>
   <% end %>
 </ul>

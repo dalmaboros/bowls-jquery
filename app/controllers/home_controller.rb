@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
 
   def index
-    @categories = Category.all
-    @items = Item.all
+    @bowls = Bowl.all
+    @scraps = Scrap.all
   end
 
 end

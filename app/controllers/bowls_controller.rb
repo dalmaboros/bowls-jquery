@@ -1,6 +1,7 @@
 class BowlsController < ApplicationController
 
   def index
+    Bowl.create(name: "My first bowl") if Bowl.all.empty?
     @bowls = Bowl.all
   end
 
