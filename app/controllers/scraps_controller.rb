@@ -1,17 +1,14 @@
 class ScrapsController < ApplicationController
 
   def new
-    @bowl = Bowl.find_by(id: params[:bowl_id]) #this works
+    @bowl = Bowl.find_by(id: params[:bowl_id])
     @scrap = Scrap.new(bowl_ids: [params[:bowl_id]])
   end
 
   def create
-    binding.pry
-    if params[:scrap][:bowl_ids] #this works
-      binding.pry
+    if params[:scrap][:bowl_ids]
       @bowl = Bowl.find_by(id: params[:scrap][:bowl_ids][0])
       @scrap = @bowl.scraps.build(scrap_params)
-      binding.pry
     else
       @scrap = Scrap.new(scrap_params)
     end
@@ -31,10 +28,6 @@ class ScrapsController < ApplicationController
 
   def scrap_params
     params.require(:scrap).permit(:description, :category, :bowl_ids)
-  end
-
-  def bowl_params
-    params.require(:bowl).permit(:name, :description, scraps_attributes: [:id, :description, :category])
   end
 
 end
