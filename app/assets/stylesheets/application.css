@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+  background-color: #000;
+  color: rgba(255,255,255,.9);
+  font-family: Helvetica;
+  font-size: 2em;
+}
+
+.content {
+  margin: 0 auto;
+  width: 500px;
+}
+
+h1 {
+  margin: 40px 0;
+  font-family: Helvetica;
+  font-size: 3em;
+  line-height: 1em;
+  color: rgba(255,255,255,.75);
+  text-transform: uppercase;
+  text-align: center;
+  /*text-shadow: 5px 1px rgba(30,242,241,.7), -5px -1px rgba(246,5,10,.7);*/
+  text-shadow: 3px 1px rgba(0,255,0,.6), -3px -1px rgba(255,0,255,.6);
+}
