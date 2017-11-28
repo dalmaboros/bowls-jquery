@@ -14,10 +14,13 @@
  *= require_self
  */
 
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
  body {
   background-color: #000;
   color: rgba(255,255,255,.9);
-  font-family: Helvetica;
+  font-family: 'Source Code Pro', monospace;
+  /*font-family: 'Courier New', monospace;*/
   font-size: 2em;
 }
 
@@ -36,4 +39,8 @@ h1 {
   text-align: center;
   /*text-shadow: 5px 1px rgba(30,242,241,.7), -5px -1px rgba(246,5,10,.7);*/
   text-shadow: 3px 1px rgba(0,255,0,.6), -3px -1px rgba(255,0,255,.6);
+}
+
+a {
+  color: rgba(0,255,0,.6);
 }
