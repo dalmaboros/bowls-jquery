@@ -6,6 +6,8 @@
   <%= f.submit %>
 <% end %>
 
+<%= link_to "Add scraps", new_bowl_scrap_path(@bowl) %>
+
 <p>
   <%= button_to "Delete Bowl", @bowl, method: :delete, data: { confirm: "Really?" } %>
 </p>
