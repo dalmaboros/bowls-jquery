@@ -1,5 +1,4 @@
 # Notes
 
 ## Next Steps
-
-* Scraps should always have a bowl
+* Pull scrap feature

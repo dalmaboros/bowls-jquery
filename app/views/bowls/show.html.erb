@@ -1,22 +1,15 @@
 <h2><%= @bowl.name %></h2>
 
 <% if !@bowl.scraps.empty? %>
-  Pull (this should take you to bowls/<%= @bowl.id %>/scraps/n, where n=random)
+  <p><%= link_to "Pull scrap", bowl_scrap_path(@bowl, @bowl.scraps.sample) %></p>
 <% else %>
   This bowl is empty.
 <% end %>
 
 <p><%= link_to "Add a scrap", new_bowl_scrap_path(@bowl) %></p>
 
-<p><%= link_to "View scraps", bowl_scraps_path(@bowl) %></p>
-
-<h2>Scraps</h2>
-<ul>
-  <% @scraps.each do |scrap| %>
-    <li>
-      <%= scrap.description %>
-    </li>
-  <% end %>
-</ul>
+<% if !@bowl.scraps.empty? %>
+  <p><%= link_to "View scraps", bowl_scraps_path(@bowl) %></p>
+<% end %>
 
 <%= link_to "Edit '#{@bowl.name}'", edit_bowl_path %>
