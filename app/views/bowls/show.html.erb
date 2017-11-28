@@ -1,5 +1,17 @@
 <h2><%= @bowl.name %></h2>
 
 <p>Pull (this should take you to bowls/<%= @bowl.id %>/scraps/n, where n=random)</p>
-<p>Add (this should take you to bowls/<%= @bowl.id %>/scraps/new)</p>
+
+<%= link_to "Add", new_bowl_scrap_path(@bowl.id) %>
+
+<h3>Scraps</h3>
+<ul>
+  <% @scraps.each do |scrap| %>
+    <li>
+      <%= scrap.description %>
+    </li>
+  <% end %>
+
+</ul>
+
 <%= link_to 'Edit', edit_bowl_path %>

@@ -7,6 +7,7 @@ class BowlsController < ApplicationController
 
   def show
     @bowl = Bowl.find(params[:id])
+    @scraps = @bowl.scraps
   end
 
   def update
