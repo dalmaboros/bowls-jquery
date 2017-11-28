@@ -17,6 +17,8 @@ class BowlsController < ApplicationController
 
   def update
     @bowl = Bowl.find(params[:id])
+    @bowl.update(name: params[:bowl][:name], description: params[:bowl][:description])
+    redirect_to bowl_path(@bowl)
   end
 
   def destroy

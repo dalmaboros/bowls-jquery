@@ -1,4 +1,5 @@
 # Notes
 
 ## Next Steps
-* Pull scrap feature
+* Landing page after bowl update
+* Update bowl feature

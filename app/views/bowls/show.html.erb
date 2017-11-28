@@ -1,5 +1,7 @@
 <h2><%= @bowl.name %></h2>
 
+<p><%= @bowl.description %></p>
+
 <% if !@bowl.scraps.empty? %>
   <p><%= link_to "Pull scrap", bowl_scrap_path(@bowl, @bowl.scraps.sample) %></p>
 <% else %>
