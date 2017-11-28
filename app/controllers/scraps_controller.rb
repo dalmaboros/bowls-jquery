@@ -29,6 +29,16 @@ class ScrapsController < ApplicationController
     @bowl = Bowl.find(params[:bowl_id])
   end
 
+  def edit
+    @scrap = Scrap.find(params[:id])
+  end
+
+  def update
+    @scrap = Scrap.find(params[:id])
+    @scrap.update(description: params[:scrap][:description], bowl_ids: params[:scrap][:bowl_ids])
+    redirect_to scrap_path(@scrap)
+  end
+
   private
 
   def scrap_params

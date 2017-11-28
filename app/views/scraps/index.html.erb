@@ -7,7 +7,7 @@
   <ul>
     <% @bowl.scraps.each do |scrap| %>
     <li>
-      <%= scrap.description %>
+      <%= scrap.description %> (edit) <%= link_to "(edit)", edit_scrap_path(scrap) %>
     </li>
     <% end %>
   </ul>

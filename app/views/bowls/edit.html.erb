@@ -8,7 +8,9 @@
   <%= f.submit %>
 <% end %>
 
-<%= link_to "Add scraps", new_bowl_scrap_path(@bowl) %>
+<p><%= link_to "Add scraps", new_bowl_scrap_path(@bowl) %></p>
+
+<p>Remove scraps</p>
 
 <p>
   <%= button_to "Delete Bowl", @bowl, method: :delete, data: { confirm: "Really?" } %>
@@ -19,7 +21,7 @@
     <strike>Edit name</strike>
   </li>
   <li>
-    Add scraps
+    <strike>Add scraps</strike>
   </li>
   <li>
     Remove scraps
