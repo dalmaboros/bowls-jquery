@@ -24,6 +24,11 @@ class ScrapsController < ApplicationController
     @scrap = Scrap.find(params[:id])
   end
 
+  def index
+    @scraps = Scrap.all
+    @bowl = Bowl.find(params[:bowl_id])
+  end
+
   private
 
   def scrap_params

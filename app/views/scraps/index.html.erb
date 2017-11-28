@@ -1,0 +1,8 @@
+<h2>Scraps in '<%= @bowl.name %>'</h2>
+<ul>
+  <% @scraps.each do |scrap| %>
+    <li>
+      <%= scrap.description %>
+    </li>
+  <% end %>
+</ul>

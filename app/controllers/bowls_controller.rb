@@ -8,6 +8,7 @@ class BowlsController < ApplicationController
   def show
     @bowl = Bowl.find(params[:id])
     @scraps = @bowl.scraps
+    @random = @scraps.sample
   end
 
   def edit

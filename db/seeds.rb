@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Bowl.create(name: "Downtime", description: "Things to do when I have a minute")
-Bowl.create(name: "Exercise", description: "Break a sweat")
-Bowl.create(name: "Crafts", description: "Making stuff")
+Bowl.create(name: "Chill", description: "Things to do when I have a minute")
+Bowl.create(name: "Hype", description: "Break a sweat")
+Bowl.create(name: "Expression", description: "Process over product")
 
-Scrap.create(description: "Guitar", category: "music")
+Scrap.create(description: "Sonic Pi", category: "music")
 Scrap.create(description: "Skateboard", category: "exercise")
-Scrap.create(description: "Drawing", category: "art")
+Scrap.create(description: "Draw", category: "art")
