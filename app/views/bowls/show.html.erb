@@ -2,7 +2,9 @@
 
 <p>Pull (this should take you to bowls/<%= @bowl.id %>/scraps/n, where n=random)</p>
 
-<%= link_to "Add", new_bowl_scrap_path(@bowl) %>
+<%= link_to "Add a scrap", new_bowl_scrap_path(@bowl) %>
+
+View Scraps
 
 <h3>Scraps</h3>
 <ul>
@@ -14,4 +16,4 @@
 
 </ul>
 
-<%= link_to 'Edit', edit_bowl_path %>
+<%= link_to "Edit '#{@bowl.name}'", edit_bowl_path %>
