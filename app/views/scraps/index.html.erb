@@ -7,7 +7,8 @@
   <% else %>
       <% @bowl.scraps.each do |scrap| %>
       <p>
-        <%= scrap.description %> <%= link_to "(edit)", edit_scrap_path(scrap) %>
+        <%= scrap.description %>
+        <%= link_to "(edit)", edit_scrap_path(scrap) %>
       </p>
       <% end %>
   <% end %>
