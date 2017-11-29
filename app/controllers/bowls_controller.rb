@@ -34,7 +34,7 @@ class BowlsController < ApplicationController
   private
 
   def bowl_params
-    #
+    params.require(:bowl).permit(:name, :description, :scrap_ids)
   end
 
   def set_bowl

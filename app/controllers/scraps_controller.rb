@@ -1,4 +1,5 @@
 class ScrapsController < ApplicationController
+  before_action :set_scrap, only: [:show, :edit, :update, :destroy]
 
   def new
     @bowl = Bowl.find_by(id: params[:bowl_id])
@@ -21,7 +22,6 @@ class ScrapsController < ApplicationController
   end
 
   def show
-    @scrap = Scrap.find(params[:id])
   end
 
   def index
@@ -30,17 +30,15 @@ class ScrapsController < ApplicationController
   end
 
   def edit
-    @scrap = Scrap.find(params[:id])
   end
 
   def update
-    @scrap = Scrap.find(params[:id])
     @scrap.update(description: params[:scrap][:description], bowl_ids: params[:scrap][:bowl_ids])
     redirect_to scrap_path(@scrap)
   end
 
   def destroy
-    Scrap.find(params[:id]).destroy
+    @scrap.destroy
     redirect_to root_path
   end
 
@@ -48,6 +46,10 @@ class ScrapsController < ApplicationController
 
   def scrap_params
     params.require(:scrap).permit(:description, :category, :bowl_ids)
+  end
+
+  def set_scrap
+    @scrap = Scrap.find(params[:id])
   end
 
 end
