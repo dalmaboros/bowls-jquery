@@ -26,7 +26,7 @@ class ScrapsController < ApplicationController
 
   def index
     @scraps = Scrap.all
-    @bowl = Bowl.find(params[:bowl_id])
+    @bowl = Bowl.find(params[:bowl_id]) if params[:bowl_id]
   end
 
   def edit
@@ -37,6 +37,11 @@ class ScrapsController < ApplicationController
     @scrap = Scrap.find(params[:id])
     @scrap.update(description: params[:scrap][:description], bowl_ids: params[:scrap][:bowl_ids])
     redirect_to scrap_path(@scrap)
+  end
+
+  def destroy
+    Scrap.find(params[:id]).destroy
+    redirect_to scraps_url
   end
 
   private

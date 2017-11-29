@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root 'bowls#index'
-  resources :scraps
+  resources :scraps, except: [:index]
   resources :bowls do
     resources :scraps, only: [:show, :index, :new, :create]
   end
