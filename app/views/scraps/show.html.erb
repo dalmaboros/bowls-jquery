@@ -6,7 +6,7 @@
   <% else %>
     Bowls:
     <% @scrap.bowls.each do |bowl| %>
-      <%= bowl.name %>,
+      <%= link_to bowl.name, bowl_path(bowl) %>
     <% end %>
   <% end %>
 

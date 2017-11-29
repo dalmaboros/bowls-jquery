@@ -1,32 +1,16 @@
-<h2>Edit "<%= @bowl.name %>"</h2>
+<div class="column">
+  <h2>Edit "<%= @bowl.name %>"</h2>
 
-<%= form_for @bowl do |f| %>
-  <%= f.label :name %>:
-  <%= f.text_field :name %></p>
-  <%= f.label :description %>:
-  <%= f.text_field :description %></p>
-  <%= f.submit %>
-<% end %>
+  <%= form_for @bowl do |f| %>
+    <%= f.label :name %>:
+    <%= f.text_field :name %></p>
+    <%= f.label :description %>:
+    <%= f.text_field :description %></p>
+    <%= f.submit %>
+  <% end %>
 
-<p><%= link_to "Add scraps", new_bowl_scrap_path(@bowl) %></p>
+  <p><%= link_to "Add a scrap", new_bowl_scrap_path(@bowl) %></p>
 
-<p>Remove scraps</p>
+  <p><%= link_to "Remove scraps", bowl_scraps_path(@bowl) %></p>
 
-<p>
-  <%= button_to "Delete Bowl", @bowl, method: :delete, data: { confirm: "Really?" } %>
-</p>
-
-<ul>
-  <li>
-    <strike>Edit name</strike>
-  </li>
-  <li>
-    <strike>Add scraps</strike>
-  </li>
-  <li>
-    Remove scraps
-  </li>
-  <li>
-    <strike>Delete bowl</strike>
-  </li>
-</ul>
+  <p><%= link_to "Delete Bowl", @bowl, method: :delete, data: { confirm: "Really?" } %></p>

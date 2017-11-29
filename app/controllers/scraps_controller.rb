@@ -41,7 +41,7 @@ class ScrapsController < ApplicationController
 
   def destroy
     Scrap.find(params[:id]).destroy
-    redirect_to scraps_url
+    redirect_to root_path
   end
 
   private
