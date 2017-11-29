@@ -30,7 +30,15 @@
 }
 
 a {
-  color: rgba(0,255,0,.6);
+  background-color: rgba(255,255,255,.9);
+  color: rgba(0,0,0,1);
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: text-shadow 0.4s ease;
+}
+
+a:hover {
+  text-shadow: 2px 1px rgba(0,255,0,.6), -2px -1px rgba(255,0,255,.6);
 }
 
 h1 a {
@@ -40,6 +48,7 @@ h1 a {
   line-height: 1em;
   text-decoration: none;
   color: rgba(255,255,255,.75);
+  background-color: transparent;
   text-transform: uppercase;
   text-align: center;
   /*text-shadow: 5px 1px rgba(30,242,241,.7), -5px -1px rgba(246,5,10,.7);*/
@@ -59,4 +68,27 @@ h2 {
     border-bottom-right-radius: 110px;
     border: 10px solid rgba(255,255,255,.9);
     border-top: 0;
+}
+
+.column {
+  width: 100%;
+  float: none;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 90%;
+}
+
+@media only screen and (min-width: 980px) {
+  .column {
+    width: 33.333%;
+    float: left;
+  }
+
+  .wrapper {
+    /*width: 960px;*/
+  }
 }
