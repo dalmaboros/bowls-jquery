@@ -1,5 +1,6 @@
 # Notes
 
 ## Next Steps
-* Add validations
-** Scrap shouldn't be empty
+* Validation error messages
+* Create bowl link
+* Update bowl validation error redirect
