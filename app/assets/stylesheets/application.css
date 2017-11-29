@@ -45,3 +45,18 @@ h1 a {
   /*text-shadow: 5px 1px rgba(30,242,241,.7), -5px -1px rgba(246,5,10,.7);*/
   text-shadow: 3px 1px rgba(0,255,0,.6), -3px -1px rgba(255,0,255,.6);
 }
+
+h2 {
+  text-align: center;
+}
+
+.bowl {
+    margin: 50px auto;
+    width: 200px;
+    height: 120px;
+    background-color: transparent;
+    border-bottom-left-radius: 110px;
+    border-bottom-right-radius: 110px;
+    border: 10px solid rgba(255,255,255,.9);
+    border-top: 0;
+}
