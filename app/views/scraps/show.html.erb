@@ -1,14 +1,14 @@
-<h2><%= @scrap.description %></h2>
+<div class="column">
+  <h2><%= @scrap.description %></h2>
 
-<p>Description: <%= @scrap.description %></p>
-
-<% if @scrap.bowls.empty? %>
-  This scrap doesn't have a bowl.
-<% else %>
-  Bowls:
-  <% @scrap.bowls.each do |bowl| %>
-    <%= bowl.name %>,
+  <% if @scrap.bowls.empty? %>
+    This scrap doesn't have a bowl.
+  <% else %>
+    Bowls:
+    <% @scrap.bowls.each do |bowl| %>
+      <%= bowl.name %>,
+    <% end %>
   <% end %>
-<% end %>
 
-<p><%= link_to "Edit scrap", edit_scrap_path(@scrap) %></p>
+  <p><%= link_to "Edit scrap", edit_scrap_path(@scrap) %></p>
+</div>

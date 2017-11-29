@@ -1,9 +1,11 @@
-<h2>Make a new scrap in <%= @bowl.name %></h2>
+<div class="column">
+  <h2>Make a new scrap in '<%= @bowl.name %>'</h2>
 
-<%= form_for @scrap  do |f| %>
-  <%= f.hidden_field :bowl_ids %>
+  <%= form_for @scrap  do |f| %>
+    <%= f.hidden_field :bowl_ids %>
 
-  <%= f.label :description %>:
-  <%= f.text_field :description %></p>
-  <%= f.submit %>
-<% end %>
+    <%= f.label :description %>:
+    <%= f.text_field :description %></p>
+    <%= f.submit %>
+  <% end %>
+</div>
