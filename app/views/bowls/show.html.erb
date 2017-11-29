@@ -1,11 +1,12 @@
+<div class="bowl">
+</div>
+
 <h2><%= @bowl.name %></h2>
 
-<div class="bowl"></div>
-
-<p><%= @bowl.description %></p>
+<div class="column">
 
 <% if !@bowl.scraps.empty? %>
-  <p><%= link_to "Pull scrap", bowl_scrap_path(@bowl, @bowl.scraps.sample) %></p>
+<p><%= link_to "Pull scrap", bowl_scrap_path(@bowl, @bowl.scraps.sample) %></p>
 <% else %>
   This bowl is empty.
 <% end %>
@@ -17,3 +18,4 @@
 <% end %>
 
 <%= link_to "Edit '#{@bowl.name}'", edit_bowl_path %>
+</div>
