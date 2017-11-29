@@ -1,10 +1,18 @@
 <div class="column">
   <h2>Edit "<%= @bowl.name %>"</h2>
 
+  <% if @bowl.errors.any? %>
+    <div id="error_explanation">
+      <% @bowl.errors.full_messages.each do |msg| %>
+        <p><%= msg %>!</p>
+      <% end %>
+    </div>
+  <% end %>
+
   <%= form_for @bowl do |f| %>
-    <%= f.label :name %>:
+    <%= f.label :name %>
     <%= f.text_field :name %></p>
-    <%= f.label :description %>:
+    <%= f.label :description %>
     <%= f.text_field :description %></p>
     <%= f.submit %>
   <% end %>

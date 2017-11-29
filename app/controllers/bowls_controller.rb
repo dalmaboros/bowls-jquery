@@ -15,13 +15,11 @@ class BowlsController < ApplicationController
   end
 
   def update
-    @bowl.update(name: params[:bowl][:name], description: params[:bowl][:description])
-    # redirect_to bowl_path(@bowl)
-
-    if @bowl.valid?
+    if @bowl.update(bowl_params)
       @bowl.save
       redirect_to bowl_path(@bowl)
     else
+      @bowl.restore_attributes(@bowl.errors.keys)
       render :edit
     end
   end

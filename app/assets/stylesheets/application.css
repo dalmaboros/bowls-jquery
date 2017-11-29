@@ -85,6 +85,10 @@ h2 {
   max-width: 800px;
 }
 
+#error_explanation {
+  color: rgba(0,255,0,.6);
+}
+
 @media only screen and (min-width: 960px) {
   .column-third {
     width: 33.333%;
