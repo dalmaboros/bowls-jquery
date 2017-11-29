@@ -136,6 +136,11 @@ input[type=submit]:hover {
     -webkit-appearance: none;
 }
 
+input[type=checkbox] {
+  height: 25px;
+  width: 25px;
+}
+
 /* TEXT SELECT */
 
 /* Mozilla based browsers */

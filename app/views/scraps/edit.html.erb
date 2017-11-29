@@ -4,8 +4,12 @@
   <%= form_for @scrap do |f| %>
     <%= f.label :description %>:
     <%= f.text_field :description %></p>
-    <%= f.label "Bowls" %>:
-    <%= collection_check_boxes(:scrap, :bowl_ids, Bowl.all, :id, :name) %></p>
+    <%= f.label "Bowls" %>:</p>
+    <%= collection_check_boxes(:scrap, :bowl_ids, Bowl.all, :id, :name) do |b| %>
+      <%= b.label class:"label-checkbox" do %>
+         <%= b.check_box + b.text %>
+      <% end %>
+    <% end %></p>
     <%= f.submit %>
   <% end %>
 
