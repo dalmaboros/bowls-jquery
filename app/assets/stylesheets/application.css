@@ -16,16 +16,22 @@
 
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
+ html {
+   height: 100vh;
+ }
+
  body {
   background-color: #000;
+  position: relative;
   color: rgba(255,255,255,.9);
   font-family: 'Source Code Pro', monospace;
   font-size: 2em;
   line-height: 1.5em;
+  min-height: 100%;
 }
 
 .content {
-  margin: 0 auto 100px;
+  margin: 0 auto 0px;
   width: 500px;
 }
 
@@ -86,11 +92,25 @@ h2 {
 .wrapper {
   margin: 0 auto;
   width: 90%;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
   max-width: 800px;
+
 }
 
 #error_explanation {
+  color: rgba(0,255,0,.6);
+}
+
+.heart {
+  color: rgba(255,255,255,.9);
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+  font-size: 0.5em;
+}
+
+.heart span {
+  font-size: 1.25em;
   color: rgba(0,255,0,.6);
 }
 
