@@ -41,6 +41,11 @@ a:hover {
   text-shadow: 2px 1px rgba(0,255,0,.6), -2px -1px rgba(255,0,255,.6);
 }
 
+div a.foo {
+  background-color: transparent;
+  padding: 0;
+}
+
 h1 a {
   margin: 40px 0;
   font-family: Helvetica;
@@ -52,7 +57,7 @@ h1 a {
   text-transform: uppercase;
   text-align: center;
   /*text-shadow: 5px 1px rgba(30,242,241,.7), -5px -1px rgba(246,5,10,.7);*/
-  text-shadow: 3px 1px rgba(0,255,0,.6), -3px -1px rgba(255,0,255,.6);
+  text-shadow: 4px 1px rgba(0,255,0,.6), -4px -1px rgba(255,0,255,.6);
 }
 
 h2 {
@@ -60,7 +65,7 @@ h2 {
 }
 
 .bowl {
-    margin: 50px auto;
+    margin: 0px auto;
     width: 200px;
     height: 120px;
     background-color: transparent;
