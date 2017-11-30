@@ -9,6 +9,7 @@ class ScrapsController < ApplicationController
   def create
     if params[:scrap][:bowl_ids]
       @bowl = Bowl.find_by(id: params[:scrap][:bowl_ids][0])
+      binding.pry
       @scrap = @bowl.scraps.build(scrap_params)
     else
       @scrap = Scrap.new(scrap_params)
@@ -33,8 +34,15 @@ class ScrapsController < ApplicationController
   end
 
   def update
-    @scrap.update(description: params[:scrap][:description], bowl_ids: params[:scrap][:bowl_ids])
-    redirect_to scrap_path(@scrap)
+    if @scrap.update(scrap_params)
+      @scrap.save
+      binding.pry
+      redirect_to scrap_path(@scrap)
+    else
+      binding.pry
+      @scrap.restore_attributes(@scrap.errors.keys)
+      render :edit
+    end
   end
 
   def destroy
@@ -45,7 +53,7 @@ class ScrapsController < ApplicationController
   private
 
   def scrap_params
-    params.require(:scrap).permit(:description, :category, :bowl_ids)
+    params.require(:scrap).permit(:description, :category, :bowl_ids => [])
   end
 
   def set_scrap

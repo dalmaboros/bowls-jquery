@@ -1,6 +1,14 @@
 <div class="column">
   <h2>Edit <%= @scrap.description %></h2>
 
+  <% if @scrap.errors.any? %>
+    <div id="error_explanation">
+      <% @scrap.errors.full_messages.each do |msg| %>
+        <p><%= msg %>!</p>
+      <% end %>
+    </div>
+  <% end %>
+
   <%= form_for @scrap do |f| %>
     <%= f.label :description %>:
     <%= f.text_field :description %></p>

@@ -1,10 +1,18 @@
 <div class="column">
-  <h2>Make a new scrap in '<%= @bowl.name %>'</h2>
+  <h2>Add a scrap to '<%= @bowl.name %>'</h2>
+
+  <% if @scrap.errors.any? %>
+    <div id="error_explanation">
+      <% @scrap.errors.full_messages.each do |msg| %>
+        <p><%= msg %>!</p>
+      <% end %>
+    </div>
+  <% end %>
 
   <%= form_for @scrap  do |f| %>
     <%= f.hidden_field :bowl_ids %>
 
-    <%= f.label :description %>:
+    <%= f.label :description %>
     <%= f.text_field :description %></p>
     <%= f.submit %>
   <% end %>
