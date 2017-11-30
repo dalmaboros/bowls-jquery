@@ -101,6 +101,118 @@ h2 {
   color: rgba(0,255,0,.6);
 }
 
+/* Burger menu button */
+.burger {
+	width: 28px;
+
+	display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border: 0;
+	background: none;
+	outline: 0;
+	padding: 0;
+	cursor: pointer;
+
+	border-bottom: 4px solid rgba(255,255,255,.9);
+	width: 28px;
+
+	transition: border-bottom 1s ease-in-out;
+	-webkit-transition: border-bottom 1s ease-in-out;
+}
+
+/* Fix for extra space in Firefox */
+/* 	&::-moz-focus-inner {
+		border: 0;
+		padding: 0;
+	}	  */
+
+.burger::before {
+  content: "";
+  display: block;
+  border-bottom: 4px solid rgba(255,255,255,.9);
+  width: 100%;
+  margin-bottom: 5px;
+  transition: transform 0.5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+}
+
+.burger::after {
+  content: "";
+  display: block;
+  border-bottom: 4px solid rgba(255,255,255,.9);
+  width: 100%;
+  margin-bottom: 5px;
+  transition: transform 0.5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+}
+
+.burger-check {
+  display: none;
+}
+
+.burger-check:checked ~ .burger {
+  border-bottom: 4px solid transparent;
+  transition: border-bottom 0.1s ease-in-out;
+  -webkit-transition: border-bottom 0.1s ease-in-out;
+}
+
+.burger-check:checked ~ .burger::before {
+    transform: rotate(-405deg) translateY(1px) translateX(-3px);
+    -webkit-transform: rotate(-405deg) translateY(1px) translateX(-3px);
+    transition: transform 0.5s ease-in-out;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  }
+
+.burger-check:checked ~ .burger::after {
+    transform: rotate(405deg) translateY(-4px) translateX(-5px);
+    -webkit-transform: rotate(405deg) translateY(-4px) translateX(-5px);
+    transition: transform 0.5s ease-in-out;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  }
+
+/* Navigation */
+
+.navigation {
+  overflow: hidden;
+  max-height: 0;
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  text-align: left;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.burger-check:checked ~ .navigation {
+  max-height: 500px;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.navigation ul {
+  margin: 0;
+  padding: 0;
+}
+
+.navigation li {
+  list-style: none;
+  font-size: 25px;
+  padding: 0px 0;
+}
+
+.navigation li a {
+  background-color: transparent;
+  color: rgba(255,255,255,.9);
+  padding: 0;
+  text-decoration: none;
+}
+
+.navigation li a:hover {
+  text-decoration: none;
+}
+
+/* Heart Signature */
+
 .heart {
   color: rgba(255,255,255,.9);
   position: absolute;
@@ -109,6 +221,11 @@ h2 {
   font-size: 0.5em;
 }
 
+.heart a {
+  background-color: transparent;
+  color: rgba(255,255,255,.9);
+  padding: 0;
+}
 .heart span {
   font-size: 1.25em;
   color: rgba(0,255,0,.6);

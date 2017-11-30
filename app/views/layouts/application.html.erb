@@ -9,6 +9,16 @@
 </head>
 
 <body>
+  <input class="burger-check" id="burger-check" type="checkbox"><label for="burger-check" class="burger"></label>
+  <nav id="navigation1" class="navigation">
+    <ul>
+      <li><a href="#">Bowls</a></li>
+      <li><a href="#">Scraps</a></li>
+      <li><a href="#">User</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </nav>
+  
   <div class="header">
     <%= render 'layouts/header' %>
   </div>
@@ -18,7 +28,7 @@
   </div>
 
   <div class="heart">
-    <span>&#9829;</span> DB 2017
+    <span>&#9829;</span> <a href="http://www.dalmaboros.com" target="_blank">DB 2017</a>
   </div>
 
 </body>
