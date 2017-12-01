@@ -1,5 +1,6 @@
 <div class="column">
-  <h2><%= @scrap.description %></h2>
+  <h2>Scrap #<%= @scrap.id %></h2>
+  <p>"<%= @scrap.description %>"</p>
 
   <% if @scrap.bowls.empty? %>
     This scrap doesn't have a bowl.
