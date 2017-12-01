@@ -10,7 +10,7 @@
   <% end %>
 
   <%= form_for @scrap  do |f| %>
-    <%= f.hidden_field :bowl_ids %>
+    <%= f.hidden_field :bowl_ids, :multiple => true, :value => @bowl.id %>
 
     <%= f.label :description %>
     <%= f.text_field :description, maxlength: 140 %></p>

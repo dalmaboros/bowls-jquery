@@ -9,7 +9,7 @@ class ScrapsController < ApplicationController
   def create
     if params[:scrap][:bowl_ids]
       @bowl = Bowl.find_by(id: params[:scrap][:bowl_ids][0])
-      binding.pry
+      binding.pry #unpermitted parameter bowl_ids
       @scrap = @bowl.scraps.build(scrap_params)
     else
       @scrap = Scrap.new(scrap_params)
