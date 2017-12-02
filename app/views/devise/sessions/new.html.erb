@@ -1,5 +1,12 @@
 <h2>Log in</h2>
 
+<% if devise_error_messages!.empty? %>
+  no messages
+<% else %>
+  <%= raise devise_error_messages!.inspect %>
+  yes messages
+<% end %>
+
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
