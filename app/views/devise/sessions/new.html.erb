@@ -1,13 +1,10 @@
 <h2>Log in</h2>
 
-<% if devise_error_messages!.empty? %>
-  no messages
-<% else %>
-  <%= raise devise_error_messages!.inspect %>
-  yes messages
-<% end %>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div id="error_explanation">
+    <%= flash[:alert] %>
+  </div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>

@@ -14,7 +14,13 @@
     <ul>
       <li><%= link_to bowls_path, bowls_path %></li>
       <li><%= link_to scraps_path, scraps_path %></li>
-      <li><%= link_to user_session_path, user_session_path %></li>
+      <li>
+        <% if user_signed_in? %>
+            <%= link_to(destroy_user_session_path, destroy_user_session_path, method: :delete) %>
+        <% else %>
+          <%= link_to user_session_path, user_session_path %>
+        <% end %>
+      </li>
     </ul>
   </nav>
 
