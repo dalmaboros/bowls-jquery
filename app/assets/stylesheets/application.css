@@ -100,6 +100,50 @@ h2 {
   color: rgba(0,255,0,.6);
 }
 
+/* Gear icon */
+
+.icon {
+  /*float:left;*/
+  width:24px;
+  height:24px;
+  position:relative;
+  display:block;
+}
+.icon:before,
+.icon:after {
+  position:absolute;
+  content:"";
+  display:block;
+}
+
+.btn {
+  display:inline-block;
+  min-width:24px;
+  height:24px;
+  line-height: 16px;
+  margin:0 5px 5px 0;
+  background: transparent;
+  /*font-size: 10pt;
+  font-weight: bold;
+  text-decoration: none;*/
+  border-radius:5px;
+  padding:10px;
+  position:absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.icon-gear:before {
+  width:24px;
+  height:24px;
+  color: rgba(255,255,255,0.9);
+  box-shadow:0 0 0 4px inset;
+  border-radius:20px;
+  border:2px dashed;
+  top:-2px;
+  left:-1px;
+}
+
 /* Burger menu button */
 .burger {
 	width: 28px;
@@ -213,7 +257,6 @@ h2 {
 }
 
 /* Flicker */
-
 @keyframes text-flicker {
   0% { opacity:0.1; }
   2% { opacity:1; }
@@ -229,7 +272,7 @@ h2 {
   100% { opacity:1; }
 }
 
-/* Experimental animation flicker with skew */
+/* Flicker with skew */
 @keyframes text-flicker-skew {
   0% { opacity:0.1; }
   2% { opacity:1; }
@@ -239,14 +282,10 @@ h2 {
   20% { opacity:1; }
   25% { opacity:0.3; }
   30% { opacity:1; }
-
-  /*30% {  }*/
   40% { opacity:1; -webkit-transform:scale(1,1);  -webkit-transform:skew(0,0);}
   41% { opacity:0.8; -webkit-transform:scale(1,1.2);  -webkit-transform:skew(20deg,0);}
   42% { opacity:0.8; -webkit-transform:scale(1,1.2);  -webkit-transform:skew(-40deg,0);}
   43% { opacity:1; -webkit-transform:scale(1,1);  -webkit-transform:skew(0,0);}
-  /*65% { }*/
-
   70% { opacity:0.7; }
   72% { opacity:0.2; }
   77% { opacity:.9; }
@@ -254,7 +293,6 @@ h2 {
 }
 
 /* Heart Signature */
-
 .heart {
   color: rgba(255,255,255,.9);
   position: absolute;
@@ -284,8 +322,7 @@ h2 {
   }
 }
 
-/* FORM */
-
+/* Form */
 input[type=text], input[type=url], input[type=password], input[type=email], input[type=date], textarea {
   width: 90%;
   background-color: rgba(255,255,255,.9);
@@ -352,14 +389,3 @@ input:focus {
     -moz-box-sizing: border-box;
   box-sizing: border-box;
 }*/
-
-/* Jerk animation */
-
-@-webkit-keyframes jerkwhole {
-  30% {  }
-  40% { opacity:1; -webkit-transform:scale(1,1);  -webkit-transform:skew(0,0);}
-  41% { opacity:0.8; -webkit-transform:scale(1,1.2);  -webkit-transform:skew(20deg,0);}
-  42% { opacity:0.8; -webkit-transform:scale(1,1.2);  -webkit-transform:skew(-40deg,0);}
-  43% { opacity:1; -webkit-transform:scale(1,1);  -webkit-transform:skew(0,0);}
-  65% { }
-}
