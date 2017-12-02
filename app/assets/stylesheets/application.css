@@ -45,7 +45,7 @@ a {
 
 a:hover {
   text-shadow: 2px 1px rgba(0,255,0,.6), -2px -1px rgba(255,0,255,.6);
-  /*animation: text-flicker-shadow .5s linear 1;*/
+  /*animation: text-flicker-little .5s linear 1;*/
 }
 
 div a.foo {
@@ -302,10 +302,10 @@ h2 {
   15% { opacity:0.7; }
   20% { opacity:1; }
   70% { opacity:0.7; }
-  77% { opacity:1; }
+  77% { opacity:0.9; }
 }
 
-/* Flicker shadow */
+/* Flicker shadow - CHECK THIS IS BEING USED */
 @keyframes text-flicker-shadow {
   15% { text-shadow: 2px 1px rgba(0,255,0,0.5), -2px -1px rgba(255,0,255,0.5); }
   20% { text-shadow: 2px 1px rgba(0,255,0,1), -2px -1px rgba(255,0,255,1); }
