@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  authenticated :user do
+    root :to => 'bowls#index', as: :authenticated_root
+  end
+  root :to => 'home#index'
   resources :scraps, except: [:index]
   resources :bowls do
     resources :scraps, only: [:show, :index, :new, :create]
