@@ -92,6 +92,16 @@ h2 {
   display: inline-block;
 }
 
+@keyframes example {
+    from {border-color: transparent;}
+    to {border-color: rgba(255,255,255,0.9);}
+}
+
+.home-bowl {
+  animation: example 2s linear 0s 1;
+  border-color: rgba(255,255,255,0.9);
+}
+
 .column {
   width: 100%;
   float: none;
