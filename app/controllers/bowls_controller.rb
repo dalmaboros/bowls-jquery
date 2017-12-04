@@ -1,6 +1,10 @@
 class BowlsController < ApplicationController
   before_action :set_bowl, only: [:show, :edit, :update, :destroy]
 
+  def new
+    #
+  end
+  
   def index
     Bowl.create(name: "My first bowl") if Bowl.all.empty?
     @bowls = Bowl.all
