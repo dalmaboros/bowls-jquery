@@ -24,6 +24,7 @@
           <%= link_to user_session_path, user_session_path %>
         <% end %>
       </li>
+      <li><%= current_user.email if current_user %></li>
     </ul>
   </nav>
 
