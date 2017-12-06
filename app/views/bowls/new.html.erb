@@ -10,6 +10,8 @@
   <% end %>
 
   <%= form_for @bowl do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
     <%= f.label :name %>
     <%= f.text_field :name %></p>
     <%= f.label :description %>

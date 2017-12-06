@@ -5,6 +5,19 @@ class BowlsController < ApplicationController
     @bowl = Bowl.new
   end
 
+  def create
+    # @user = User.find_by(bowl_params[:user_id])
+    # @bowl = @user.bowls.build(bowl_params.except(:user_id))
+    binding.pry
+    @bowl = Bowl.create(bowl_params)
+    binding.pry
+    if @bowl.save
+      redirect_to @bowl
+    else
+      render :new
+    end
+  end
+
   def index
     Bowl.create(name: "My first bowl") if Bowl.all.empty?
     @bowls = Bowl.all
@@ -36,7 +49,7 @@ class BowlsController < ApplicationController
   private
 
   def bowl_params
-    params.require(:bowl).permit(:name, :description, :scrap_ids)
+    params.require(:bowl).permit(:name, :description, :scrap_ids, :user_id)
   end
 
   def set_bowl

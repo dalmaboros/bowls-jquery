@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171204184856) do
   end
 
   create_table "bowls", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  null: false
