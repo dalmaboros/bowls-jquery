@@ -2,7 +2,7 @@ class BowlsController < ApplicationController
   before_action :set_bowl, only: [:show, :edit, :update, :destroy]
 
   def new
-    #
+    @bowl = Bowl.new
   end
 
   def index

@@ -3,6 +3,7 @@ class Bowl < ActiveRecord::Base
   has_many :scraps, through: :bowl_scraps
 
   validates :name, presence: :true, uniqueness: :true, length: { maximum: 40 }
+  validates :user, presence: :true
 
   belongs_to :user
 

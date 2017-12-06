@@ -10,16 +10,16 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(access_token)
     data = access_token.info
-    binding.pry
     user = User.where(email: data['email']).first
 
     # Uncomment the section below if you want users to be created if they don't exist
     unless user
-      binding.pry
         user = User.create(
           email: data['email'],
-          provider: access_token[:provider],
-          uid: access_token[:uid],
+          first_name: data['first_name'],
+          last_name: data['last_name'], 
+          provider: access_token['provider'],
+          uid: access_token['uid'],
           password: Devise.friendly_token[0,20]
         )
     end
