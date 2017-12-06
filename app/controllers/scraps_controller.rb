@@ -1,4 +1,5 @@
 class ScrapsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_scrap, only: [:show, :edit, :update, :destroy]
 
   def new

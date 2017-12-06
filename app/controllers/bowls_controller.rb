@@ -1,8 +1,13 @@
 class BowlsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_bowl, only: [:show, :edit, :update, :destroy]
 
   def new
-    @bowl = Bowl.new
+    # if !user_signed_in?
+    #   redirect_to root_path
+    # else
+      @bowl = Bowl.new
+    # end
   end
 
   def create
@@ -16,13 +21,21 @@ class BowlsController < ApplicationController
   end
 
   def index
-    Bowl.create(name: "My first bowl", user: current_user) if current_user.bowls.all.empty?
-    @bowls = current_user.bowls.all
+    # if !user_signed_in?
+    #   redirect_to root_path
+    # else
+      Bowl.create(name: "My first bowl", user: current_user) if current_user.bowls.all.empty?
+      @bowls = current_user.bowls.all
+    # end
   end
 
   def show
-    @scraps = @bowl.scraps
-    @random = @scraps.sample
+    if !user_signed_in?
+      redirect_to root_path
+    else
+      @scraps = @bowl.scraps
+      @random = @scraps.sample
+    end
   end
 
   def edit
@@ -50,7 +63,11 @@ class BowlsController < ApplicationController
   end
 
   def set_bowl
-    @bowl = Bowl.find(params[:id])
+    if !user_signed_in?
+      redirect_to root_path
+    else
+      @bowl = Bowl.find(params[:id])
+    end
   end
 
 end
