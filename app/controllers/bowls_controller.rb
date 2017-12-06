@@ -3,11 +3,7 @@ class BowlsController < ApplicationController
   before_action :set_bowl, only: [:show, :edit, :update, :destroy]
 
   def new
-    # if !user_signed_in?
-    #   redirect_to root_path
-    # else
-      @bowl = Bowl.new
-    # end
+    @bowl = Bowl.new
   end
 
   def create
@@ -21,17 +17,13 @@ class BowlsController < ApplicationController
   end
 
   def index
-    # if !user_signed_in?
-    #   redirect_to root_path
-    # else
-      Bowl.create(name: "My first bowl", user: current_user) if current_user.bowls.all.empty?
-      @bowls = current_user.bowls.all
-    # end
+    Bowl.create(name: "My first bowl", user: current_user) if current_user.bowls.all.empty?
+    @bowls = current_user.bowls.all
   end
 
   def show
-    if !user_signed_in?
-      redirect_to root_path
+    if @bowl.user != current_user
+      redirect_to bowls_path
     else
       @scraps = @bowl.scraps
       @random = @scraps.sample
@@ -39,21 +31,26 @@ class BowlsController < ApplicationController
   end
 
   def edit
+    redirect_to bowls_path if @bowl.user != current_user
   end
 
   def update
-    if @bowl.update(bowl_params)
-      @bowl.save
-      redirect_to bowl_path(@bowl)
-    else
-      @bowl.restore_attributes(@bowl.errors.keys)
-      render :edit
+    if @bowl.user == current_user
+      if @bowl.update(bowl_params)
+        @bowl.save
+        redirect_to bowl_path(@bowl)
+      else
+        @bowl.restore_attributes(@bowl.errors.keys)
+        render :edit
+      end
     end
   end
 
   def destroy
-    @bowl.destroy
-    redirect_to bowls_url
+    if @bowl.user == current_user
+      @bowl.destroy
+      redirect_to bowls_url
+    end
   end
 
   private
