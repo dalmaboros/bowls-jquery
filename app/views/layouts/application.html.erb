@@ -13,17 +13,15 @@
   <input class="burger-check" id="burger-check" type="checkbox"><label for="burger-check" class="burger"></label>
   <nav id="navigation1" class="navigation">
     <ul>
-      <li><%= link_to bowls_path, bowls_path %></li>
-      <li><%= link_to new_bowl_path, new_bowl_path %></li>
-
-      <li>
-        <% if user_signed_in? %>
-            <%= link_to(destroy_user_session_path, destroy_user_session_path, method: :delete) %>
-        <% else %>
-          <%= link_to user_session_path, user_session_path %>
-        <% end %>
-      </li>
-      <li>It's <%= current_user.first_name if current_user %> BINCH</li>
+      <% if !user_signed_in? %>
+        <li><%= link_to user_session_path, user_session_path %></li>
+      <% else %>
+        <li><%= link_to bowls_path, bowls_path %></li>
+        <li><%= link_to new_bowl_path, new_bowl_path %></li>
+        <li><%= link_to(destroy_user_session_path, destroy_user_session_path, method: :delete) %></li>
+        <li><%= link_to "/users/dalma", edit_user_registration_path(current_user) if current_user unless current_user && current_user.uid %></li>
+        <li>user: <%= current_user.first_name.downcase if current_user && current_user.uid %></li>
+      <% end %> <!-- end if user_signed_in? -->
     </ul>
   </nav>
 

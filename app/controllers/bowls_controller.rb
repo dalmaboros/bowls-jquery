@@ -7,7 +7,7 @@ class BowlsController < ApplicationController
 
   def create
     @bowl = Bowl.create(bowl_params)
-    
+
     if @bowl.save
       redirect_to @bowl
     else
@@ -16,8 +16,8 @@ class BowlsController < ApplicationController
   end
 
   def index
-    Bowl.create(name: "My first bowl") if Bowl.all.empty?
-    @bowls = Bowl.all
+    Bowl.create(name: "My first bowl", user: current_user) if current_user.bowls.all.empty?
+    @bowls = current_user.bowls.all
   end
 
   def show
