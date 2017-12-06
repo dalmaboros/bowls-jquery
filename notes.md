@@ -4,4 +4,5 @@
 * AR scope method:
 - user.most_popular_category
 - user.most_popular_scrap
-* User authentication w/omniauth
+* Associate user with scrap
+* Only show scraps to owner user

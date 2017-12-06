@@ -116,6 +116,10 @@ h2 {
   max-width: 800px;
 }
 
+.scrap {
+  padding-top: 50px;
+}
+
 #error_explanation {
   color: rgba(0,255,0,.6);
 }

@@ -24,6 +24,7 @@ class ScrapsController < ApplicationController
   end
 
   def show
+    # redirect_to bowls_path if @scrap.user != current_user
   end
 
   def index
