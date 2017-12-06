@@ -8,12 +8,16 @@
         <% end %>
       </div>
     <% else %>
-    <div class="bowl-container">
-      <%= link_to new_bowl_scrap_path(bowl), class: "foo" do %>
-        <div class="bowl"></div>
-        <%= link_to "pack a bowl", new_bowl_scrap_path(bowl) %>
-      <% end %>
-    </div>
+      <div class="bowl-container">
+        <%= link_to new_bowl_scrap_path(bowl), class: "foo" do %>
+          <div class="bowl"></div>
+          <% if bowl.name? %>
+            <%= link_to bowl.name, new_bowl_scrap_path(bowl) %>
+          <% else %>
+            <%= link_to "pack a bowl", new_bowl_scrap_path(bowl) %>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 <% end %>

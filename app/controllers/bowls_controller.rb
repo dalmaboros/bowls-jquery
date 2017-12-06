@@ -6,11 +6,8 @@ class BowlsController < ApplicationController
   end
 
   def create
-    # @user = User.find_by(bowl_params[:user_id])
-    # @bowl = @user.bowls.build(bowl_params.except(:user_id))
-    binding.pry
     @bowl = Bowl.create(bowl_params)
-    binding.pry
+    
     if @bowl.save
       redirect_to @bowl
     else
