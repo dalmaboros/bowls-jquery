@@ -75,6 +75,10 @@ h2 {
   text-align: center;
 }
 
+label, input[type=submit] {
+  text-transform: lowercase;
+}
+
 .bowl {
     margin: 50px auto;
     overflow: none;
