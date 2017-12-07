@@ -16,8 +16,8 @@
   <%= form_for @scrap do |f| %>
     <% if @bowl %>
       <%= f.hidden_field :bowl_ids, :multiple => true, :value => @bowl.id %>
-      <%= f.hidden_field :user_id, :value => @bowl.user.id %>
     <% end %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
 
     <%= f.label :description %>
     <%= f.text_field :description, maxlength: 140 %></p>
