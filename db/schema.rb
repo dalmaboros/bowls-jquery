@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20171204184856) do
   end
 
   create_table "scraps", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "description"
     t.string   "category"
     t.datetime "created_at",  null: false

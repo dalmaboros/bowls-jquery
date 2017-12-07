@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     root :to => 'bowls#index', as: :authenticated_root
   end
   root :to => 'home#index'
-  resources :scraps, except: [:index]
-  resources :bowls do
-    resources :scraps, only: [:show, :index, :new, :create]
+  resources :scraps
+  resources :bowls, only: [:show, :index, :new, :edit] do
+    resources :scraps, only: [:show, :index, :new, :edit]
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }

@@ -32,6 +32,12 @@
   </div>
 
   <div class="wrapper">
+    <div id="error_explanation">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+      <% end %>
+    </div>
+    
     <%= yield %>
   </div>
 

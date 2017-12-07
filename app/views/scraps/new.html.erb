@@ -1,5 +1,9 @@
 <div class="column">
-  <h2>Add a scrap to '<%= @bowl.name %>'</h2>
+  <% if @bowl %>
+    <h2>Add a scrap to '<%= @bowl.name %>'</h2>
+  <% else %>
+    <h2>Create a scrap</h2>
+  <% end %>
 
   <% if @scrap.errors.any? %>
     <div id="error_explanation">
@@ -10,7 +14,10 @@
   <% end %>
 
   <%= form_for @scrap do |f| %>
-    <%= f.hidden_field :bowl_ids, :multiple => true, :value => @bowl.id %>
+    <% if @bowl %>
+      <%= f.hidden_field :bowl_ids, :multiple => true, :value => @bowl.id %>
+      <%= f.hidden_field :user_id, :value => @bowl.user.id %>
+    <% end %>
 
     <%= f.label :description %>
     <%= f.text_field :description, maxlength: 140 %></p>

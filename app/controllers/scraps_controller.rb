@@ -3,8 +3,13 @@ class ScrapsController < ApplicationController
   before_action :set_scrap, only: [:show, :edit, :update, :destroy]
 
   def new
-    @bowl = Bowl.find_by(id: params[:bowl_id])
-    @scrap = Scrap.new(bowl_ids: [params[:bowl_id]])
+    if params[:bowl_id] && !Bowl.exists?(params[:bowl_id])
+      redirect_to bowls_path, alert: "Bowl not found."
+    else
+      @scrap = Scrap.new(bowl_ids: [params[:bowl_id]])
+      binding.pry
+    end
+    # @bowl = Bowl.find_by(id: params[:bowl_id])
   end
 
   def create
@@ -28,11 +33,23 @@ class ScrapsController < ApplicationController
   end
 
   def index
-    @scraps = Scrap.all
+    @scraps = current_user.scraps.all
+    binding.pry
     @bowl = Bowl.find(params[:bowl_id]) if params[:bowl_id]
   end
 
   def edit
+    if params[:bowl_id]
+      bowl = Bowl.find_by(id: params[:bowl_id])
+      if bowl.nil?
+        redirect_to bowls_path, alert: "Bowl not found."
+      else
+        @scrap = bowl.scraps.find_by(id: params[:id])
+        redirect_to bowl_scraps_path(bowl), alert: "Scrap not found." if @scrap.nil?
+      end
+    else
+      @scrap = Scrap.find(params[:id])
+    end
   end
 
   def update
@@ -55,7 +72,7 @@ class ScrapsController < ApplicationController
   private
 
   def scrap_params
-    params.require(:scrap).permit(:description, :category, :bowl_ids => [])
+    params.require(:scrap).permit(:description, :category, :user_id, :bowl_ids => [])
   end
 
   def set_scrap
