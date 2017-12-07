@@ -1,5 +1,5 @@
 <div class="column">
-  <h2>Edit "<%= @scrap.description %>"</h2>
+  <h2>edit '<%= @scrap.description %>'</h2>
 
   <% if @scrap.errors.any? %>
     <div id="error_explanation">
@@ -21,5 +21,5 @@
     <%= f.submit %></p>
   <% end %>
 
-<%= link_to "Delete Scrap", @scrap, method: :delete, data: { confirm: "Really?" } %>
+<%= link_to "delete scrap", @scrap, method: :delete, data: { confirm: "really?" } %>
 </div>

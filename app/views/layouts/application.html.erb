@@ -18,6 +18,8 @@
       <% else %>
         <li><%= link_to bowls_path, bowls_path %></li>
         <li><%= link_to new_bowl_path, new_bowl_path %></li>
+        <li><%= link_to scraps_path, scraps_path %></li>
+        <li><%= link_to new_scrap_path, new_scrap_path %></li>
         <li><%= link_to(destroy_user_session_path, destroy_user_session_path, method: :delete) %></li>
         <li><%= link_to "/users/dalma", edit_user_registration_path(current_user) if current_user unless current_user && current_user.uid %></li>
         <li>user: <%= current_user.first_name.downcase if current_user && current_user.uid %></li>
@@ -37,7 +39,7 @@
         <%= content_tag :div, msg, class: name %>
       <% end %>
     </div>
-    
+
     <%= yield %>
   </div>
 

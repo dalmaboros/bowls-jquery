@@ -13,9 +13,9 @@
   <h2><%= @bowl.name %></h2>
 
   <% if @bowl.scraps.empty? %>
-    <p>This bowl is empty.</p>
-    <p><%= link_to "Add scrap", new_bowl_scrap_path(@bowl) %></p>
+    <p>(this bowl is empty)</p>
+    <p><%= link_to "add scrap", new_bowl_scrap_path(@bowl) %></p>
   <% end %>
 
-  <%= link_to "Edit bowl", edit_bowl_path %>
+  <%= link_to "edit bowl", edit_bowl_path %>
 </div>

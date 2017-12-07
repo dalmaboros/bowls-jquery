@@ -1,8 +1,8 @@
 <div class="column">
   <% if @bowl %>
-    <h2>Scraps in '<%= @bowl.name %>'</h2>
+    <h2>scraps in '<%= @bowl.name %>'</h2>
   <% else %>
-    <h2>Scraps</h2>
+    <h2>scraps</h2>
   <% end %>
 
   <% if @bowl %>
@@ -10,16 +10,19 @@
       <p>This bowl is empty.</p>
       <p><%= link_to "Add a scrap", new_bowl_scrap_path %></p>
     <% else %>
-        <% @bowl.scraps.each do |scrap| %>
+      <% @bowl.scraps.each do |scrap| %>
         <p>
           <%= scrap.description %>
           <%= link_to "(edit)", edit_scrap_path(scrap) %>
         </p>
-        <% end %>
+      <% end %>
     <% end %>
   <% else %>
     <% @scraps.each do |scrap| %>
-      <%= scrap.descrpition %>
+      <p>
+        <%= scrap.description %>
+        <%= link_to "(edit)", edit_scrap_path(scrap) %>
+      </p>
     <% end %>
   <% end %>
 </div>
