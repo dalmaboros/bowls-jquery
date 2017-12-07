@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   root :to => 'home#index'
   resources :scraps
-  resources :bowls, only: [:show, :index, :new, :edit] do
+  resources :bowls do
     resources :scraps, only: [:show, :index, :new, :edit]
   end
 

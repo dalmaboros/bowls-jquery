@@ -3,19 +3,21 @@ class ScrapsController < ApplicationController
   before_action :set_scrap, only: [:show, :edit, :update, :destroy]
 
   def new
-    if params[:bowl_id] && !Bowl.exists?(params[:bowl_id])
-      redirect_to bowls_path, alert: "Bowl not found."
+    if params[:bowl_id]
+      @bowl = Bowl.find(params[:bowl_id])
+      if !@bowl
+        redirect_to bowls_path, alert: "Bowl not found."
+      else
+        @scrap = Scrap.new(bowl_ids: [params[:bowl_id]])
+      end
     else
-      @scrap = Scrap.new(bowl_ids: [params[:bowl_id]])
-      binding.pry
+      @scrap = Scrap.new
     end
-    # @bowl = Bowl.find_by(id: params[:bowl_id])
   end
 
   def create
-    if params[:scrap][:bowl_ids]
-      @bowl = Bowl.find_by(id: params[:scrap][:bowl_ids][0])
-      #binding.pry #unpermitted parameter bowl_ids
+    if scrap_params[:bowl_ids]
+      @bowl = Bowl.find_by(id: scrap_params[:bowl_ids][0])
       @scrap = @bowl.scraps.build(scrap_params)
     else
       @scrap = Scrap.new(scrap_params)
@@ -34,7 +36,6 @@ class ScrapsController < ApplicationController
 
   def index
     @scraps = current_user.scraps.all
-    binding.pry
     @bowl = Bowl.find(params[:bowl_id]) if params[:bowl_id]
   end
 
@@ -55,10 +56,8 @@ class ScrapsController < ApplicationController
   def update
     if @scrap.update(scrap_params)
       @scrap.save
-      binding.pry
       redirect_to scrap_path(@scrap)
     else
-      binding.pry
       @scrap.restore_attributes(@scrap.errors.keys)
       render :edit
     end
