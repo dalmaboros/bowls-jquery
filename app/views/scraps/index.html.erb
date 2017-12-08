@@ -7,8 +7,8 @@
 
   <% if @bowl %>
     <% if @bowl.scraps.empty? %>
-      <p>This bowl is empty.</p>
-      <p><%= link_to "Add a scrap", new_bowl_scrap_path %></p>
+      <p>(this bowl is empty)</p>
+      <p><%= link_to "add a scrap", new_bowl_scrap_path %></p>
     <% else %>
       <% @bowl.scraps.each do |scrap| %>
         <p>
@@ -18,11 +18,16 @@
       <% end %>
     <% end %>
   <% else %>
-    <% @scraps.each do |scrap| %>
-      <p>
-        <%= scrap.description %>
-        <%= link_to "(edit)", edit_scrap_path(scrap) %>
-      </p>
+    <% if @scraps.empty? %>
+      there are no scraps
+      <p><%= link_to "make one", new_scrap_path %></p>
+    <% else %>
+      <% @scraps.each do |scrap| %>
+        <p>
+          <%= scrap.description %>
+          <%= link_to "(edit)", edit_scrap_path(scrap) %>
+        </p>
+      <% end %>
     <% end %>
   <% end %>
 </div>

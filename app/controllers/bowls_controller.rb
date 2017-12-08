@@ -17,7 +17,7 @@ class BowlsController < ApplicationController
   end
 
   def index
-    Bowl.create(name: "new_bowl", user: current_user) if current_user.bowls.all.empty?
+    Bowl.create(name: "first_bowl", user: current_user) if current_user.bowls.all.empty?
     @bowls = current_user.bowls.all
   end
 

@@ -31,7 +31,16 @@ class ScrapsController < ApplicationController
   end
 
   def show
-    # redirect_to bowls_path if @scrap.user != current_user
+    if params[:bowl_id]
+      @bowl = Bowl.find(params[:bowl_id])
+      if !@bowl
+        redirect_to bowls_path, alert: "bowl not found."
+      elsif !@scrap.bowls.include? @bowl
+        redirect_to scraps_path
+      else
+        redirect_to scraps_path if @scrap.user != current_user
+      end
+    end
   end
 
   def index
@@ -40,6 +49,7 @@ class ScrapsController < ApplicationController
   end
 
   def edit
+    redirect_to scraps_path if @scrap.user != current_user
     if params[:bowl_id]
       bowl = Bowl.find_by(id: params[:bowl_id])
       if bowl.nil?
