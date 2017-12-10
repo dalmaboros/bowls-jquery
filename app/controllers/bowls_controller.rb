@@ -65,6 +65,9 @@ class BowlsController < ApplicationController
     else
       @bowl = Bowl.find(params[:id])
     end
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "bowl #{params[:id]} not found"
+      redirect_to bowls_path
   end
 
 end

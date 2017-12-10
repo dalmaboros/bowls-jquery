@@ -35,11 +35,11 @@ class ScrapsController < ApplicationController
       @bowl = Bowl.find(params[:bowl_id])
       if !@bowl
         redirect_to bowls_path, alert: "bowl not found."
-      elsif !@scrap.bowls.include? @bowl
+      else !@scrap.bowls.include? @bowl
         redirect_to scraps_path
-      else
-        redirect_to scraps_path if @scrap.user != current_user
       end
+    else
+      redirect_to scraps_path if @scrap.user != current_user
     end
   end
 
@@ -86,6 +86,9 @@ class ScrapsController < ApplicationController
 
   def set_scrap
     @scrap = Scrap.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "scrap #{params[:id]} not found"
+      redirect_to scraps_path
   end
 
 end
