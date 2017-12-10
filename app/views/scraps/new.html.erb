@@ -14,13 +14,15 @@
   <% end %>
 
   <%= form_for @scrap do |f| %>
-    <% if @bowl %>
-      <%= f.hidden_field :bowl_ids, :multiple => true, :value => @bowl.id %>
-    <% end %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-
+    <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.label :description %>
     <%= f.text_field :description, maxlength: 140 %></p>
+    <% if @bowl %>
+      <%= f.hidden_field :bowl_ids, :multiple => true, :value => @bowl.id %>
+    <% else %>
+      <%= f.collection_check_boxes :bowl_ids, current_user.bowls, :id, :name %></p>
+    <% end %>
+
     <%= f.submit %>
   <% end %>
 </div>

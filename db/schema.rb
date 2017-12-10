@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20171204184856) do
     t.datetime "updated_at"
   end
 
+  add_index "bowl_scraps", ["bowl_id"], name: "index_bowl_scraps_on_bowl_id"
+  add_index "bowl_scraps", ["scrap_id"], name: "index_bowl_scraps_on_scrap_id"
+
   create_table "bowls", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
