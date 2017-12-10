@@ -16,13 +16,16 @@
     <%= f.text_field :name %></p>
     <%= f.label :description %>
     <%= f.text_field :description %></p>
+
     add existing scrap<br />
     <%= f.collection_check_boxes :scrap_ids, current_user.scraps, :id, :description %></p>
+
     create new scrap<br />
     <%= f.fields_for :scraps, @bowl.scraps.build do |scraps_fields| %>
       <%= scraps_fields.text_field :description %>
       <%= scraps_fields.hidden_field :user_id, value: current_user.id %>
     <% end %>
+    
     <%= f.submit %>
   <% end %>
 </div>

@@ -84,7 +84,7 @@ class ScrapsController < ApplicationController
   private
 
   def scrap_params
-    params.require(:scrap).permit(:description, :category, :user_id, bowl_ids:[])
+    params.require(:scrap).permit(:description, :category, :user_id, bowl_ids:[], bowls_attributes: [:name, :user_id])
   end
 
   def set_scrap
