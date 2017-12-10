@@ -16,9 +16,11 @@ class ScrapsController < ApplicationController
   end
 
   def create
-    if scrap_params[:bowl_ids]
+    if !scrap_params[:bowl_ids][0].empty?
       @bowl = Bowl.find_by(id: scrap_params[:bowl_ids][0])
+      binding.pry
       @scrap = @bowl.scraps.build(scrap_params)
+      binding.pry
     else
       @scrap = Scrap.new(scrap_params)
     end
@@ -76,7 +78,7 @@ class ScrapsController < ApplicationController
 
   def destroy
     @scrap.destroy
-    redirect_to root_path
+    redirect_to scraps_path
   end
 
   private
