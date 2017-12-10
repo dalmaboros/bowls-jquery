@@ -35,7 +35,7 @@ class ScrapsController < ApplicationController
       @bowl = Bowl.find(params[:bowl_id])
       if !@bowl
         redirect_to bowls_path, alert: "bowl not found."
-      else !@scrap.bowls.include? @bowl
+      elsif !@scrap.bowls.include? @bowl
         redirect_to scraps_path
       end
     else
