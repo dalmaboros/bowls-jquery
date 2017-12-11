@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get '/bowls/most_scraps', to: 'bowls#most_scraps', as: 'most_scraps'
-  get '/bowls/least_scraps', to: 'bowls#least_scraps', as: 'least_scraps'
 
   authenticated :user do
     root :to => 'bowls#index', as: :authenticated_root

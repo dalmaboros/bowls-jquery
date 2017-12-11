@@ -1,0 +1,10 @@
+<div class="column">
+  <h1>most scraps</h1>
+  <ol>
+    <% @bowls.each do |bowl| %>
+      <li>
+        <%= link_to bowl.name, bowl_path(bowl) %> (<%= bowl.scraps.count %> scraps)
+      </li>
+    <% end %>
+  </ol>
+</div>
