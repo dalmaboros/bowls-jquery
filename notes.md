@@ -2,6 +2,10 @@
 
 ## Next Steps
 * AR scope method:
-- user.most_popular_category
-- user.most_popular_scrap
-* show scraps with no bowl
+- bowl.most_scraps
+- bowl.least_scraps
+- users.most_bowls
+
+* Change Oauth message
+* hover over bowl ("add scrap to brand new bowl", "pull scrap")
+* partials
