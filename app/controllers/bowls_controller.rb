@@ -3,6 +3,8 @@ class BowlsController < ApplicationController
   before_action :set_bowl, only: [:show, :edit, :update, :destroy]
 
   def new
+    binding.pry
+    puts request.env['PATH_INFO']
     @bowl = Bowl.new
   end
 
