@@ -3,10 +3,8 @@ class ScrapsController < ApplicationController
   before_action :set_scrap, only: [:show, :edit, :update, :destroy]
 
   def new
-    binding.pry
     if params[:bowl_id]
       @bowl = Bowl.find(params[:bowl_id])
-      binding.pry
       if !@bowl
         redirect_to bowls_path, alert: "Bowl not found."
       else
@@ -18,9 +16,7 @@ class ScrapsController < ApplicationController
   end
 
   def create
-    binding.pry
     if !scrap_params[:bowl_ids][0].empty?
-      binding.pry
       @bowl = Bowl.find_by(id: scrap_params[:bowl_ids][0])
       @scrap = @bowl.scraps.build(scrap_params)
     else
@@ -30,7 +26,6 @@ class ScrapsController < ApplicationController
     if @scrap.save
       redirect_to @scrap
     else
-      binding.pry
       render :new
     end
   end

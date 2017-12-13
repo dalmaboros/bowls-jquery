@@ -3,14 +3,12 @@ class BowlsController < ApplicationController
   before_action :set_bowl, only: [:show, :edit, :update, :destroy]
 
   def new
-    binding.pry
     puts request.env['PATH_INFO']
     @bowl = Bowl.new
   end
 
   def create
     @bowl = Bowl.create(bowl_params)
-    binding.pry
 
     if @bowl.save
       redirect_to @bowl
