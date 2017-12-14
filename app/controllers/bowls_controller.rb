@@ -54,12 +54,6 @@ class BowlsController < ApplicationController
     end
   end
 
-  # Class level ActiveRecord scope methods
-
-  def most_scraps
-    @bowls = current_user.bowls.joins(:scraps).select('bowls.*, COUNT(scraps.id) as scraps_count').group('bowls.id').order('scraps_count DESC')
-  end
-
   private
 
   def bowl_params

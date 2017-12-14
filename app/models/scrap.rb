@@ -5,6 +5,8 @@ class Scrap < ActiveRecord::Base
 
   validates :description, presence: :true, uniqueness: {scope: :user_id}, length: { maximum: 140 }
 
+  scope :no_bowl, -> { Scrap.includes(:bowls).where( :bowls => { :id => nil } ) }
+
   def bowls_attributes=(bowl_attributes)
     bowl_attributes.delete_if { |_k, v| v[:name].blank? }
     bowl_attributes.values.each do |bowl_attribute|

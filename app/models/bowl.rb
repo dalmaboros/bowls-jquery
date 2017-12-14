@@ -3,9 +3,10 @@ class Bowl < ActiveRecord::Base
   has_many :bowl_scraps
   has_many :scraps, through: :bowl_scraps
 
-
   validates :name, presence: :true, :uniqueness => {scope: :user_id}, length: { maximum: 40 }
   validates :user, presence: :true
+
+  scope :no_scraps, -> { Bowl.includes(:scraps).where( :scraps => { :id => nil } ) }
 
   def scraps_attributes=(scrap_attributes)
     scrap_attributes.delete_if { |_k, v| v[:description].blank? }
