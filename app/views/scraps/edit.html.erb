@@ -1,15 +1,8 @@
 <div class="column">
   <h2>edit '<%= @scrap.description %>'</h2>
 
-  <% if @scrap.errors.any? %>
-    <div id="error_explanation">
-      <% @scrap.errors.full_messages.each do |msg| %>
-        <p><%= msg %>!</p>
-      <% end %>
-    </div>
-  <% end %>
-
   <%= form_for @scrap do |f| %>
+    <!-- <%= render 'form', f: f %> -->
     <%= f.label :description %>:
     <%= f.text_field :description %></p>
     <%= f.label "Bowls" %>:<br/>
@@ -21,5 +14,5 @@
     <%= f.submit %></p>
   <% end %>
 
-<%= link_to "delete scrap", @scrap, method: :delete, data: { confirm: "really?" } %>
+<p><%= link_to "delete scrap", @scrap, method: :delete, data: { confirm: "really?" } %></p>
 </div>

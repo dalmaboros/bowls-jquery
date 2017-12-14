@@ -1,0 +1,32 @@
+<%= f.hidden_field :user_id, :value => current_user.id %>
+
+<% if !@scrap.errors[:description].empty? %>
+  <div class="error_explanation">
+    <%= @scrap.errors.full_messages_for(:description)[0].downcase %>
+  </div>
+<% else %>
+  <%= f.label :description %>
+<% end %>
+<%= f.text_field :description, maxlength: 140 %></p>
+
+<% if @bowl %>
+  <%= f.hidden_field :bowl_ids, :multiple => true, :value => @bowl.id %>
+<% else %>
+  add to existing bowl<br />
+  <%= f.collection_check_boxes :bowl_ids, current_user.bowls, :id, :name %></p>
+
+  <% if !@scrap.errors[:"bowls.name"].empty? %>
+    <div class="error_explanation">
+      <%= @scrap.errors.full_messages_for(:"bowls.name")[0].downcase %>
+    </div>
+  <% else %>
+    add to new bowl<br />
+  <% end %>
+  <%= f.fields_for :bowls, @scrap.bowls.build do |bowls_fields| %>
+    <%= bowls_fields.text_field :name %>
+
+    <%= bowls_fields.hidden_field :user_id, value: current_user.id %>
+  <% end %>
+<% end %>
+
+<%= f.submit %>

@@ -16,8 +16,10 @@
     <%= f.label :description %>
     <%= f.text_field :description %></p>
 
-    add existing scrap<br />
-    <%= f.collection_check_boxes :scrap_ids, current_user.scraps, :id, :description %></p>
+    <% if !current_user.scraps.empty? %>
+      add existing scrap<br />
+      <%= f.collection_check_boxes :scrap_ids, current_user.scraps, :id, :description %></p>
+    <% end %>
 
     <% if !@bowl.errors[:"scraps.description"].empty? %>
       <div class="error_explanation">

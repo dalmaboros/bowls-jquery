@@ -22,7 +22,6 @@ class ScrapsController < ApplicationController
     else
       @scrap = Scrap.new(scrap_params)
     end
-
     if @scrap.save
       redirect_to @scrap
     else
