@@ -18,4 +18,8 @@
   <% end %>
 
   <%= link_to "edit bowl", edit_bowl_path %>
+
+  <% if !@bowl.scraps.empty? %>
+    <p><%= link_to "view scraps", bowl_scraps_path(@bowl) %></p>
+  <% end %>
 </div>

@@ -2,37 +2,6 @@
   <h2>new bowl</h2>
 
   <%= form_for @bowl do |f| %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-
-    <% if !@bowl.errors[:name].empty? %>
-      <div class="error_explanation">
-        <%= @bowl.errors.full_messages_for(:name)[0].downcase %>
-      </div>
-    <% else %>
-      <%= f.label :name %>
-    <% end %>
-    <%= f.text_field :name %></p>
-
-    <%= f.label :description %>
-    <%= f.text_field :description %></p>
-
-    <% if !current_user.scraps.empty? %>
-      add existing scrap<br />
-      <%= f.collection_check_boxes :scrap_ids, current_user.scraps, :id, :description %></p>
-    <% end %>
-
-    <% if !@bowl.errors[:"scraps.description"].empty? %>
-      <div class="error_explanation">
-        <%= @bowl.errors.full_messages_for(:"scraps.description")[0].downcase %>
-      </div>
-    <% else %>
-      create new scrap<br />
-    <% end %>
-    <%= f.fields_for :scraps, @bowl.scraps.build do |scraps_fields| %>
-      <%= scraps_fields.text_field :description %>
-      <%= scraps_fields.hidden_field :user_id, value: current_user.id %>
-    <% end %>
-
-    <%= f.submit %>
+    <%= render 'form', f: f %>
   <% end %>
 </div>
