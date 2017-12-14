@@ -1,3 +1,5 @@
+<% title "#{@bowl.name}" %>
+
 <div class="column">
   <% if !@bowl.scraps.empty? %>
     <%= link_to bowl_scrap_path(@bowl, @bowl.scraps.sample), class: "foo" do %>
