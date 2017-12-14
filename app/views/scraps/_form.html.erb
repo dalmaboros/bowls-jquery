@@ -7,7 +7,7 @@
 <% else %>
   <%= f.label :description %>
 <% end %>
-<%= f.text_field :description, maxlength: 140 %></p>
+<%= f.text_field :description, autocomplete: :off, maxlength: 140 %></p>
 
 <% if @bowl %>
   <%= f.hidden_field :bowl_ids, :multiple => true, :value => @bowl.id %>
@@ -23,12 +23,7 @@
     add to new bowl<br />
   <% end %>
   <%= f.fields_for :bowls, @scrap.bowls.build do |bowls_fields| %>
-    <%= bowls_fields.text_field :name, autocomplete: :off, list: 'bowls' %>
-    <datalist id="bowls">
-      <% Bowl.all.each do |bowl| %>
-        <option value="<%= bowl.name %>"><%= bowl.name %></option>
-      <% end %>
-    </datalist>
+    <%= bowls_fields.text_field :name, autocomplete: :off %>
 
     <%= bowls_fields.hidden_field :user_id, value: current_user.id %>
   <% end %>

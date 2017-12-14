@@ -2,16 +2,7 @@
   <h2>edit '<%= @scrap.description %>'</h2>
 
   <%= form_for @scrap do |f| %>
-    <!-- <%= render 'form', f: f %> -->
-    <%= f.label :description %>:
-    <%= f.text_field :description %></p>
-    <%= f.label "Bowls" %>:<br/>
-    <%= collection_check_boxes(:scrap, :bowl_ids, current_user.bowls, :id, :name) do |b| %>
-      <%= b.label class:"label-checkbox" do %>
-         <%= b.check_box + b.text %>
-      <% end %>
-    <% end %></p>
-    <%= f.submit %></p>
+    <%= render 'form', f: f %>
   <% end %>
 
 <p><%= link_to "delete scrap", @scrap, method: :delete, data: { confirm: "really?" } %></p>
