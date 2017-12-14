@@ -77,6 +77,11 @@ class ScrapsController < ApplicationController
     redirect_to scraps_path
   end
 
+  def no_bowls
+    @scraps = current_user.scraps.no_bowls
+    render :index
+  end
+
   private
 
   def scrap_params

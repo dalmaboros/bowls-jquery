@@ -54,6 +54,11 @@ class BowlsController < ApplicationController
     end
   end
 
+  def no_scraps
+    @bowls = current_user.bowls.no_scraps
+    render :index
+  end
+
   private
 
   def bowl_params
