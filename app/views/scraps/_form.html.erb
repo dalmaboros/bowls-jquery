@@ -15,9 +15,9 @@
   add to existing bowl<br />
   <%= f.collection_check_boxes :bowl_ids, current_user.bowls, :id, :name %></p>
 
-  <% if !@scrap.errors[:"bowls.name"].empty? %>
+  <% if !@scrap.errors[:bowls].empty? %>
     <div class="error_explanation">
-      <%= @scrap.errors.full_messages_for(:"bowls.name")[0].downcase %>
+      <%= @scrap.errors.full_messages_for(:bowls)[0].downcase %>
     </div>
   <% else %>
     add to new bowl<br />
