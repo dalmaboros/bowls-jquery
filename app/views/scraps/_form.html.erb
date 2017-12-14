@@ -5,7 +5,7 @@
     <%= @scrap.errors.full_messages_for(:description)[0].downcase %>
   </div>
 <% else %>
-  <%= f.label :description %>
+  <%= f.label :description %> <span class="required">*</span>
 <% end %>
 <%= f.text_field :description, autocomplete: :off, maxlength: 140 %></p>
 
