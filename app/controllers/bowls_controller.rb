@@ -7,8 +7,7 @@ class BowlsController < ApplicationController
   end
 
   def create
-    @bowl = Bowl.create(bowl_params)
-    binding.pry
+    @bowl = Bowl.new(bowl_params)
 
     if @bowl.save
       redirect_to @bowl

@@ -1,27 +1,18 @@
 class ScrapsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_scrap, only: [:show, :edit, :update, :destroy]
+  before_action :set_bowl, only: [:new, :edit, :show, :index]
 
   def new
-    if params[:bowl_id]
-      @bowl = Bowl.find(params[:bowl_id])
-      if !@bowl
-        redirect_to bowls_path, alert: "Bowl not found."
-      else
-        @scrap = Scrap.new(bowl_ids: [params[:bowl_id]])
-      end
+    if @bowl
+      @scrap = Scrap.new(bowl_ids: [@bowl.id])
     else
       @scrap = Scrap.new
     end
   end
 
   def create
-    if !scrap_params[:bowl_ids][0].empty?
-      @bowl = Bowl.find_by(id: scrap_params[:bowl_ids][0])
-      @scrap = @bowl.scraps.build(scrap_params)
-    else
-      @scrap = Scrap.new(scrap_params)
-    end
+    @scrap = Scrap.new(scrap_params)
     if @scrap.save
       redirect_to @scrap
     else
@@ -30,35 +21,26 @@ class ScrapsController < ApplicationController
   end
 
   def show
-    if params[:bowl_id]
-      @bowl = Bowl.find(params[:bowl_id])
-      if !@bowl
-        redirect_to bowls_path, alert: "bowl not found."
-      elsif !@scrap.bowls.include? @bowl
-        redirect_to scraps_path
-      end
-    else
-      redirect_to scraps_path if @scrap.user != current_user
+    if @scrap.user != current_user
+      redirect_to scraps_path, alert: "scrap not found."
+    elsif !@scrap.bowls.include? @bowl
+      redirect_to scraps_path, alert: "scrap not in that bowl."
     end
   end
 
   def index
-    @scraps = current_user.scraps.all
-    @bowl = Bowl.find(params[:bowl_id]) if params[:bowl_id]
+    if !@bowl
+      @scraps = current_user.scraps.all
+    else
+      @scraps = @bowl.scraps
+    end
   end
 
   def edit
     redirect_to scraps_path if @scrap.user != current_user
-    if params[:bowl_id]
-      bowl = Bowl.find_by(id: params[:bowl_id])
-      if bowl.nil?
-        redirect_to bowls_path, alert: "Bowl not found."
-      else
-        @scrap = bowl.scraps.find_by(id: params[:id])
-        redirect_to bowl_scraps_path(bowl), alert: "Scrap not found." if @scrap.nil?
-      end
-    else
-      @scrap = Scrap.find(params[:id])
+    redirect_to scraps_path, alert: "scrap not in that bowl." if !@scrap.bowls.include? @bowl
+    if !@bowl.nil?
+      redirect_to bowl_scraps_path(@bowl), alert: "scrap not found." if @scrap.nil?
     end
   end
 
@@ -89,10 +71,19 @@ class ScrapsController < ApplicationController
   end
 
   def set_scrap
-    @scrap = Scrap.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "scrap #{params[:id]} not found"
-      redirect_to scraps_path
+    @scrap = Scrap.find_by_id(params[:id])
+    if !@scrap
+      redirect_to scraps_path, alert: "scrap not found."
+    end
+  end
+
+  def set_bowl
+    if params[:bowl_id]
+      @bowl = Bowl.find_by_id(params[:bowl_id])
+      if !@bowl || @bowl.user != current_user
+        redirect_to bowls_path, alert: "bowl not found."
+      end
+    end
   end
 
 end

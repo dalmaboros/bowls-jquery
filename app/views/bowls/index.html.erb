@@ -1,4 +1,4 @@
-<% title "Bowls" %>
+<% title "bowls" %>
 
 <% @bowls.each do |bowl| %>
   <div class="column">
@@ -13,11 +13,7 @@
       <div class="bowl-container">
         <%= link_to new_bowl_scrap_path(bowl), class: "foo" do %>
           <div class="bowl"></div>
-          <% if bowl.name? %>
-            <%= link_to bowl.name, edit_bowl_path(bowl) %>
-          <% else %>
-            <%= link_to "pack a bowl", new_bowl_scrap_path(bowl) %>
-          <% end %>
+          <%= link_to bowl.name, edit_bowl_path(bowl) %>
         <% end %>
       </div>
     <% end %>
