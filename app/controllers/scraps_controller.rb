@@ -5,7 +5,6 @@ class ScrapsController < ApplicationController
 
   def new
     if @bowl
-      binding.pry
       @scrap = Scrap.new(bowl_ids: [@bowl.id])
     else
       @scrap = Scrap.new
@@ -41,9 +40,12 @@ class ScrapsController < ApplicationController
 
   def edit
     redirect_to scraps_path if @scrap.user != current_user
-    redirect_to scraps_path, alert: "scrap not in that bowl." if !@scrap.bowls.include? @bowl
-    if !@bowl.nil?
-      redirect_to bowl_scraps_path(@bowl), alert: "scrap not found." if @scrap.nil?
+    if @bowl
+      if !@scrap.bowls.include? @bowl
+        redirect_to scraps_path, alert: "scrap not in that bowl."
+      elsif @scrap.nil?
+        redirect_to bowl_scraps_path(@bowl), alert: "scrap not found."
+      end
     end
   end
 
