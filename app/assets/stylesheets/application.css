@@ -346,7 +346,7 @@ label, input[type=submit] {
 
 
 /* Heart Signature */
-.heart {
+.signature {
   color: rgba(255,255,255,.9);
   position: absolute;
   bottom: 0px;
@@ -354,12 +354,12 @@ label, input[type=submit] {
   font-size: 0.5em;
 }
 
-.heart a {
+.signature a {
   background-color: transparent;
   color: rgba(255,255,255,.9);
   padding: 0;
 }
-.heart span {
+.signature span.heart {
   font-size: 1.25em;
   color: rgba(0,255,0,.6);
 }
