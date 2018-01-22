@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20171204184856) do
   create_table "bowl_scraps", force: :cascade do |t|
     t.integer  "bowl_id"
     t.integer  "scrap_id"
+    t.integer  "priority"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
