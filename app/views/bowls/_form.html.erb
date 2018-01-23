@@ -29,4 +29,21 @@
   <%= scraps_fields.hidden_field :user_id, value: current_user.id %>
 <% end %>
 
+<% if !@bowl.errors[:'bowl_scraps.priority'].empty? %>
+  <div class="error_explanation">
+    <%= @bowl.errors.full_messages_for(:'bowl_scraps.priority')[0].downcase %>
+  </div>
+<% else %>
+  priority (1-3)<br />
+<% end %>
+
+<%= f.fields_for :bowl_scraps, @bowl.bowl_scraps.build do |bowl_scrap_form| %>
+  <%= bowl_scrap_form.number_field :priority, autocomplete: :off %>
+
+  <%= bowl_scrap_form.fields_for :scrap do |scrap_form| %>
+    <%= scrap_form.text_field :description, autocomplete: :off %>
+    <%= scrap_form.hidden_field :user_id, value: current_user.id %>
+  <% end %>
+<% end %>
+
 <%= f.submit %>

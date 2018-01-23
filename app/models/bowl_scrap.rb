@@ -4,4 +4,6 @@ class BowlScrap < ActiveRecord::Base
 
   validates :priority, numericality: { greater_than: 0, less_than: 4, allow_nil: true }
 
+  accepts_nested_attributes_for :scrap
+
 end
