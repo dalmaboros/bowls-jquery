@@ -25,7 +25,7 @@
   create new scrap<br />
 <% end %>
 <%= f.fields_for :scraps, @bowl.scraps.build do |scraps_fields| %>
-  <%= scraps_fields.text_field :description, autocomplete: :off %>
+  <%= scraps_fields.text_field :description, autocomplete: :off %></p>
   <%= scraps_fields.hidden_field :user_id, value: current_user.id %>
 <% end %>
 
@@ -38,9 +38,10 @@
 <% end %>
 
 <%= f.fields_for :bowl_scraps, @bowl.bowl_scraps.build do |bowl_scrap_form| %>
-  <%= bowl_scrap_form.number_field :priority, autocomplete: :off %>
+  <%= bowl_scrap_form.number_field :priority, in: 1...4, autocomplete: :off %></p>
 
-  <%= bowl_scrap_form.fields_for :scrap do |scrap_form| %>
+  new scrap<br />
+  <%= bowl_scrap_form.fields_for :scrap, @bowl.bowl_scraps.build.build_scrap do |scrap_form| %>
     <%= scrap_form.text_field :description, autocomplete: :off %>
     <%= scrap_form.hidden_field :user_id, value: current_user.id %>
   <% end %>
