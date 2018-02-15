@@ -22,10 +22,22 @@
   <% else %>
     add to new bowl<br />
   <% end %>
+
   <%= f.fields_for :bowls, @scrap.bowls.build do |bowls_fields| %>
     <%= bowls_fields.text_field :name, autocomplete: :off %>
-
     <%= bowls_fields.hidden_field :user_id, value: current_user.id %>
+
+    <% if !@scrap.errors[:'bowl_scraps.priority'].empty? %>
+      <div class="error_explanation">
+        <%= @scrap.errors.full_messages_for(:'bowl_scraps.priority')[0].downcase %>
+      </div>
+    <% else %>
+      priority (1-3)<br />
+    <% end %>
+
+    <%= bowls_fields.fields_for :bowl_scraps, @scrap.bowls.build.bowl_scraps.build do |bowl_scrap_form| %>
+      <%= bowl_scrap_form.number_field :priority, in: 1...4, autocomplete: :off %></p>
+    <% end %>
   <% end %>
 <% end %>
 

@@ -8,10 +8,12 @@ class ScrapsController < ApplicationController
       @scrap = Scrap.new(bowl_ids: [@bowl.id])
     else
       @scrap = Scrap.new
+      # @bowl = @scrap.bowls.build
     end
   end
 
   def create
+    binding.pry
     @scrap = Scrap.new(scrap_params)
     if @scrap.save
       redirect_to scrap_path(@scrap)
@@ -72,7 +74,7 @@ class ScrapsController < ApplicationController
   private
 
   def scrap_params
-    params.require(:scrap).permit(:description, :category, :user_id, bowl_ids:[], bowls_attributes: [:name, :user_id])
+    params.require(:scrap).permit(:description, :category, :user_id, bowl_ids:[], bowls_attributes: [:name, :user_id, bowl_scraps_attributes: [:priority]])
   end
 
   def set_scrap

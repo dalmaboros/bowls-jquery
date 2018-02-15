@@ -10,10 +10,12 @@ class Scrap < ActiveRecord::Base
   scope :no_bowls, -> { includes(:bowls).where( :bowls => { :id => nil } ) }
 
   def bowls_attributes=(bowl_attributes)
+    binding.pry
     bowl_attributes.delete_if { |_k, v| v[:name].blank? }
     bowl_attributes.values.each do |bowl_attribute|
-      bowl = Bowl.find_or_create_by(bowl_attribute)
-      self.bowls << bowl
+      bowl = Bowl.find_or_create_by(name: bowl_attribute[:name], user_id: bowl_attribute[:user_id])
+      self.bowl_scraps.build(bowl: bowl, priority: bowl_attributes["0"][:bowl_scraps_attributes]["0"][:priority])
+      # self.bowls << bowl
     end
   end
 
