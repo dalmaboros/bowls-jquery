@@ -24,27 +24,23 @@
 <% else %>
   create new scrap<br />
 <% end %>
-<%= f.fields_for :scraps, @bowl.scraps.build do |scraps_fields| %>
+
+<%= f.fields_for :scraps, @scrap do |scraps_fields| %>
   <%= scraps_fields.text_field :description, autocomplete: :off %></p>
   <%= scraps_fields.hidden_field :user_id, value: current_user.id %>
-<% end %>
 
-<% if !@bowl.errors[:'bowl_scraps.priority'].empty? %>
-  <div class="error_explanation">
-    <%= @bowl.errors.full_messages_for(:'bowl_scraps.priority')[0].downcase %>
-  </div>
-<% else %>
-  priority (1-3)<br />
-<% end %>
-
-<%= f.fields_for :bowl_scraps, @bowl.bowl_scraps.build do |bowl_scrap_form| %>
-  <%= bowl_scrap_form.number_field :priority, in: 1...4, autocomplete: :off %></p>
-
-  new scrap<br />
-  <%= bowl_scrap_form.fields_for :scrap, @bowl.bowl_scraps.build.build_scrap do |scrap_form| %>
-    <%= scrap_form.text_field :description, autocomplete: :off %>
-    <%= scrap_form.hidden_field :user_id, value: current_user.id %>
+  <% if !@bowl.errors[:'bowl_scraps.priority'].empty? %>
+    <div class="error_explanation">
+      <%= @bowl.errors.full_messages_for(:'bowl_scraps.priority')[0].downcase %>
+    </div>
+  <% else %>
+    priority (1-3)<br />
   <% end %>
+
+  <%= scraps_fields.fields_for :bowl_scraps, @scrap.bowl_scraps.build do |bowl_scrap_form| %>
+    <%= bowl_scrap_form.number_field :priority, in: 1...4, autocomplete: :off %></p>
+  <% end %>
+
 <% end %>
 
 <%= f.submit %>

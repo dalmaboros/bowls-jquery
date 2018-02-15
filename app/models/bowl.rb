@@ -13,8 +13,8 @@ class Bowl < ActiveRecord::Base
   def scraps_attributes=(scrap_attributes)
     scrap_attributes.delete_if { |_k, v| v[:description].blank? }
     scrap_attributes.values.each do |scrap_attribute|
-      scrap = Scrap.find_or_create_by(scrap_attribute)
-      self.scraps << scrap
+      scrap = Scrap.find_or_create_by(description: scrap_attribute[:description], user_id: scrap_attribute[:user_id])
+      self.bowl_scraps.build(scrap: scrap, priority: scrap_attributes["0"][:bowl_scraps_attributes]["0"][:priority])
     end
   end
 

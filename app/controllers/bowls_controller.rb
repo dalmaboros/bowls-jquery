@@ -4,18 +4,15 @@ class BowlsController < ApplicationController
 
   def new
     @bowl = Bowl.new
+    @scrap = @bowl.scraps.build
   end
 
   def create
     @bowl = Bowl.new(bowl_params)
 
-    binding.pry
-
     if @bowl.save
-      binding.pry
       redirect_to @bowl
     else
-      binding.pry
       render :new
     end
   end
@@ -65,7 +62,7 @@ class BowlsController < ApplicationController
   private
 
   def bowl_params
-    params.require(:bowl).permit(:name, :description, :user_id, scrap_ids:[], scraps_attributes: [:description, :user_id], bowl_scraps_attributes: [:priority, scrap_attributes: [:description, :user_id]] )
+    params.require(:bowl).permit(:name, :description, :user_id, scrap_ids:[], scraps_attributes: [:description, :user_id, bowl_scraps_attributes: [:priority]])
   end
 
   def set_bowl
