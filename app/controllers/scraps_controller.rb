@@ -8,7 +8,6 @@ class ScrapsController < ApplicationController
       @scrap = Scrap.new(bowl_ids: [@bowl.id])
     else
       @scrap = Scrap.new
-      # @bowl = @scrap.bowls.build
     end
   end
 

@@ -25,20 +25,19 @@
   create new scrap<br />
 <% end %>
 
-<%= f.fields_for :scraps, @scrap do |scraps_fields| %>
+<%= f.fields_for :scraps, @bowl.scraps.build do |scraps_fields| %>
   <%= scraps_fields.text_field :description, autocomplete: :off %></p>
   <%= scraps_fields.hidden_field :user_id, value: current_user.id %>
 
   <% if !@bowl.errors[:'bowl_scraps.priority'].empty? %>
     <div class="error_explanation">
       <%= @bowl.errors.full_messages_for(:'bowl_scraps.priority')[0].downcase %>
-      YO
     </div>
   <% else %>
     priority (1-3)<br />
   <% end %>
 
-  <%= scraps_fields.fields_for :bowl_scraps, @scrap.bowl_scraps.build do |bowl_scrap_form| %>
+  <%= scraps_fields.fields_for :bowl_scraps, @bowl.scraps.build.bowl_scraps.build do |bowl_scrap_form| %>
     <%= bowl_scrap_form.number_field :priority, in: 1...4, autocomplete: :off %></p>
   <% end %>
 
