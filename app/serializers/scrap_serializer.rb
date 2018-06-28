@@ -1,3 +1,3 @@
 class ScrapSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :description, :category
 end

@@ -72,6 +72,14 @@ To generate an ActiveModel::Serializer for `Scrap` run the generator in your con
 ```bash
 $ rails g serializer scrap
 ```
+Add scrap attributes to `scrap_serializer.rb`:
+```ruby
+# app/serializers/scrap_serializer.rb
+
+class ScrapSerializer < ActiveModel::Serializer
+  attributes :id, :description, :category
+end
+```
 
 ---
 
