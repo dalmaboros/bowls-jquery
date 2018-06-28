@@ -15,9 +15,11 @@ Rails.application.routes.draw do
   post 'scraps/new', to: 'scraps#create'
   patch 'scraps/:id', to: 'scraps#update'
 
-  resources :bowls do
-    resources :scraps, only: [:show, :index, :new, :edit]
-  end
+  # resources :bowls do
+  #   resources :scraps, only: [:show, :index, :new, :edit]
+  # end
+
+  get '/bowls/:id', to: 'bowls#show'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 

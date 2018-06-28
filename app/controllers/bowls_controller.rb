@@ -28,6 +28,7 @@ class BowlsController < ApplicationController
       @scraps = @bowl.scraps
       @random = @scraps.sample
     end
+    render json: @bowl, status: 200
   end
 
   def edit

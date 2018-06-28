@@ -88,7 +88,26 @@ Make an ActiveModel:: Serializer for `Bowl`:
 ```bash
 $ rails g serializer bowl
 ```
+Create associations by adding `has_many :scraps` to `bowl_serializer.rb`:
+```ruby
+# app/serializers/bowl_serializer.rb
 
+class BowlSerializer < ActiveModel::Serializer
+  attributes :id
+
+  has_many :scraps
+end
+```
+And `has_many :bowls` to `scrap_serializre.rb`:
+```ruby
+# app/serializers/scrap_serializer.rb
+
+class ScrapSerializer < ActiveModel::Serializer
+  attributes :id, :description, :category
+
+  has_many :bowls
+end
+```
 
 ---
 
