@@ -108,6 +108,28 @@ class ScrapSerializer < ActiveModel::Serializer
   has_many :bowls
 end
 ```
+Create a `BowlScrapSerializer`:
+```bash
+$ rails g serializer bowl_scrap
+```
+Add the `description` attribute to and remove the `id` attribute from this `BowlScrapSerializer`:
+```ruby
+# app/serializers/bowl_scrap_serializer.rb
+
+class BowlScrapSerializer < ActiveModel::Serializer
+  attributes :description
+end
+```
+Explicitly give the `BowlSerializer` the `BowlScrapSerializer` when rendering a `Scrap`:
+```ruby
+# app/serializers/bowl_serializer.rb
+
+class BowlSerializer < ActiveModel::Serializer
+  attributes :id
+
+  has_many :scraps, serializer: BowlScrapSerializer
+end
+```
 
 ---
 
