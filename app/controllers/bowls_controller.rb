@@ -37,7 +37,6 @@ class BowlsController < ApplicationController
   def update
     if @bowl.user == current_user
       if @bowl.update(bowl_params)
-        binding.pry
         @bowl.save
         redirect_to bowl_path(@bowl)
       else

@@ -12,7 +12,6 @@ class ScrapsController < ApplicationController
   end
 
   def create
-    binding.pry
     @scrap = Scrap.new(scrap_params)
     if @scrap.save
       redirect_to scrap_path(@scrap)
