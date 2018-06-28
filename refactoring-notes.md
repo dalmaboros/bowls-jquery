@@ -57,6 +57,22 @@ end
 ```
 to render JSON, not redirect to another page.
 
+### Set up ActiveModel::Serializer
+
+To serialize Ruby objects into JSON objects, first add the gem:
+
+```ruby
+# Gemfile
+
+gem 'active_model_serializers'
+```
+Then run `bundle install`.
+
+To generate an ActiveModel::Serializer for `Scrap` run the generator in your console:
+```bash
+$ rails g serializer scrap
+```
+
 ---
 
 **Resources**
