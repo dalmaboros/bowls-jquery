@@ -57,6 +57,8 @@ end
 ```
 to render JSON, not redirect to another page.
 
+For `scraps#show` add `render json: @scrap, status: 200`.
+
 ### Set up ActiveModel::Serializer
 
 To serialize Ruby objects into JSON objects, first add the gem:
@@ -80,6 +82,7 @@ class ScrapSerializer < ActiveModel::Serializer
   attributes :id, :description, :category
 end
 ```
+Restart the Rails server, and navigate to `/scraps` to see scraps rendered in JSON.
 
 ---
 

@@ -27,6 +27,8 @@ class ScrapsController < ApplicationController
       if !@scrap.bowls.include? @bowl
         redirect_to scraps_path, alert: "scrap not in that bowl."
       end
+    else
+      render json: @scrap, status: 200
     end
   end
 
