@@ -4,19 +4,23 @@
 
 Instead of sending HTTP requests via Rails to fetch and load individual pages, we will send AJAX requests to the server to fetch objects in JavaScript Object Notation (JSON) and append these objects to the page.
 
-## Steps
+## Process
 
 ### Refactor `config/routes.rb`
 
 Draw routes to change a resource such as:
 
-```
+```ruby
+# config/routes.rb
+
 resources :scraps
 ```
 
 to:
 
-```
+```ruby
+# config/routes.rb
+
 get 'scraps', to: 'scraps#index'
 get 'scraps/:id', to: 'scraps#show'
 post 'scraps/new', to: 'scraps#create'
@@ -26,8 +30,35 @@ After which we won't be loading separate pages, but rather rendering JSON and ap
 
 ### Update `ScrapsController` to render JSON
 
+For example in the `scraps#index` action:
+```ruby
+# app/controllers/scraps_controller.rb
+
+def index
+  if !@bowl
+    @scraps = current_user.scraps.all
+  else
+    @scraps = @bowl.scraps
+  end
+end
+```
+add `render json: @scraps, status: 200` :
+```ruby
+# app/controllers/scraps_controller.rb
+
+def index
+  if !@bowl
+    @scraps = current_user.scraps.all
+  else
+    @scraps = @bowl.scraps
+  end
+  render json: @scraps, status: 200
+end
+```
+to render JSON, not redirect to another page.
+
 ---
 
 **Resources**
 
-*I used [Markdown Editor](https://jbt.github.io/markdown-editor/) and [Markdown Cheatsheet](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf) to help create this document*
+*I used [Markdown Editor](https://jbt.github.io/markdown-editor/) and Markdown Cheatsheets [[1]](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf) [[2]](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#hr) to help create this document*

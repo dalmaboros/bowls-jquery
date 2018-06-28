@@ -36,6 +36,7 @@ class ScrapsController < ApplicationController
     else
       @scraps = @bowl.scraps
     end
+    render json: @scraps, status: 200
   end
 
   def edit
