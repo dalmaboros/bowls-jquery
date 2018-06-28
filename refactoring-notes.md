@@ -84,6 +84,12 @@ end
 ```
 Restart the Rails server, and navigate to `/scraps` to see scraps rendered in JSON.
 
+Make an ActiveModel:: Serializer for `Bowl`:
+```bash
+$ rails g serializer bowl
+```
+
+
 ---
 
 **Resources**
