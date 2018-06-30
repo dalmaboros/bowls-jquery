@@ -1,6 +1,10 @@
 # Notes
 
-## Next steps
+## Bugs
+
+- Omniauth doesn't take you to Google sign in page, automatically signs you in with primary Google account
+
+## Next steps (from Rails-only app)
 
 * priority input for bowl_scraps is being created without a scrap, which doesn't make sense
 * fix this somehow, maybe by changing the models to be Bowl, Activity, Scrap?

@@ -1,26 +1,22 @@
 Rails.application.routes.draw do
-  get '/bowls/no_scraps', to: 'bowls#no_scraps', as: 'no_scraps'
-  get '/scraps/no_bowls', to: 'scraps#no_bowls', as: 'no_bowls'
+  root 'home#index'
 
   authenticated :user do
     root :to => 'bowls#index', as: :authenticated_root
   end
 
-  # root :to => 'home#index'
-  root 'home#index'
-  # resources :scraps
-  get 'scraps', to: 'scraps#index'
-  get 'scraps/:id', to: 'scraps#show'
-  post 'scraps/new', to: 'scraps#create'
-  patch 'scraps/:id', to: 'scraps#update'
-
-  # resources :bowls do
-  #   resources :scraps, only: [:show, :index, :new, :edit]
-  # end
-
-  get '/bowls/:id', to: 'bowls#show'
-
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  resources :scraps
+
+  resources :bowls do
+    # Do this with AJAX?:
+    resources :scraps, only: [:show, :index, :new, :edit]
+  end
+
+  # Do this with AJAX:
+  get '/bowls/no_scraps', to: 'bowls#no_scraps', as: 'no_scraps'
+  get '/scraps/no_bowls', to: 'scraps#no_bowls', as: 'no_bowls'
 
   get '*path' => redirect('/')
 
