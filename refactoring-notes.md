@@ -28,6 +28,8 @@ patch 'scraps/:id', to: 'scraps#update'
 ```
 After which we won't be loading separate pages, but rather rendering JSON and appending it to one page, `/scraps`.
 
+Set up the remaining routes for API endpoints.
+
 ### Update `ScrapsController` to render JSON
 
 For example in the `scraps#index` action:
@@ -130,6 +132,11 @@ class BowlSerializer < ActiveModel::Serializer
   has_many :scraps, serializer: BowlScrapSerializer
 end
 ```
+## Configure AMS
+
+Like in this lesson [here](https://learn.co/tracks/full-stack-web-development-v5/rails-and-javascript/project-mode/jquery-tic-tac-toe-with-a-rails-api-part-1#ams-configuration).
+
+## Update Views
 
 ---
 

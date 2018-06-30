@@ -6,10 +6,9 @@ Rails.application.routes.draw do
     root :to => 'bowls#index', as: :authenticated_root
   end
 
-  root :to => 'home#index'
+  # root :to => 'home#index'
+  root 'home#index'
   # resources :scraps
-  # Setting up routes for API endpoints:
-  # Go change ScrapController actions to render JSON
   get 'scraps', to: 'scraps#index'
   get 'scraps/:id', to: 'scraps#show'
   post 'scraps/new', to: 'scraps#create'
