@@ -2,19 +2,20 @@
 <nav id="navigation1" class="navigation">
   <ul>
     <% if !user_signed_in? %>
-      <li><%#= link_to user_session_path, user_session_path %></li>
+      <li><%= link_to user_session_path, user_session_path %></li>
     <% else %>
-      <li><%#= link_to bowls_path, bowls_path %></li>
+      <li><%= link_to bowls_path, bowls_path %></li>
       <li><%#= link_to new_bowl_path, new_bowl_path %></li>
       <li><%#= link_to scraps_path, scraps_path %></li>
       <li><%#= link_to new_scrap_path, new_scrap_path %></li>
       <li><%= link_to(destroy_user_session_path, destroy_user_session_path, method: :delete) %></li>
-      <li><%= link_to "/users/dalma", edit_user_registration_path(current_user) if current_user unless current_user && current_user.uid %></li>
+      <!-- Not sure what next line is trying to do -->
+      <li><%#= link_to "/users/dalma", edit_user_registration_path(current_user) if current_user unless current_user && current_user.uid %></li>
       <li>user: <%= current_user.first_name.downcase if current_user && current_user.uid %></li>
     <% end %> <!-- end if user_signed_in? -->
   </ul>
 </nav>
 
 <center>
-  <h1><%#= link_to 'BOWLS', root_path %></h1>
+  <h1><%= link_to 'BOWLS', root_path %></h1>
 </center>
