@@ -14,10 +14,11 @@
 
   <h2><%= @bowl.name %></h2>
 
-  <% if @bowl.scraps.empty? %>
-    <p>(this bowl is empty)</p>
-    <p><%= link_to "add scrap", new_bowl_scrap_path(@bowl) %></p>
-  <% end %>
+  <p><%= link_to "show scraps", "#", id: "show-scraps", data: { id: @bowl.id } %></p>
+
+  <div class="bowl-container" id="scraps">
+
+  </div>
 
   <%= link_to "edit bowl", edit_bowl_path %>
 
@@ -25,3 +26,20 @@
     <p><%= link_to "view scraps", bowl_scraps_path(@bowl) %></p>
   <% end %>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $("#show-scraps").click(function(event) {
+    event.preventDefault();
+    const id = $(this).data("id");
+    $.get("/bowls/" + id + ".json", function(response) {
+      if (response.scraps.length == 0) {
+        const noScraps = "<p>This bowl has no scraps</p>";
+        const addScrap = `<p><a href='./${id}/scraps/new'>add scrap</a></p>`;
+        $("#scraps").html(noScraps + addScrap);
+      } else {
+      };
+    });
+  });
+});
+</script>
