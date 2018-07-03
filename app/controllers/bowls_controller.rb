@@ -31,7 +31,10 @@ class BowlsController < ApplicationController
     else
       @scraps = @bowl.scraps
       @random = @scraps.sample
-      render json: @bowl, status: 200
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @bowl }
+      end
     end
   end
 
