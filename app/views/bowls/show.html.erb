@@ -27,6 +27,20 @@
 $(function() {
   let scrapResponse = "";
 
+  function getScraps(id) {
+    $.get("/bowls/" + id + ".json", function(response) {
+      if (response.scraps.length == 0) {
+        scrapResponse = `<p>This bowl has no scraps</p>`;
+        scrapResponse += `<p><a href='./${id}/scraps/new'>add scrap</a></p>`;
+      } else {
+        $.each(response.scraps, function(index, value) {
+          scrapResponse += `${value.description}</br>`;
+        });
+      };
+      toggleScrapsLink();
+    }); // get request
+  };
+
   function toggleScrapsLink() {
     if ($("#show-scraps").html() == "show scraps") {
       $("#show-scraps").html("hide scraps");
@@ -37,28 +51,15 @@ $(function() {
     }; // toggleScrapsLink
   };
 
-  function getScraps(id) {
-    if (scrapResponse == "") {
-      $.get("/bowls/" + id + ".json", function(response) {
-        if (response.scraps.length == 0) {
-          scrapResponse = `<p>This bowl has no scraps</p>`;
-          scrapResponse += `<p><a href='./${id}/scraps/new'>add scrap</a></p>`;
-        } else {
-          $.each(response.scraps, function(index, value) {
-            scrapResponse += `${value.description}</br>`;
-          });
-        };
-        toggleScrapsLink();
-      }); // get request
-    } else {
-      toggleScrapsLink();
-    };
-  }; // getScraps
-
   $("#show-scraps").click(function(event) {
     event.preventDefault();
     const id = $(this).data("id");
-    getScraps(id);
+    // getScraps(id);
+    if (scrapResponse == "") {
+      getScraps(id);
+    } else {
+      toggleScrapsLink();
+    }
   }); // click event
 
 }); // document ready
