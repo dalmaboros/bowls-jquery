@@ -28,6 +28,10 @@ $(function() {
   $("#show-scraps").click(function(event) {
     event.preventDefault();
     const id = $(this).data("id");
+    showScraps(id);
+  }); // click event
+
+  function showScraps(id) {
     $.get("/bowls/" + id + ".json", function(response) {
       if (response.scraps.length == 0) {
         const noScraps = "<p>This bowl has no scraps</p>";
@@ -40,6 +44,7 @@ $(function() {
         });
         $('#scraps').html(scraps);
       };
+
       // Toggle show scraps/hide scraps
       if ($("#show-scraps").html() == "show scraps") {
         $("#show-scraps").html("hide scraps");
@@ -47,7 +52,7 @@ $(function() {
         $("#show-scraps").html("show scraps");
         $("#scraps").html("");
       };
-    });
-  });
-});
+    }); // get request
+  }; // showScraps
+}); // document ready
 </script>
