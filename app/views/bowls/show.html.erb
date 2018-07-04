@@ -34,7 +34,13 @@ $(function() {
         const addScrap = `<p><a href='./${id}/scraps/new'>add scrap</a></p>`;
         $("#scraps").html(noScraps + addScrap);
       } else {
+        let scraps = "";
+        $.each(response.scraps, function(index, value) {
+          scraps = scraps + `${value.description}</br>`;
+        });
+        $('#scraps').html(scraps);
       };
+      //
     });
   });
 });
