@@ -40,7 +40,13 @@ $(function() {
         });
         $('#scraps').html(scraps);
       };
-      //
+      // Toggle show scraps/hide scraps
+      if ($("#show-scraps").html() == "show scraps") {
+        $("#show-scraps").html("hide scraps");
+      } else {
+        $("#show-scraps").html("show scraps");
+        $("#scraps").html("");
+      };
     });
   });
 });
