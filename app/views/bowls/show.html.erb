@@ -13,7 +13,9 @@
       <% end %>
     <% end %>
 
-    <h2><%= @bowl.name %></h2>
+    <a href="#" class="previous">&#8249;</a>
+    <h2 class="bowl-name"><%= @bowl.name %></h2>
+    <a href="#" class="next">&#8250;</a>
 
     <p><%= link_to "show scraps", "#", id: "show-scraps", data: { id: @bowl.id } %></p>
 
@@ -54,7 +56,6 @@ $(function() {
   $("#show-scraps").click(function(event) {
     event.preventDefault();
     const id = $(this).data("id");
-    // getScraps(id);
     if (scrapResponse == "") {
       getScraps(id);
     } else {

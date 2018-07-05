@@ -48,6 +48,16 @@ a:hover {
   /*animation: text-flicker-little .5s linear 1;*/
 }
 
+.next, .previous {
+  transition: background-color 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.next:hover, .previous:hover {
+    background-color: black;
+    color: white;
+    text-shadow: none;
+}
+
 div a.foo {
   padding: 0;
 }
@@ -72,6 +82,10 @@ h1 a:hover {
 
 h2 {
   text-align: center;
+}
+
+h2.bowl-name {
+  display: inline;
 }
 
 label, input[type=submit] {
