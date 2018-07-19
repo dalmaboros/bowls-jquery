@@ -13,11 +13,12 @@
       <% end %>
     <% end %>
 
-    <a href="#" class="previous">&#8249;</a>
+    <a class="previous">&#8249;</a>
     <h2 class="bowl-name"><%= @bowl.name %></h2>
-    <a href="#" class="next">&#8250;</a>
+    <a class="next">&#8250;</a>
 
-    <p><%= link_to "show scraps", "#", id: "show-scraps" %></p>
+    <!-- <p><%= link_to "show scraps", "#", id: "show-scraps" %></p> -->
+    <p><a id="show-scraps">show scraps</a></p>
 
     <div id="scraps"></div>
 
@@ -26,9 +27,9 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-$(function() {
+$(function(pageReady) {
   let scrapResponse = "";
-  const id = $(".column").data("id");
+  let id = $(".column").data("id");
 
   function getScraps(id) {
     $.get("/bowls/" + id + ".json", function(response) {
@@ -55,7 +56,9 @@ $(function() {
   };
 
   $("#show-scraps").click(function(event) {
+    console.log("clicked");
     event.preventDefault();
+    console.log(scrapResponse);
     if (scrapResponse == "") {
       getScraps(id);
     } else {
@@ -82,7 +85,15 @@ $(function() {
       console.log("---");
       console.log(previousBowl.id);
       console.log(previousBowl.name);
-
+      // $('.bowl-name').html(previousBowl.name);
+      // $('div.column').attr('data-id', previousBowl.id);
+      id = previousBowl.id;
+      $.get(`/bowls/${previousBowl.id}`, function(getResponse) {
+        console.log(getResponse);
+        let newColumn = $(getResponse).find(".column");
+        console.log($(getResponse).find(".column"));
+        $(".column").html(newColumn);
+      });
     });
   }); // click .previous event
 
