@@ -82,7 +82,8 @@ $(document).ready(function() {
         console.log(jsonResponse.scraps);
         var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
         console.log("randomScrap");
-        console.log(randomScrap.description);
+        console.log(randomScrap.id);
+        $(".foo").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
       });
     });
   }); // click .previous event

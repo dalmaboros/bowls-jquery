@@ -1,5 +1,11 @@
 # Notes
 
+## Next steps (jQuery app)
+[] fix bug where old scraps are showing
+[] handle case where there is no previous bowl
+[] implement "next" bowl feature
+[] handle case where there is no next bowl
+
 ## Bugs
 
 - Omniauth doesn't take you to Google sign in page, automatically signs you in with primary Google account
