@@ -22,12 +22,12 @@
 
     <div id="scraps"></div>
 
-    <p><%= link_to "edit bowl", edit_bowl_path %></p>
+    <p><%= link_to "edit bowl", edit_bowl_path, id: "edit-scrap" %></p>
   </div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
-$(function(pageReady) {
+$(document).ready(function() {
   let scrapResponse = "";
   let id = $(".column").data("id");
 
@@ -56,12 +56,12 @@ $(function(pageReady) {
   };
 
   $("#show-scraps").click(function(event) {
-    console.log("clicked");
+    console.log(document.readyState);
     event.preventDefault();
-    console.log(scrapResponse);
     if (scrapResponse == "") {
       getScraps(id);
     } else {
+      console.log("bicked");
       toggleScrapsLink();
     }
   }); // click #show-scraps event
@@ -70,29 +70,15 @@ $(function(pageReady) {
     event.preventDefault();
     // get previous bowl
     $.get("/bowls.json", function(response) {
-      const thisBowlId = response.findIndex(function(element) {
+      let thisBowlId = response.findIndex(function(element) {
         return element.id == id;
       });
-      const previousBowl = response[thisBowlId-1];
-      console.log("previousBowl: ");
-      console.log(previousBowl);
-      console.log("---");
-      console.log("This bowl's name: ");
-      console.log($('.bowl-name').html());
-      console.log("---");
-      console.log("This bowl's id: ");
-      console.log($('div.column').attr('data-id'));
-      console.log("---");
-      console.log(previousBowl.id);
-      console.log(previousBowl.name);
-      // $('.bowl-name').html(previousBowl.name);
-      // $('div.column').attr('data-id', previousBowl.id);
-      id = previousBowl.id;
-      $.get(`/bowls/${previousBowl.id}`, function(getResponse) {
-        console.log(getResponse);
-        let newColumn = $(getResponse).find(".column");
-        console.log($(getResponse).find(".column"));
-        $(".column").html(newColumn);
+      let previousBowl = response[thisBowlId-1];
+      $.get(`/bowls/${previousBowl.id}.json`, function(jsonResponse) {
+        $(".bowl-name").html(jsonResponse.name);
+        $(document).prop('title', `BOWLS | ${jsonResponse.name}`);
+        id = jsonResponse.id;
+        $("#edit-scrap").attr("href", `/bowls/${id}/edit`);
       });
     });
   }); // click .previous event
