@@ -56,12 +56,11 @@ $(document).ready(function() {
   };
 
   $("#show-scraps").click(function(event) {
-    console.log(document.readyState);
     event.preventDefault();
     if (scrapResponse == "") {
       getScraps(id);
     } else {
-      console.log("bicked");
+      console.log(scrapResponse);
       toggleScrapsLink();
     }
   }); // click #show-scraps event
@@ -75,6 +74,11 @@ $(document).ready(function() {
       });
       let previousBowl = response[thisBowlId-1];
       $.get(`/bowls/${previousBowl.id}.json`, function(jsonResponse) {
+        scrapResponse = "";
+        if ($("#show-scraps").html() == "hide scraps") {
+          $("#show-scraps").html("show scraps");
+          $("#scraps").html("");
+        };
         $(".bowl-name").html(jsonResponse.name);
         $(document).prop('title', `BOWLS | ${jsonResponse.name}`);
         id = jsonResponse.id;
