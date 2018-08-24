@@ -67,28 +67,40 @@ $(document).ready(function() {
 
   $(".previous").click(function(event) {
     event.preventDefault();
-    // get previous bowl
+    // grab all bowls
+    // i don't want to fire this request if there's no previousBowl
     $.get("/bowls.json", function(response) {
+      // find JSON bowl where id == id
       let thisBowlId = response.findIndex(function(element) {
         return element.id == id;
       });
+      // set previousBowl => object
       let previousBowl = response[thisBowlId-1];
-      $.get(`/bowls/${previousBowl.id}.json`, function(jsonResponse) {
-        scrapResponse = "";
-        if ($("#show-scraps").html() == "hide scraps") {
-          $("#show-scraps").html("show scraps");
-          $("#scraps").html("");
-        };
-        $(".bowl-name").html(jsonResponse.name);
-        $(document).prop('title', `BOWLS | ${jsonResponse.name}`);
-        id = jsonResponse.id;
-        $("#edit-scrap").attr("href", `/bowls/${id}/edit`);
-        console.log(jsonResponse.scraps);
-        var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
-        console.log("randomScrap");
-        console.log(randomScrap.id);
-        $(".foo").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
-      });
+      // if previousBowl exists
+      if (previousBowl != undefined) {
+        // grab the previousBowl's data
+        $.get(`/bowls/${previousBowl.id}.json`, function(jsonResponse) {
+          scrapResponse = "";
+          if ($("#show-scraps").html() == "hide scraps") {
+            $("#show-scraps").html("show scraps");
+            $("#scraps").html("");
+          };
+          $(".bowl-name").html(jsonResponse.name);
+          $(document).prop('title', `BOWLS | ${jsonResponse.name}`);
+          id = jsonResponse.id;
+          $("#edit-scrap").attr("href", `/bowls/${id}/edit`);
+          var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
+          $(".foo").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
+          console.log("previousBowl id");
+          console.log(previousBowl.id);
+          if (isNaN(previousBowl.id)) {
+            console.log("previousBowl is NaN")
+            $("a.previous").attr("class", "previous none");
+          };
+        });
+      } else {
+        console.log("previousBowl is undefined!!!");
+      };
     });
   }); // click .previous event
 

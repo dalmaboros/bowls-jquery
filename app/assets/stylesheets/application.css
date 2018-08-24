@@ -48,6 +48,15 @@ a:hover {
   /*animation: text-flicker-little .5s linear 1;*/
 }
 
+a.none {
+  background-color: rgba(0,0,0,1);
+  color: rgba(0,0,0,1);
+}
+
+a.none:hover {
+  color: rgba(0,0,0,1);
+}
+
 .next, .previous {
   transition: background-color 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
 }

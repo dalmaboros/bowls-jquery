@@ -1,8 +1,8 @@
 # Notes
 
 ## Next steps (jQuery app)
-[] fix bug where old scraps are showing
-[] handle case where there is no previous bowl
+[x] fix bug where old scraps are showing
+[x] handle case where there is no previous bowl
 [] implement "next" bowl feature
 [] handle case where there is no next bowl
 
