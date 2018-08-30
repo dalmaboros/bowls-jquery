@@ -1,5 +1,5 @@
 <% title "#{@bowl.name}" %>
-
+<!-- this needs to be refactored to use JQUERY -->
 <div class="column" data-id="<%= @bowl.id %>">
   <div class="bowl_container">
     <% if !@bowl.scraps.empty? %>
@@ -17,10 +17,9 @@
     <h2 class="bowl-name"><%= @bowl.name %></h2>
     <a class="next">&#8250;</a>
 
-    <!-- <p><%= link_to "show scraps", "#", id: "show-scraps" %></p> -->
     <p><a id="show-scraps">show scraps</a></p>
-
     <div id="scraps"></div>
+    <p><a id="add-scraps">add scraps</a></p>
 
     <p><%= link_to "edit bowl", edit_bowl_path, id: "edit-scrap" %></p>
   </div>
@@ -35,7 +34,6 @@ $(document).ready(function() {
     $.get("/bowls/" + id + ".json", function(response) {
       if (response.scraps.length == 0) {
         scrapResponse = `<p>This bowl has no scraps</p>`;
-        scrapResponse += `<p><a href='./${id}/scraps/new'>add scrap</a></p>`;
       } else {
         $.each(response.scraps, function(index, value) {
           scrapResponse += `${value.description}</br>`;
@@ -100,6 +98,50 @@ $(document).ready(function() {
         });
       } else {
         console.log("previousBowl is undefined!!!");
+      };
+    });
+  }); // click .previous event
+
+  // NEXT FUNCTIONALITY
+  $(".next").click(function(event) {
+    event.preventDefault();
+    // grab all bowls
+    // i don't want to fire this request if there's no nextBowl
+    $.get("/bowls.json", function(response) {
+      // find JSON bowl where id == id
+      let thisBowlId = response.findIndex(function(element) {
+        return element.id == id;
+      });
+      // set nextBowl => object
+      let nextBowl = response[thisBowlId+1];
+      // if nextBowl exists
+      if (nextBowl != undefined) {
+        // grab the nextBowl's data
+        $.get(`/bowls/${nextBowl.id}.json`, function(jsonResponse) {
+          scrapResponse = "";
+          // toggle show/hide scraps
+          if ($("#show-scraps").html() == "hide scraps") {
+            $("#show-scraps").html("show scraps");
+            $("#scraps").html("");
+          };
+          // plug in JSON data
+          $(".bowl-name").html(jsonResponse.name);
+          $(document).prop('title', `BOWLS | ${jsonResponse.name}`);
+          id = jsonResponse.id;
+          $("#edit-scrap").attr("href", `/bowls/${id}/edit`);
+          // if there are scraps
+          var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
+          console.log(`Random scrap is ${randomScrap}`);
+          $(".foo").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
+          console.log("nextBowl id");
+          console.log(nextBowl.id);
+          if (isNaN(nextBowl.id)) {
+            console.log("nextBowl is NaN")
+            $("a.next").attr("class", "next none");
+          };
+        });
+      } else {
+        console.log("nextBowl is undefined!!!");
       };
     });
   }); // click .previous event

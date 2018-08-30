@@ -8,7 +8,7 @@
 
 ## Bugs
 
-- Omniauth doesn't take you to Google sign in page, automatically signs you in with primary Google account
+- ~~Omniauth doesn't take you to Google sign in page, automatically signs you in with primary Google account~~ resolved on own
 
 ## Next steps (from Rails-only app)
 
