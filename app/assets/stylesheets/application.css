@@ -313,6 +313,10 @@ label, input[type=submit] {
   text-decoration: none;
 }
 
+#scraps-form {
+  display: none;
+}
+
 /* Flicker */
 @keyframes text-flicker {
   0% { opacity:0.1; }

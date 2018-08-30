@@ -20,6 +20,7 @@
     <p><a id="show-scraps">show scraps</a></p>
     <div id="scraps"></div>
     <p><a id="add-scraps">add scraps</a></p>
+    <div id="scraps-form">your mother</div>
 
     <p><%= link_to "edit bowl", edit_bowl_path, id: "edit-scrap" %></p>
   </div>
@@ -30,6 +31,7 @@ $(document).ready(function() {
   let scrapResponse = "";
   let id = $(".column").data("id");
 
+  // this just sets the scrapResponse variable
   function getScraps(id) {
     $.get("/bowls/" + id + ".json", function(response) {
       if (response.scraps.length == 0) {
@@ -39,19 +41,25 @@ $(document).ready(function() {
           scrapResponse += `${value.description}</br>`;
         });
       };
-      toggleScrapsLink();
+      toggleShowScrapsLink();
     }); // get request
   };
 
-  function toggleScrapsLink() {
+  // toggle show scraps
+  function toggleShowScrapsLink() {
     if ($("#show-scraps").html() == "show scraps") {
       $("#show-scraps").html("hide scraps");
       $("#scraps").html(scrapResponse);
     } else {
       $("#show-scraps").html("show scraps");
       $("#scraps").html("");
-    }; // toggleScrapsLink
+    }; // toggleShowScrapsLink
   };
+
+  // toggle add scraps form
+  $("#add-scraps").click(function(){
+      $("#scraps-form").toggle();
+  });
 
   $("#show-scraps").click(function(event) {
     event.preventDefault();
@@ -59,7 +67,7 @@ $(document).ready(function() {
       getScraps(id);
     } else {
       console.log(scrapResponse);
-      toggleScrapsLink();
+      toggleShowScrapsLink();
     }
   }); // click #show-scraps event
 
