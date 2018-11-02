@@ -1,10 +1,7 @@
 # Notes
 
 ## Next steps (jQuery app)
-[x] fix bug where old scraps are showing
-[x] handle case where there is no previous bowl
-[] implement "next" bowl feature
-[] handle case where there is no next bowl
+[] add dynamic form for scraps on bowl show page
 
 ## Bugs
 
