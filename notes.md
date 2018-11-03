@@ -6,6 +6,7 @@
 ## Bugs
 
 - ~~Omniauth doesn't take you to Google sign in page, automatically signs you in with primary Google account~~ resolved on own
+- Can add pre-existing scrap using 'create new scrap' feature (11/3)
 
 ## Next steps (from Rails-only app)
 
