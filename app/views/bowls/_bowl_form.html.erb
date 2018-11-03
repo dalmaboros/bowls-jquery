@@ -1,0 +1,11 @@
+<% if !@bowl.errors[:name].empty? %>
+  <div class="error_explanation">
+    <%= @bowl.errors.full_messages_for(:name)[0].downcase %>
+  </div>
+<% else %>
+  <%= f.label :name %> <span class="required">*</span>
+<% end %>
+<%= f.text_field :name, autocomplete: :off %></p>
+
+<%= f.label :description %>
+<%= f.text_field :description, autocomplete: :off %></p>
