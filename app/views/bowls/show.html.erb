@@ -65,7 +65,7 @@ $(document).ready(function() {
   $("#add-scraps").click(function(){
       $("#scraps-form").toggle();
   });
-
+  // toggle show scraps
   $("#show-scraps").click(function(event) {
     event.preventDefault();
     if (scrapResponse == "") {
@@ -75,6 +75,29 @@ $(document).ready(function() {
       toggleShowScrapsLink();
     }
   }); // click #show-scraps event
+
+  //form submit
+  $('form').submit(function(event) {
+      event.preventDefault();
+      alert("YO!")
+      var values = $(this).serialize();
+      var patching = $.ajax({
+        type: 'PATCH',
+        url: `${id}`,
+        data: values,
+        processData: false,
+        // contentType: 'application/merge-patch+json',
+
+        /* success and error handling omitted for brevity */
+        });
+      // var patching = $.post(`/bowls/${id}`, values);
+      patching.done(function(data) {
+        var bowl = data;
+        console.log(data);
+        // $("#bowlTitle").text(bowl["title"]);
+        // $("#bowlBody").text(bowl["description"]);
+      });
+    });
 
   $(".previous").click(function(event) {
     event.preventDefault();

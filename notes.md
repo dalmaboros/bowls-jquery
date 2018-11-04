@@ -2,6 +2,7 @@
 
 ## Next steps (jQuery app)
 [] add dynamic form for scraps on bowl show page
+  [] hijack update bowl button to do not trigger update in controller
 
 ## Bugs
 

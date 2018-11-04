@@ -4,7 +4,10 @@
   <h2>edit '<%= @bowl.name %>'</h2>
 
   <%= form_for @bowl do |f| %>
-    <%= render 'form', f: f %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= render 'bowl_form', f: f %>
+    <%= render 'scrap_form', f: f %>
+    <%= f.submit %>
   <% end %>
 
   <p><%= link_to "delete bowl", @bowl, method: :delete, data: { confirm: "really?" } %></p>
