@@ -46,7 +46,7 @@ class BowlsController < ApplicationController
     if @bowl.user == current_user
       if @bowl.update(bowl_params)
         @bowl.save
-        redirect_to bowl_path(@bowl)
+        render json: @bowl, status: 200
       else
         @bowl.restore_attributes(@bowl.errors.keys)
         render :edit
