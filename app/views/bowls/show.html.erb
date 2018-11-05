@@ -53,24 +53,28 @@ $(document).ready(function() {
       if (response.scraps.length == 0) {
         scrapResponse = `<p>This bowl has no scraps</p>`;
       } else {
-        $.each(response.scraps, function(index, value) {
-          scrapResponse += `${value.description}</br>`;
-          console.log("scrapResponse");
-          console.log(scrapResponse);
-        });
+        scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
       };
       toggleShowScrapsLink();
     }); // get request
   };
 
-  // toggle show scraps
+  // Displaying Scraps
+  function showScraps() {
+    $("#scraps").html(scrapResponse);
+  };
+
+  function hideScraps() {
+    $("#scraps").html("");
+  };
+
   function toggleShowScrapsLink() {
     if ($("#show-scraps").html() == "show scraps") {
       $("#show-scraps").html("hide scraps");
-      $("#scraps").html(scrapResponse);
+      showScraps();
     } else {
       $("#show-scraps").html("show scraps");
-      $("#scraps").html("");
+      hideScraps();
     }; // toggleShowScrapsLink
   };
 
@@ -82,9 +86,10 @@ $(document).ready(function() {
   $("#show-scraps").click(function(event) {
     event.preventDefault();
     if (scrapResponse == "") {
+      console.log("From event listener on #show-scraps: scrapResponse is nil")
       getScraps(id);
     } else {
-      console.log(scrapResponse);
+      console.log("From event listener on #show-scraps: scrapResponse is something")
       toggleShowScrapsLink();
     }
   }); // click #show-scraps event
