@@ -38,12 +38,15 @@ $(document).ready(function() {
 
   // this just sets the scrapResponse variable
   function getScraps(id) {
+    scrapResponse = "";
     $.get("/bowls/" + id + ".json", function(response) {
       if (response.scraps.length == 0) {
         scrapResponse = `<p>This bowl has no scraps</p>`;
       } else {
         $.each(response.scraps, function(index, value) {
           scrapResponse += `${value.description}</br>`;
+          console.log("scrapResponse");
+          console.log(scrapResponse);
         });
       };
       toggleShowScrapsLink();
@@ -79,21 +82,26 @@ $(document).ready(function() {
   //form submit
   $('form').submit(function(event) {
       event.preventDefault();
-      alert("YO!")
+      alert("YO!");
       var values = $(this).serialize();
-      var patching = $.ajax({
-        type: 'PATCH',
-        url: `${id}`,
-        data: values,
-        processData: false,
-        // contentType: 'application/merge-patch+json',
-
-        /* success and error handling omitted for brevity */
-        });
-      // var patching = $.post(`/bowls/${id}`, values);
-      patching.done(function(data) {
+      console.log("values");
+      console.log(values);
+      // var posting = $.ajax({
+      //   type: 'PATCH',
+      //   url: `${id}`,
+      //   data: values,
+      //   // processData: false,
+      //   // contentType: 'application/merge-patch+json',
+      //
+      //   /* success and error handling omitted for brevity */
+      //   });
+      var posting = $.post(`/bowls/${id}`, values);
+      posting.done(function(data) {
         var bowl = data;
+        console.log("data");
         console.log(data);
+        console.log(data.scraps);
+        getScraps(id);
         // $("#bowlTitle").text(bowl["title"]);
         // $("#bowlBody").text(bowl["description"]);
       });
