@@ -1,9 +1,10 @@
 # Notes
 
 ## Next steps (jQuery app)
-[] add dynamic form for scraps on bowl show page
+[x] add dynamic form for scraps on bowl show page
   [x] hijack update bowl button to do not trigger update in controller
-  [] create scrap not rendering ajax on page, but exists in console
+  [x] create scrap not rendering ajax on page, but exists in console
+[] refactor javascript
 
 ## Bugs
 
