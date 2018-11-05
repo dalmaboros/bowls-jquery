@@ -37,8 +37,12 @@ $(document).ready(function() {
   function Scrap(description, priority) {
     this.description = description;
     // this.priority = priority || 0;
+    this.format = function() {
+      console.log(`${this.description}</ br>`);
+    };
   };
-
+  var hello = new Scrap("hello");
+  hello.format();
   let scrapResponse = "";
   let id = $(".column").data("id");
 
@@ -90,26 +94,12 @@ $(document).ready(function() {
       event.preventDefault();
       alert("YO!");
       var values = $(this).serialize();
-      console.log("values");
-      console.log(values);
-      // var posting = $.ajax({
-      //   type: 'PATCH',
-      //   url: `${id}`,
-      //   data: values,
-      //   // processData: false,
-      //   // contentType: 'application/merge-patch+json',
-      //
-      //   /* success and error handling omitted for brevity */
-      //   });
       var posting = $.post(`/bowls/${id}`, values);
       posting.done(function(data) {
-        var bowl = data;
         console.log("data");
         console.log(data);
-        console.log(data.scraps);
+        console.log(data.scraps[data.scraps.length-1]);
         getScraps(id);
-        // $("#bowlTitle").text(bowl["title"]);
-        // $("#bowlBody").text(bowl["description"]);
       });
     });
 
