@@ -60,18 +60,18 @@ $(document).ready(function() {
       error: function(jqxhr, status, exception) {
         alert("Exception:", exception);
       }
-    }).done(function(response) {
-      debugger;
-      if (response.scraps.length == 0) {
-        scrapResponse = `<p>This bowl has no scraps</p>`;
-        debugger;
-      } else {
-        scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
-        debugger;
-      };
-    });
+    }).done(setScrapResponse);
+  };
 
-    // }); // get request
+  function setScrapResponse(response) {
+    debugger;
+    if (response.scraps.length == 0) {
+      scrapResponse = `<p>This bowl has no scraps</p>`;
+      debugger;
+    } else {
+      scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
+      debugger;
+    };
   };
 
   // Displaying Scraps
