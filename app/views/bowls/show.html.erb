@@ -33,6 +33,7 @@
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
+
   // Scrap Prototype
   function Scrap(description, priority) {
     this.description = description;
@@ -48,20 +49,31 @@ $(document).ready(function() {
 
   // this just sets the scrapResponse variable
   function getScraps(id) {
+    debugger;
     scrapResponse = "";
-    $.get("/bowls/" + id + ".json", function(response) {
+    debugger;
+    // $.get("/bowls/" + id + ".json", function(response) {
+    $.ajax({
+      url: `/bowls/${id}.json`,
+      type: "GET"
+    }).done(function(response) {
+      debugger;
       if (response.scraps.length == 0) {
         scrapResponse = `<p>This bowl has no scraps</p>`;
+        debugger;
       } else {
         scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
+        debugger;
       };
-      toggleShowScrapsLink();
-    }); // get request
+    });
+
+    // }); // get request
   };
 
   // Displaying Scraps
   function showScraps() {
     $("#scraps").html(scrapResponse);
+    console.log("Firing from showScraps()");
   };
 
   function hideScraps() {
@@ -72,23 +84,31 @@ $(document).ready(function() {
     if ($("#show-scraps").html() == "show scraps") {
       $("#show-scraps").html("hide scraps");
       showScraps();
+      console.log("Firing from toggleShowScrapsLink");
     } else {
       $("#show-scraps").html("show scraps");
       hideScraps();
     }; // toggleShowScrapsLink
   };
 
-  // toggle add scraps form
+  // Event Listener: toggle add scraps form
   $("#add-scraps").click(function(){
       $("#scraps-form").toggle();
   });
-  // toggle show scraps
-  $("#show-scraps").click(function(event) {
+  // Event Listener: toggle show scraps
+  $("#show-scraps").on("click", function(event) {
     event.preventDefault();
+    getScraps(id);
+    console.log(`From Event Listener #show-scraps: `);
+    console.log(scrapResponse);
+    debugger;
     if (scrapResponse == "") {
+      debugger;
       console.log("From event listener on #show-scraps: scrapResponse is nil")
       getScraps(id);
+      toggleShowScrapsLink();
     } else {
+      debugger;
       console.log("From event listener on #show-scraps: scrapResponse is something")
       toggleShowScrapsLink();
     }
