@@ -39,9 +39,10 @@ $(document).ready(function() {
     this.description = description;
     // this.priority = priority || 0;
     this.format = function() {
-      console.log(`${this.description}</ br>`);
+      console.log(`From Scrap prototype: ${this.description}</ br>`);
     };
   };
+
   var hello = new Scrap("hello");
   hello.format();
   let scrapResponse = "";
@@ -50,12 +51,15 @@ $(document).ready(function() {
   // this just sets the scrapResponse variable
   function getScraps(id) {
     debugger;
-    scrapResponse = "";
-    debugger;
-    // $.get("/bowls/" + id + ".json", function(response) {
     $.ajax({
       url: `/bowls/${id}.json`,
-      type: "GET"
+      type: "GET",
+      success: function(response) {
+        alert("Yeah it's ok");
+      },
+      error: function(jqxhr, status, exception) {
+        alert("Exception:", exception);
+      }
     }).done(function(response) {
       debugger;
       if (response.scraps.length == 0) {
@@ -98,19 +102,18 @@ $(document).ready(function() {
   // Event Listener: toggle show scraps
   $("#show-scraps").on("click", function(event) {
     event.preventDefault();
-    getScraps(id);
-    console.log(`From Event Listener #show-scraps: `);
-    console.log(scrapResponse);
-    debugger;
     if (scrapResponse == "") {
       debugger;
       console.log("From event listener on #show-scraps: scrapResponse is nil")
       getScraps(id);
-      toggleShowScrapsLink();
+      debugger;
+      // toggleShowScrapsLink();
+      // debugger;
     } else {
       debugger;
       console.log("From event listener on #show-scraps: scrapResponse is something")
       toggleShowScrapsLink();
+      debugger;
     }
   }); // click #show-scraps event
 
