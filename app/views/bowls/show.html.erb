@@ -37,8 +37,9 @@ $(document).ready(function() {
   // Scrap Prototype
   function Scrap(description, priority) {
     this.description = description;
-    // this.priority = priority || 0;
+    this.priority = priority || 0;
     this.format = function() {
+      // format the scrap here
     };
   };
 
@@ -59,7 +60,6 @@ $(document).ready(function() {
         scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
       };
       showScraps();
-      // this fires before ajax success
       toggleShowScrapsLink();
     });
   };
@@ -80,26 +80,36 @@ $(document).ready(function() {
     } else {
       $("#show-scraps").html("show scraps");
       hideScraps();
-    }; // toggleShowScrapsLink
+    };
   };
 
-  // Event Listener: toggle add scraps form
-  $("#add-scraps").click(function(){
-      $("#scraps-form").toggle();
-  });
-  // Event Listener: toggle show scraps
+  // Event Listener: show scraps
   $("#show-scraps").on("click", function(event) {
     event.preventDefault();
     getScraps(id);
-  }); // click #show-scraps event
+  });
+
+  // Event Listener: show scraps form
+  $("#add-scraps").click(function(){
+    if ($("#show-scraps").html() == "hide scraps") {
+      toggleShowScrapsLink();
+    }
+    $("#scraps-form").toggle();
+  });
 
   //form submit
   $('form').submit(function(event) {
       event.preventDefault();
-      alert("YO!");
       var values = $(this).serialize();
       var posting = $.post(`/bowls/${id}`, values);
       posting.done(function(data) {
+        // if ($("#show-scraps").html() == "show scraps") {
+        //   $("#show-scraps").html("hide scraps");
+        //   showScraps();
+        // } else {
+        //   $("#show-scraps").html("show scraps");
+        //   hideScraps();
+        // };
         getScraps(id);
       });
     });
