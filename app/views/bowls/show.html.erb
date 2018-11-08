@@ -48,33 +48,25 @@ $(document).ready(function() {
   let scrapResponse = "";
   let id = $(".column").data("id");
 
-  // this just sets the scrapResponse variable
+  // Retrieve scraps from DB
   function getScraps(id) {
-    debugger;
     $.ajax({
       url: `/bowls/${id}.json`,
       type: "GET",
-      success: function(response) {
-        alert("Yeah it's ok");
-      },
-      error: function(jqxhr, status, exception) {
-        alert("Exception:", exception);
-      }
-    }).done(setScrapResponse);
+    }).done(function(response) {
+      if (response.scraps.length == 0) {
+        scrapResponse = `<p>This bowl has no scraps</p>`;
+      } else {
+        scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
+        console.log(`scrapResponse has been set to ${scrapResponse}`);
+      };
+      showScraps();
+      // this fires before ajax success
+      toggleShowScrapsLink();
+    });
   };
 
-  function setScrapResponse(response) {
-    debugger;
-    if (response.scraps.length == 0) {
-      scrapResponse = `<p>This bowl has no scraps</p>`;
-      debugger;
-    } else {
-      scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
-      debugger;
-    };
-  };
-
-  // Displaying Scraps
+  // Display scraps
   function showScraps() {
     $("#scraps").html(scrapResponse);
     console.log("Firing from showScraps()");
@@ -102,19 +94,7 @@ $(document).ready(function() {
   // Event Listener: toggle show scraps
   $("#show-scraps").on("click", function(event) {
     event.preventDefault();
-    if (scrapResponse == "") {
-      debugger;
-      console.log("From event listener on #show-scraps: scrapResponse is nil")
-      getScraps(id);
-      debugger;
-      // toggleShowScrapsLink();
-      // debugger;
-    } else {
-      debugger;
-      console.log("From event listener on #show-scraps: scrapResponse is something")
-      toggleShowScrapsLink();
-      debugger;
-    }
+    getScraps(id);
   }); // click #show-scraps event
 
   //form submit
