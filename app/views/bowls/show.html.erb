@@ -39,7 +39,6 @@ $(document).ready(function() {
     this.description = description;
     // this.priority = priority || 0;
     this.format = function() {
-      console.log(`From Scrap prototype: ${this.description}</ br>`);
     };
   };
 
@@ -58,7 +57,6 @@ $(document).ready(function() {
         scrapResponse = `<p>This bowl has no scraps</p>`;
       } else {
         scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
-        console.log(`scrapResponse has been set to ${scrapResponse}`);
       };
       showScraps();
       // this fires before ajax success
@@ -69,7 +67,6 @@ $(document).ready(function() {
   // Display scraps
   function showScraps() {
     $("#scraps").html(scrapResponse);
-    console.log("Firing from showScraps()");
   };
 
   function hideScraps() {
@@ -80,7 +77,6 @@ $(document).ready(function() {
     if ($("#show-scraps").html() == "show scraps") {
       $("#show-scraps").html("hide scraps");
       showScraps();
-      console.log("Firing from toggleShowScrapsLink");
     } else {
       $("#show-scraps").html("show scraps");
       hideScraps();
@@ -104,9 +100,6 @@ $(document).ready(function() {
       var values = $(this).serialize();
       var posting = $.post(`/bowls/${id}`, values);
       posting.done(function(data) {
-        console.log("data");
-        console.log(data);
-        console.log(data.scraps[data.scraps.length-1]);
         getScraps(id);
       });
     });
@@ -137,15 +130,11 @@ $(document).ready(function() {
           $("#edit-scrap").attr("href", `/bowls/${id}/edit`);
           var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
           $(".foo").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
-          console.log("previousBowl id");
-          console.log(previousBowl.id);
           if (isNaN(previousBowl.id)) {
-            console.log("previousBowl is NaN")
             $("a.previous").attr("class", "previous none");
           };
         });
       } else {
-        console.log("previousBowl is undefined!!!");
       };
     });
   }); // click .previous event
@@ -179,17 +168,12 @@ $(document).ready(function() {
           $("#edit-scrap").attr("href", `/bowls/${id}/edit`);
           // if there are scraps
           var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
-          console.log(`Random scrap is ${randomScrap}`);
           $(".foo").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
-          console.log("nextBowl id");
-          console.log(nextBowl.id);
           if (isNaN(nextBowl.id)) {
-            console.log("nextBowl is NaN")
             $("a.next").attr("class", "next none");
           };
         });
       } else {
-        console.log("nextBowl is undefined!!!");
       };
     });
   }); // click .previous event
