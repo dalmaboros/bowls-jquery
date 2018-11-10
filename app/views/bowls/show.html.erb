@@ -101,16 +101,11 @@ $(document).ready(function() {
   $('form').submit(function(event) {
       event.preventDefault();
       var values = $(this).serialize();
-      var posting = $.post(`/bowls/${id}`, values);
-      posting.done(function(data) {
-        // if ($("#show-scraps").html() == "show scraps") {
-        //   $("#show-scraps").html("hide scraps");
-        //   showScraps();
-        // } else {
-        //   $("#show-scraps").html("show scraps");
-        //   hideScraps();
-        // };
-        getScraps(id);
+      $.ajax({
+        url: `/bowls/${id}.json`,
+        type: "PUT",
+        data: values,
+      }).done(function(response) {
       });
     });
 

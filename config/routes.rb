@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   resources :scraps
 
   resources :bowls do
-    # Do this with AJAX?:
-    resources :scraps, only: [:show, :index, :new, :edit]
+    resources :scraps
   end
 
   # Do this with AJAX:

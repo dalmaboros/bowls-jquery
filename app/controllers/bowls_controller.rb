@@ -45,6 +45,8 @@ class BowlsController < ApplicationController
   def update
     if @bowl.user == current_user
       if @bowl.update(bowl_params)
+        # To ensure @bowl contains any newly created scraps:
+        @bowl = Bowl.find(@bowl[:id])
         @bowl.save
         render json: @bowl, status: 200
       else
