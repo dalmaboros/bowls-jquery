@@ -100,12 +100,14 @@ $(document).ready(function() {
   //form submit
   $('form').submit(function(event) {
       event.preventDefault();
+      console.log(this);
       var values = $(this).serialize();
       $.ajax({
         url: `/bowls/${id}.json`,
         type: "PUT",
         data: values,
       }).done(function(response) {
+        console.log(this)
         $('#add-scraps').click();
         $('#show-scraps').click();
       });

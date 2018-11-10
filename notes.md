@@ -2,7 +2,7 @@
 
 ## Next steps (jQuery app)
 [] append new scrap to DOM
-[] show new scrap without having to click anything
+[x] show new scrap without having to click anything
 
 ## Bugs
 
