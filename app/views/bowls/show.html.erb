@@ -106,6 +106,8 @@ $(document).ready(function() {
         type: "PUT",
         data: values,
       }).done(function(response) {
+        $('#add-scraps').click();
+        $('#show-scraps').click();
       });
     });
 
