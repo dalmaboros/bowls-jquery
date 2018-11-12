@@ -50,18 +50,33 @@ $(document).ready(function() {
 
   // Retrieve scraps from DB
   function getScraps(id) {
-    $.ajax({
-      url: `/bowls/${id}.json`,
-      type: "GET",
-    }).done(function(response) {
-      if (response.scraps.length == 0) {
-        scrapResponse = `<p>This bowl has no scraps</p>`;
-      } else {
-        scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
-      };
-      showScraps();
-      toggleShowScrapsLink();
+    fetch(`/bowls/${id}.json`, {
+      contentType: 'application/json',
+      method: 'GET',
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      // data[0].forEach(function(param) {
+      //   const dog = new Dog(param) // Dog {name: 'Fido}
+      //   const dogHtml = dog.formatHtml() // <li> Fido </li>
+      //   $('#dogs').append(dogHtml)
+      // });
     });
+    // $.ajax({
+    //   url: `/bowls/${id}.json`,
+    //   type: "GET",
+    // }).done(function(response) {
+    //   if (response.scraps.length == 0) {
+    //     scrapResponse = `<p>This bowl has no scraps</p>`;
+    //   } else {
+    //     scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
+    //   };
+    //   showScraps();
+    //   toggleShowScrapsLink();
+    // });
   };
 
   // Display scraps
@@ -100,14 +115,12 @@ $(document).ready(function() {
   //form submit
   $('form').submit(function(event) {
       event.preventDefault();
-      console.log(this);
       var values = $(this).serialize();
       $.ajax({
         url: `/bowls/${id}.json`,
         type: "PUT",
         data: values,
       }).done(function(response) {
-        console.log(this)
         $('#add-scraps').click();
         $('#show-scraps').click();
       });
