@@ -50,7 +50,7 @@ $(document).ready(function() {
   let id = $(".column").data("id");
 
   // Retrieve scraps from DB
-  function getScraps(id) {
+  function getScraps(id, callback) {
     fetch(`/bowls/${id}.json`, {
       contentType: 'application/json',
       method: 'GET',
@@ -60,17 +60,25 @@ $(document).ready(function() {
     })
     .then(data => {
       let scraps = data.scraps;
-      scraps.forEach(function(params) {
-        const scrap = new Scrap(params.id, params.description, params.priority);
-        const scrapHtml = scrap.format();
-        $('#scraps').append(scrapHtml);
-      });
+      callback(scraps);
+      // scraps.forEach(function(params) {
+      //   const scrap = new Scrap(params.id, params.description, params.priority);
+      //   const scrapHtml = scrap.format();
+      //   $('#scraps').append(scrapHtml);
+      // });
     });
   };
 
   // Display scraps
-  function showScraps() {
-    $("#scraps").html(scrapResponse);
+  function showScraps(scraps) {
+    scraps.forEach(function(params) {
+      const scrap = new Scrap(params.id, params.description, params.priority);
+      const scrapHtml = scrap.format();
+      $('#scraps').append(scrapHtml);
+    });
+    // console.log("showScraps");
+    // console.log(scraps);
+    // $("#scraps").html(scrapResponse);
   };
 
   function hideScraps() {
@@ -90,7 +98,7 @@ $(document).ready(function() {
   // Event Listener: show scraps
   $("#show-scraps").on("click", function(event) {
     event.preventDefault();
-    getScraps(id);
+    getScraps(id, showScraps);
   });
 
   // Event Listener: show scraps form
