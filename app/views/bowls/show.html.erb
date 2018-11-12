@@ -71,14 +71,13 @@ $(document).ready(function() {
 
   // Display scraps
   function showScraps(scraps) {
+    $('#scraps').html("");
     scraps.forEach(function(params) {
       const scrap = new Scrap(params.id, params.description, params.priority);
       const scrapHtml = scrap.format();
       $('#scraps').append(scrapHtml);
     });
-    // console.log("showScraps");
-    // console.log(scraps);
-    // $("#scraps").html(scrapResponse);
+    toggleShowScrapsLink();
   };
 
   function hideScraps() {
@@ -88,10 +87,10 @@ $(document).ready(function() {
   function toggleShowScrapsLink() {
     if ($("#show-scraps").html() == "show scraps") {
       $("#show-scraps").html("hide scraps");
-      showScraps();
+      // showScraps();
     } else {
       $("#show-scraps").html("show scraps");
-      hideScraps();
+      // hideScraps();
     };
   };
 
