@@ -35,15 +35,16 @@
 $(document).ready(function() {
 
   // Scrap Prototype
-  function Scrap(description, priority) {
+  function Scrap(id, description, priority) {
+    this.id = id;
     this.description = description;
     this.priority = priority || 0;
     this.format = function() {
-      // format the scrap here
+      return `${this.description}<br />`;
     };
   };
 
-  var hello = new Scrap("hello");
+  var hello = new Scrap(99, "hello");
   hello.format();
   let scrapResponse = "";
   let id = $(".column").data("id");
@@ -58,25 +59,13 @@ $(document).ready(function() {
       return response.json();
     })
     .then(data => {
-      console.log(data);
-      // data[0].forEach(function(param) {
-      //   const dog = new Dog(param) // Dog {name: 'Fido}
-      //   const dogHtml = dog.formatHtml() // <li> Fido </li>
-      //   $('#dogs').append(dogHtml)
-      // });
+      let scraps = data.scraps;
+      scraps.forEach(function(params) {
+        const scrap = new Scrap(params.id, params.description, params.priority);
+        const scrapHtml = scrap.format();
+        $('#scraps').append(scrapHtml);
+      });
     });
-    // $.ajax({
-    //   url: `/bowls/${id}.json`,
-    //   type: "GET",
-    // }).done(function(response) {
-    //   if (response.scraps.length == 0) {
-    //     scrapResponse = `<p>This bowl has no scraps</p>`;
-    //   } else {
-    //     scrapResponse = response.scraps.map(e => e.description).join(`<br>`);
-    //   };
-    //   showScraps();
-    //   toggleShowScrapsLink();
-    // });
   };
 
   // Display scraps
