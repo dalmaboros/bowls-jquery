@@ -33,6 +33,7 @@
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
+  $("#scraps").hide();
 
   // Scrap Prototype
   function Scrap(id, description, priority) {
@@ -61,11 +62,6 @@ $(document).ready(function() {
     .then(data => {
       let scraps = data.scraps;
       callback(scraps);
-      // scraps.forEach(function(params) {
-      //   const scrap = new Scrap(params.id, params.description, params.priority);
-      //   const scrapHtml = scrap.format();
-      //   $('#scraps').append(scrapHtml);
-      // });
     });
   };
 
@@ -85,12 +81,12 @@ $(document).ready(function() {
   };
 
   function toggleShowScrapsLink() {
-    if ($("#show-scraps").html() == "show scraps") {
-      $("#show-scraps").html("hide scraps");
-      // showScraps();
+    $("#scraps").slideToggle();
+    if ($("#show-scraps").text() == "show scraps") {
+      $("#show-scraps").text("hide scraps");
     } else {
-      $("#show-scraps").html("show scraps");
-      // hideScraps();
+      $("#show-scraps").text("show scraps");
+      hideScraps();
     };
   };
 
@@ -100,24 +96,25 @@ $(document).ready(function() {
     getScraps(id, showScraps);
   });
 
-  // Event Listener: show scraps form
+  // Event Listener: add scraps form
   $("#add-scraps").click(function(){
-    if ($("#show-scraps").html() == "hide scraps") {
-      toggleShowScrapsLink();
+    if ($("#show-scraps").text() == "show scraps") {
+      $('#show-scraps').click();
     }
     $("#scraps-form").toggle();
   });
 
   //form submit
   $('form').submit(function(event) {
-      event.preventDefault();
-      var values = $(this).serialize();
+    event.preventDefault();
+    var data = $(this).serialize();
+
       $.ajax({
         url: `/bowls/${id}.json`,
         type: "PUT",
-        data: values,
+        data: data,
       }).done(function(response) {
-        $('#add-scraps').click();
+        // $('#add-scraps').click();
         $('#show-scraps').click();
       });
     });
