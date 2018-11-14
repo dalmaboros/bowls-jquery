@@ -69,23 +69,15 @@ $(document).ready(function() {
   function showScraps(scraps) {
     $('#scraps').html("");
     scraps.forEach(function(params) {
-      // const scrap = new Scrap(params.id, params.description, params.priority);
-      // const scrapHtml = scrap.format();
-      // $('#scraps').append(scrapHtml);
       appendScrap(params);
     });
     toggleShowScrapsLink();
   };
 
   function appendScrap(scrap) {
-    console.log("I have been called!");
     const newScrap = new Scrap(scrap.id, scrap.description, scrap.priority);
     const newScrapFormat = newScrap.format();
     $('#scraps').append(newScrapFormat);
-  };
-
-  function hideScraps() {
-    $("#scraps").html("");
   };
 
   function toggleShowScrapsLink() {
@@ -98,6 +90,10 @@ $(document).ready(function() {
     };
   };
 
+  function hideScraps() {
+    $("#scraps").html("");
+  };
+
   // Event Listener: show scraps
   $("#show-scraps").on("click", function(event) {
     event.preventDefault();
@@ -106,8 +102,7 @@ $(document).ready(function() {
 
   // Event Listener: add scraps form
   $("#add-scraps").click(function(){
-    getScraps(id, showScraps);
-    $("#scraps-form").toggle();
+    $("#scraps-form").slideToggle();
   });
 
   //form submit
