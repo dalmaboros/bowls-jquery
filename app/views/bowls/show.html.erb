@@ -69,11 +69,19 @@ $(document).ready(function() {
   function showScraps(scraps) {
     $('#scraps').html("");
     scraps.forEach(function(params) {
-      const scrap = new Scrap(params.id, params.description, params.priority);
-      const scrapHtml = scrap.format();
-      $('#scraps').append(scrapHtml);
+      // const scrap = new Scrap(params.id, params.description, params.priority);
+      // const scrapHtml = scrap.format();
+      // $('#scraps').append(scrapHtml);
+      appendScrap(params);
     });
     toggleShowScrapsLink();
+  };
+
+  function appendScrap(scrap) {
+    console.log("I have been called!");
+    const newScrap = new Scrap(scrap.id, scrap.description, scrap.priority);
+    const newScrapFormat = newScrap.format();
+    $('#scraps').append(newScrapFormat);
   };
 
   function hideScraps() {
@@ -98,9 +106,7 @@ $(document).ready(function() {
 
   // Event Listener: add scraps form
   $("#add-scraps").click(function(){
-    if ($("#show-scraps").text() == "show scraps") {
-      $('#show-scraps').click();
-    }
+    getScraps(id, showScraps);
     $("#scraps-form").toggle();
   });
 
@@ -108,14 +114,21 @@ $(document).ready(function() {
   $('form').submit(function(event) {
     event.preventDefault();
     var data = $(this).serialize();
+    var url = this.action;
 
       $.ajax({
-        url: `/bowls/${id}.json`,
+        url: url,
         type: "PUT",
         data: data,
+        // headers: { 'Content-Type': 'application/json' },
+        success: function(response) {
+          let newScrap = response.scraps[response.scraps.length-1];
+          appendScrap(newScrap);
+          // let newScrap = response.scraps[response.scraps.length-1].description;
+          // $("#scraps").append(newScrap);
+          // console.log(`append ${newScrap}`);
+        }
       }).done(function(response) {
-        // $('#add-scraps').click();
-        $('#show-scraps').click();
       });
     });
 
