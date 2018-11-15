@@ -117,13 +117,10 @@ $(document).ready(function() {
         data: data,
         // headers: { 'Content-Type': 'application/json' },
         success: function(response) {
+          $(`#edit_bowl_${id}`)[0].reset();
           let newScrap = response.scraps[response.scraps.length-1];
           appendScrap(newScrap);
-          // let newScrap = response.scraps[response.scraps.length-1].description;
-          // $("#scraps").append(newScrap);
-          // console.log(`append ${newScrap}`);
         }
-      }).done(function(response) {
       });
     });
 

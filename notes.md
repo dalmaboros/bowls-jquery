@@ -27,6 +27,7 @@
 
 - ~~Omniauth doesn't take you to Google sign in page, automatically signs you in with primary Google account~~ resolved on own
 - Can add pre-existing scrap using 'create new scrap' feature (11/3)
+- Multiple scrap creation using AJAX: all get created, but only last one gets associated with current bowl.
 
 ## Next steps (from Rails-only app)
 
