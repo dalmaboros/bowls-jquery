@@ -35,3 +35,5 @@
 - [ ] On bowls show page, the previous AJAX-created scrap is deleted before the new one is created (11/14)
 
 ## Next Steps
+
+- [ ] Go back and make sure next/previous buttons still work

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :scraps
 
   resources :bowls do
-    resources :scraps, only: [:create, :update, :show]
+    resources :scraps
   end
 
   # Do this with AJAX:
