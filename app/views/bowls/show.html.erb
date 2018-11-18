@@ -45,8 +45,6 @@ $(document).ready(function() {
     };
   };
 
-  var hello = new Scrap(99, "hello");
-  hello.format();
   let scrapResponse = "";
   let id = $(".column").data("id");
 
@@ -108,8 +106,8 @@ $(document).ready(function() {
   //form submit
   $('form').submit(function(event) {
     event.preventDefault();
-    var data = $(this).serialize();
-    var url = this.action;
+    let data = $(this).serialize();
+    let url = this.action;
 
       $.ajax({
         url: url,
