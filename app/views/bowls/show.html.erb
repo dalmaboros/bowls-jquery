@@ -27,7 +27,7 @@
       <% end %>
     </div>
 
-    <p><%= link_to "edit bowl", edit_bowl_path, id: "edit-scrap" %></p>
+    <p><%= link_to "edit bowl", edit_bowl_path, id: "edit-bowl" %></p>
   </div>
 </div>
 
@@ -157,7 +157,7 @@ $(document).ready(function() {
           $(".bowl-name").html(jsonResponse.name);
           $(document).prop('title', `BOWLS | ${jsonResponse.name}`);
           id = jsonResponse.id;
-          $("#edit-scrap").attr("href", `/bowls/${id}/edit`);
+          $("#edit-bowl").attr("href", `/bowls/${id}/edit`);
           var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
           $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
           if (isNaN(previousBowl.id)) {
@@ -187,17 +187,19 @@ $(document).ready(function() {
         $.get(`/bowls/${nextBowl.id}.json`, function(jsonResponse) {
           scrapResponse = "";
           // toggle show/hide scraps
-          if ($("#show-scraps").html() == "hide scraps") {
-            $("#show-scraps").html("show scraps");
-            $("#scraps").html("");
-          };
-          // plug in JSON data
+          // if ($("#show-scraps").html() == "hide scraps") {
+          //   $("#show-scraps").html("show scraps");
+          //   $("#scraps").html("");
+          // };
+          debugger;
+          // Populate DOM with JSON data
           $(".bowl-name").html(jsonResponse.name);
           $(document).prop('title', `BOWLS | ${jsonResponse.name}`);
           id = jsonResponse.id;
-          $("#edit-scrap").attr("href", `/bowls/${id}/edit`);
+          $("#edit-bowl").attr("href", `/bowls/${id}/edit`);
           // if there are scraps
           var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
+          debugger;
           $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
           if (isNaN(nextBowl.id)) {
             $("a.next").attr("class", "next none");
