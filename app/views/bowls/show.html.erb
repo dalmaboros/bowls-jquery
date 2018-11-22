@@ -136,79 +136,95 @@ $(document).ready(function() {
   // Event listener: .previous button
   $(".previous").click(function(event) {
     event.preventDefault();
-    // grab all bowls
-    // i don't want to fire this request if there's no previousBowl
+    // Find this bowl
     $.get("/bowls.json", function(response) {
-      // find JSON bowl where id == id
       let thisBowlId = response.findIndex(function(element) {
         return element.id == id;
       });
-      // set previousBowl => object
+      // Set previousBowl object
       let previousBowl = response[thisBowlId-1];
-      // if previousBowl exists
+      // If previousBowl exists, grab its data
       if (previousBowl != undefined) {
-        // grab the previousBowl's data
-        $.get(`/bowls/${previousBowl.id}.json`, function(jsonResponse) {
+        $.get(`/bowls/${previousBowl.id}.json`, function(bowlJsonData) {
           scrapResponse = "";
-          if ($("#show-scraps").html() == "hide scraps") {
-            $("#show-scraps").html("show scraps");
-            $("#scraps").html("");
-          };
-          $(".bowl-name").html(jsonResponse.name);
-          $(document).prop('title', `BOWLS | ${jsonResponse.name}`);
-          id = jsonResponse.id;
+          // if ($("#show-scraps").html() == "hide scraps") {
+          //   $("#show-scraps").html("show scraps");
+          //   $("#scraps").html("");
+          // };
+
+          // Update id to be previousBowl's id
+          id = bowlJsonData.id;
+          // Populate DOM with JSON data
+          $(".bowl-name").html(bowlJsonData.name);
+          $(document).prop('title', `BOWLS | ${bowlJsonData.name}`);
           $("#edit-bowl").attr("href", `/bowls/${id}/edit`);
-          var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
-          $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
+
+          // Set href for .random-bowl
+          if (bowlJsonData.scraps.length > 0) {
+            let randomScrap = bowlJsonData.scraps[Math.floor(Math.random()*bowlJsonData.scraps.length)];
+            $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
+          } else {
+            $(".random-bowl").attr("href", `/bowls/${id}/scraps/new`);
+          };
+          
+          // If there is no previousBowl, change class of .previous button
           if (isNaN(previousBowl.id)) {
             $("a.previous").attr("class", "previous none");
           };
         });
+      // If previousBowl does not exist
       } else {
+        // do something
       };
     });
   }); // click .previous event
 
-  // NEXT FUNCTIONALITY
+  // Event listener: .next button
   $(".next").click(function(event) {
     event.preventDefault();
-    // grab all bowls
-    // i don't want to fire this request if there's no nextBowl
+    // Find this bowl
     $.get("/bowls.json", function(response) {
-      // find JSON bowl where id == id
       let thisBowlId = response.findIndex(function(element) {
         return element.id == id;
       });
-      // set nextBowl => object
+      // Set nextBowl object
       let nextBowl = response[thisBowlId+1];
-      // if nextBowl exists
+      // If nextBowl exists, grab its data
       if (nextBowl != undefined) {
-        // grab the nextBowl's data
-        $.get(`/bowls/${nextBowl.id}.json`, function(jsonResponse) {
+        $.get(`/bowls/${nextBowl.id}.json`, function(bowlJsonData) {
           scrapResponse = "";
           // toggle show/hide scraps
           // if ($("#show-scraps").html() == "hide scraps") {
           //   $("#show-scraps").html("show scraps");
           //   $("#scraps").html("");
           // };
-          debugger;
+
+          // Update id to be nextBowl's id
+          id = bowlJsonData.id;
           // Populate DOM with JSON data
-          $(".bowl-name").html(jsonResponse.name);
-          $(document).prop('title', `BOWLS | ${jsonResponse.name}`);
-          id = jsonResponse.id;
+          $(".bowl-name").html(bowlJsonData.name);
+          $(document).prop('title', `BOWLS | ${bowlJsonData.name}`);
           $("#edit-bowl").attr("href", `/bowls/${id}/edit`);
-          // if there are scraps
-          var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
-          debugger;
-          $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
+
+          // Set href for .random-bowl
+          if (bowlJsonData.scraps.length > 0) {
+            let randomScrap = bowlJsonData.scraps[Math.floor(Math.random()*bowlJsonData.scraps.length)];
+            $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
+          } else {
+            $(".random-bowl").attr("href", `/bowls/${id}/scraps/new`);
+          };
+
+          // If there is no nextBowl, change class of .next button
           if (isNaN(nextBowl.id)) {
             $("a.next").attr("class", "next none");
           };
         });
+      // If nextBowl does not exist:
       } else {
+        // do something
       };
     });
-  }); // click .previous event
+  }); // click .next event
 
 }); // document ready
 </script>
