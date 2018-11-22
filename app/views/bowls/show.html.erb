@@ -3,11 +3,11 @@
 <div class="column" data-id="<%= @bowl.id %>">
   <div class="bowl_container">
     <% if !@bowl.scraps.empty? %>
-      <%= link_to bowl_scrap_path(@bowl, @bowl.scraps.sample), class: "foo" do %>
+      <%= link_to bowl_scrap_path(@bowl, @bowl.scraps.sample), class: "random-bowl" do %>
         <div class="bowl"></div>
       <% end %>
     <% else %>
-      <%= link_to new_bowl_scrap_path(@bowl), class: "foo" do %>
+      <%= link_to new_bowl_scrap_path(@bowl), class: "random-bowl" do %>
         <div class="bowl">
         </div>
       <% end %>
@@ -159,7 +159,7 @@ $(document).ready(function() {
           id = jsonResponse.id;
           $("#edit-scrap").attr("href", `/bowls/${id}/edit`);
           var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
-          $(".foo").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
+          $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
           if (isNaN(previousBowl.id)) {
             $("a.previous").attr("class", "previous none");
           };
@@ -198,7 +198,7 @@ $(document).ready(function() {
           $("#edit-scrap").attr("href", `/bowls/${id}/edit`);
           // if there are scraps
           var randomScrap = jsonResponse.scraps[Math.floor(Math.random()*jsonResponse.scraps.length)];
-          $(".foo").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
+          $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
           if (isNaN(nextBowl.id)) {
             $("a.next").attr("class", "next none");
           };
