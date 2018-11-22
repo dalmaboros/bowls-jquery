@@ -33,7 +33,9 @@
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
-  $("#scraps").hide();
+  // Variables
+  let scrapResponse = "";
+  let id = $(".column").data("id");
 
   // Scrap Prototype
   function Scrap(id, description, priority) {
@@ -45,10 +47,21 @@ $(document).ready(function() {
     };
   };
 
-  let scrapResponse = "";
-  let id = $(".column").data("id");
+  // Hide scraps div initially
+  $("#scraps").hide();
 
-  // Retrieve scraps from DB
+  // Event Listener: #show-scraps button
+  $("#show-scraps").on("click", function(event) {
+    event.preventDefault();
+    getScraps(id, showScraps);
+  });
+
+  // Event Listener: #add-scraps button
+  $("#add-scraps").click(function(){
+    $("#scraps-form").slideToggle();
+  });
+
+  // Fetch scraps from database
   function getScraps(id, callback) {
     fetch(`/bowls/${id}.json`, {
       contentType: 'application/json',
@@ -63,7 +76,7 @@ $(document).ready(function() {
     });
   };
 
-  // Display scraps
+  // Display scraps and toggle "show/hide scrap" button
   function showScraps(scraps) {
     $('#scraps').html("");
     scraps.forEach(function(params) {
@@ -72,12 +85,14 @@ $(document).ready(function() {
     toggleShowScrapsLink();
   };
 
+  // Append scraps to #scraps div
   function appendScrap(scrap) {
     const newScrap = new Scrap(scrap.id, scrap.description, scrap.priority);
     const newScrapFormat = newScrap.format();
     $('#scraps').append(newScrapFormat);
   };
 
+  // Toggle "show scraps"/"hide scraps" text
   function toggleShowScrapsLink() {
     $("#scraps").slideToggle();
     if ($("#show-scraps").text() == "show scraps") {
@@ -88,22 +103,12 @@ $(document).ready(function() {
     };
   };
 
+  // Clear #scraps div
   function hideScraps() {
     $("#scraps").html("");
   };
 
-  // Event Listener: show scraps
-  $("#show-scraps").on("click", function(event) {
-    event.preventDefault();
-    getScraps(id, showScraps);
-  });
-
-  // Event Listener: add scraps form
-  $("#add-scraps").click(function(){
-    $("#scraps-form").slideToggle();
-  });
-
-  //form submit
+  // Form submit
   $('form').submit(function(event) {
     event.preventDefault();
     let data = $(this).serialize();
@@ -122,6 +127,9 @@ $(document).ready(function() {
       });
     });
 
+  // Sifting Through Bowls
+
+  // Event listener: .previous button
   $(".previous").click(function(event) {
     event.preventDefault();
     // grab all bowls

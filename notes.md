@@ -2,14 +2,13 @@
 
 ## Project Requirements
 
-- [ ] Must render at least one index page (index resource - 'list of things') via JavaScript and an Active Model Serialization JSON Backend
-  - [ ] **render the bowls index page using AJAX?**
+- [x] Must render at least one index page (index resource - 'list of things') via JavaScript and an Active Model Serialization JSON Backend
   - [x] display the index of a bowl's scraps on the bowls show page
-  - [ ] fetching the scraps via a AJAX GET request
-  - [ ] with the backend rendering the scraps in JSON format
-  - [ ] and then appending the scraps to the page.
+  - [x] fetching the scraps via a AJAX GET request
+  - [x] with the backend rendering the scraps in JSON format
+  - [x] and then appending the scraps to the page.
 
-- [ ] Must render at least one show page (show resource - 'one specific thing') via JavaScript and an Active Model Serialization JSON Backend.
+- [x] Must render at least one show page (show resource - 'one specific thing') via JavaScript and an Active Model Serialization JSON Backend.
   - [ ] allow a user to sift through the bowls by clicking a 'Next' button on the bowls show page
   - [ ] with the next bowl being fetched via AJAX and rendered through JavaScript.
 
