@@ -33,7 +33,7 @@
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
-  // Variables
+  // Global Variables
   let scrapResponse = "";
   let id = $(".column").data("id");
 
@@ -79,9 +79,13 @@ $(document).ready(function() {
   // Display scraps and toggle "show/hide scrap" button
   function showScraps(scraps) {
     $('#scraps').html("");
-    scraps.forEach(function(params) {
-      appendScrap(params);
-    });
+    if (scraps.length > 0) {
+      scraps.forEach(function(params) {
+        appendScrap(params);
+      });
+    } else {
+      $('#scraps').append("This bowl has no scraps");
+    }
     toggleShowScrapsLink();
   };
 
