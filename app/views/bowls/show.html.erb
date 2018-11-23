@@ -92,6 +92,10 @@
     function appendScrap(scrap) {
       const newScrap = new Scrap(scrap.id, scrap.description, scrap.priority);
       const newScrapFormat = newScrap.format();
+      // Clear #scraps div if the bowl has no scraps
+      if ($('#scraps:contains("This bowl has no scraps")').length) {
+        $('#scraps').html("");
+      };
       $('#scraps').append(newScrapFormat);
     };
 
