@@ -34,7 +34,6 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
     // Global Variables
-    let scrapResponse = "";
     let id = $(".column").data("id");
 
     // Scrap Prototype
@@ -132,67 +131,63 @@
       });
 
     // Sifting Through Bowls
-    let nextIncrementer = 1
-    let previousIncrementer = -1
-
-    // Event listener: .previous button
-    $(".previous").click(function(event) {
-      event.preventDefault();
-      let incrementer = -1;
-      getAdjascentBowl(incrementer);
-    }); // click .previous event
-
-    function getAdjascentBowl(incrementer) {
-      // Retrieve this bowl's id
-      $.get("/bowls.json", function(response) {
-        let thisBowlId = response.findIndex(function(element) {
-          return element.id == id;
-        });
-        // Set adjascentBowl object
-        let adjascentBowl = response[thisBowlId+incrementer];
-        debugger;
-        // If adjascentBowl exists, grab its data
-        if (adjascentBowl != undefined) {
-          $.get(`/bowls/${adjascentBowl.id}.json`, function(bowlJsonData) {
-            scrapResponse = "";
-            // if ($("#show-scraps").html() == "hide scraps") {
-            //   $("#show-scraps").html("show scraps");
-            //   $("#scraps").html("");
-            // };
-
-            // Update id to be adjascentBowl's id
-            id = bowlJsonData.id;
-            // Populate DOM with JSON data
-            $(".bowl-name").html(bowlJsonData.name);
-            $(document).prop('title', `BOWLS | ${bowlJsonData.name}`);
-            $("#edit-bowl").attr("href", `/bowls/${id}/edit`);
-
-            // Set href for .random-bowl
-            if (bowlJsonData.scraps.length > 0) {
-              let randomScrap = bowlJsonData.scraps[Math.floor(Math.random()*bowlJsonData.scraps.length)];
-              $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
-            } else {
-              $(".random-bowl").attr("href", `/bowls/${id}/scraps/new`);
-            };
-
-            // If there is no adjascentBowl, change class of .previous button
-            if (isNaN(adjascentBowl.id)) {
-              $("a.previous").attr("class", "previous none");
-            };
-          });
-        // If adjascentBowl does not exist
-        } else {
-          // do nothing
-        }; // if statement
-      }); // .get request
-    }; // getAdjascentBowl
 
     // Event listener: .next button
     $(".next").click(function(event) {
       event.preventDefault();
       let incrementer = 1;
       getAdjascentBowl(incrementer);
-    }); // click .next event
+    });
+
+    // Event listener: .previous button
+    $(".previous").click(function(event) {
+      event.preventDefault();
+      let incrementer = -1;
+      getAdjascentBowl(incrementer);
+    });
+
+    // Load previous/next bowl
+    function getAdjascentBowl(incrementer) {
+      // Retrieve current bowl as JS object
+      $.get("/bowls.json", function(response) { // respone => array of bowl objects
+        let currentBowlIndex = response.findIndex(function(bowl) {
+          return bowl.id == id;
+        });
+        // Retrieve adjascent bowl as JS object
+        let adjascentBowlIndex = currentBowlIndex+incrementer;
+        let adjascentBowl = response[adjascentBowlIndex];
+
+        // If adjascent bowl exists, grab its data
+        if (adjascentBowl != undefined) {
+          $.get(`/bowls/${adjascentBowl.id}.json`, function(adjBowlJsonData) {
+            // Update id to be adjascentBowl's id
+            id = adjBowlJsonData.id;
+            // Populate DOM with JSON data
+            $(".bowl-name").html(adjBowlJsonData.name);
+            $(document).prop('title', `BOWLS | ${adjBowlJsonData.name}`);
+            $("#edit-bowl").attr("href", `/bowls/${id}/edit`);
+
+            // Set href for .random-bowl
+            if (adjBowlJsonData.scraps.length > 0) {
+              let randomScrap = adjBowlJsonData.scraps[Math.floor(Math.random()*adjBowlJsonData.scraps.length)];
+              $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
+            } else {
+              $(".random-bowl").attr("href", `/bowls/${id}/scraps/new`);
+            };
+
+            // Change style of previous/next button
+            // if (adjascentBowlIndex == response.length-1) {
+            //   $("a.next").attr("class", "next none");
+            // } else if (adjascentBowlIndex == 0) {
+            //   $("a.previous").attr("class", "previous none");
+            // } else {
+            //   $("a.next").attr("class", "next");
+            //   $("a.previous").attr("class", "previous");
+            // };
+          });
+        };
+      }); // .get request
+    }; // getAdjascentBowl
 
   });
 </script>
