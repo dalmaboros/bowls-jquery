@@ -31,8 +31,8 @@
 
 - [x] Omniauth doesn't take you to Google sign in page, automatically signs you in with primary Google account
 - [ ] Can add pre-existing scrap using 'create new scrap' feature (11/3)
-- [ ] On bowls show page, the previous AJAX-created scrap is deleted before the new one is created (11/14)
-
+- [x] On bowls show page, the previous AJAX-created scrap is deleted before the new one is created (11/14) (fixed with removal of f.collection "Add existing scrap" checkboxes 11/23)
+- [ ] New scraps don't add on AJAX-loaded bowl
 ## Next Steps
 
 - [ ] Go back and make sure next/previous buttons still work

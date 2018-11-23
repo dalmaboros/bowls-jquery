@@ -166,6 +166,8 @@
             $(".bowl-name").html(adjBowlJsonData.name);
             $(document).prop('title', `BOWLS | ${adjBowlJsonData.name}`);
             $("#edit-bowl").attr("href", `/bowls/${id}/edit`);
+            $("form.edit_bowl").attr("id", `edit_bowl_${id}`);
+            // $("form.edit_bowl").attr("action", `/bowls/${id}`);
 
             // Set href for .random-bowl
             if (adjBowlJsonData.scraps.length > 0) {
