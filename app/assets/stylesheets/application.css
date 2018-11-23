@@ -313,7 +313,7 @@ label, input[type=submit] {
   text-decoration: none;
 }
 
-#scraps-form {
+#scraps-form, #remove-scraps-form {
   display: none;
 }
 

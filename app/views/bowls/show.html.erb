@@ -26,6 +26,13 @@
         <%= f.submit %>
       <% end %>
     </div>
+    <p><a id="remove-scraps">remove scraps</a></p>
+    <div id="remove-scraps-form">
+      <%= form_for @bowl do |f| %>
+        <%= render 'remove_scrap_form', f: f %>
+        <%= f.submit %>
+      <% end %>
+    </div>
 
     <p><%= link_to "edit bowl", edit_bowl_path, id: "edit-bowl" %></p>
   </div>
@@ -58,6 +65,11 @@
     // Event Listener: #add-scraps button
     $("#add-scraps").click(function(){
       $("#scraps-form").slideToggle();
+    });
+
+    // Event Listener: #remove-scraps button
+    $("#remove-scraps").click(function(){
+      $("#remove-scraps-form").slideToggle();
     });
 
     // Fetch scraps from database
