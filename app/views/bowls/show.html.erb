@@ -115,7 +115,7 @@
     $('form').submit(function(event) {
       event.preventDefault();
       let data = $(this).serialize();
-      let url = this.action;
+      let url = `/bowls/${id}`;
 
         $.ajax({
           url: url,
