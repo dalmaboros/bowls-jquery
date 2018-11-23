@@ -122,10 +122,17 @@
           type: "PUT",
           data: data,
           // headers: { 'Content-Type': 'application/json' },
-          success: function(response) {
+          success: function(response) { // response => bowl object
             $(`#edit_bowl_${id}`)[0].reset();
-            let newScrap = response.scraps[response.scraps.length-1];
-            appendScrap(newScrap);
+            if (typeof response == "object") {
+              let newScrap = response.scraps[response.scraps.length-1];
+              appendScrap(newScrap);
+            } else {
+              // Presumably the ojbect already exists, as that is
+              // our only validation on the BowlScrap model
+              alert("Scrap already exists!");
+              // but let's implement a prettier error handler?
+            };
           }
         });
       });
