@@ -4,11 +4,11 @@
   <div class="bowl_container">
     <% if !@bowl.scraps.empty? %>
       <%= link_to bowl_scrap_path(@bowl, @bowl.scraps.sample), class: "random-bowl" do %>
-        <div class="bowl"></div>
+        <div class="bowl-glyph"></div>
       <% end %>
     <% else %>
       <%= link_to new_bowl_scrap_path(@bowl), class: "random-bowl" do %>
-        <div class="bowl">
+        <div class="bowl-glyph">
         </div>
       <% end %>
     <% end %>

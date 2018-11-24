@@ -9,8 +9,8 @@
   - [x] and then appending the scraps to the page.
 
 - [x] Must render at least one show page (show resource - 'one specific thing') via JavaScript and an Active Model Serialization JSON Backend.
-  - [ ] allow a user to sift through the bowls by clicking a 'Next' button on the bowls show page
-  - [ ] with the next bowl being fetched via AJAX and rendered through JavaScript.
+  - [x] allow a user to sift through the bowls by clicking a 'Next' button on the bowls show page
+  - [x] with the next bowl being fetched via AJAX and rendered through JavaScript.
 
 - [x] Your Rails application must dynamically render on the page at least one 'has-many' relationship through JSON using JavaScript.
   - [x] if each of the bowls has many scraps, you could render those scraps as well on that bowl's show page.
@@ -38,4 +38,4 @@
 
 ## Next Steps
 
-- [ ] Go back and make sure next/previous buttons still work
+- [x] Go back and make sure next/previous buttons still work
