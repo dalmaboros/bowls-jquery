@@ -7,7 +7,7 @@
 <% end %>
 
 <%= f.fields_for :scraps, @bowl.scraps.build do |scraps_fields| %>
-  <%= scraps_fields.text_field :description, autocomplete: :off %></p>
+  <%= scraps_fields.text_field :description, autocomplete: :off, required: true %></p>
   <%= scraps_fields.hidden_field :user_id, value: current_user.id %>
 
   <% if !@bowl.errors[:'bowl_scraps.priority'].empty? %>

@@ -196,7 +196,6 @@
 
             // Set href for .random-bowl
             if (adjBowlJsonData.scraps.length > 0) {
-              debugger;
               let randomScrap = adjBowlJsonData.scraps[Math.floor(Math.random()*adjBowlJsonData.scraps.length)];
               $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
             } else {
