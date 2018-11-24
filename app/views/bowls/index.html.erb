@@ -2,21 +2,12 @@
 
 <% @bowls.each do |bowl| %>
   <div class="column">
-    <% if !bowl.scraps.empty? %>
-      <div class="bowl-container">
-        <%= link_to bowl_scrap_path(bowl, bowl.scraps.sample), class: "random-bowl" do %>
-          <div class="bowl-glyph"></div>
-          <%= link_to bowl.name, bowl_path(bowl) %>
-        <% end %>
-      </div>
-    <% else %> <!-- empty bowl -->
-      <div class="bowl-container">
-        <%= link_to new_bowl_scrap_path(bowl), class: "random-bowl" do %>
-          <div class="bowl-glyph"></div>
-          <%= link_to bowl.name, edit_bowl_path(bowl) %>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="bowl-container">
+      <%= link_to bowl_path(bowl), class: "random-bowl" do %>
+        <div class="bowl-glyph"></div>
+        <%= link_to bowl.name, bowl_path(bowl) %>
+      <% end %>
+    </div>
   </div>
 <% end %> <!-- each do -->
 
