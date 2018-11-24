@@ -7,10 +7,7 @@
         <div class="bowl-glyph"></div>
       <% end %>
     <% else %>
-      <%= link_to new_bowl_scrap_path(@bowl), class: "random-bowl" do %>
-        <div class="bowl-glyph">
-        </div>
-      <% end %>
+      <a class="random-bowl"><div class="bowl-glyph"></div></a>
     <% end %>
 
     <a class="previous">&#8249;</a>
@@ -199,10 +196,11 @@
 
             // Set href for .random-bowl
             if (adjBowlJsonData.scraps.length > 0) {
+              debugger;
               let randomScrap = adjBowlJsonData.scraps[Math.floor(Math.random()*adjBowlJsonData.scraps.length)];
               $(".random-bowl").attr("href", `/bowls/${id}/scraps/${randomScrap.id}`);
             } else {
-              $(".random-bowl").attr("href", `/bowls/${id}/scraps/new`);
+              $(".random-bowl").removeAttr("href");
             };
 
             // Change style of previous/next button
