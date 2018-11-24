@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :scraps
   end
 
+  delete 'bowls/:id/scraps/:id', :to => 'bowls#delete_scrap_from_bowl'
+
   # Do this with AJAX:
   get '/bowls/no_scraps', to: 'bowls#no_scraps', as: 'no_scraps'
   get '/scraps/no_bowls', to: 'scraps#no_bowls', as: 'no_bowls'

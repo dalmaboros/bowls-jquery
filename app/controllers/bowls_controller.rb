@@ -63,6 +63,15 @@ class BowlsController < ApplicationController
     end
   end
 
+  def remove_scrap_form_bowl
+    bowl = Bowl.find(params[:bowl][:id])
+    scrap = bowl.scraps.find(params[:scrap][:id])
+
+    if scrap
+      bowl.scraps.delete(scrap)
+    end
+  end
+
   def no_scraps
     @bowls = current_user.bowls.no_scraps
     render :index

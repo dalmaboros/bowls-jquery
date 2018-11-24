@@ -16,6 +16,11 @@
 
     <p><a id="show-scraps">show scraps</a></p>
     <div id="scraps"></div>
+    TEST
+    <% @bowl.scraps.each do |scrap| %>
+      <%= scrap.description %>
+      <%= link_to 'x', bowl_scrap_url(@bowl, scrap), method: :delete %>
+    <% end %>
     <p><a id="add-scraps">add scraps</a></p>
     <div id="scraps-form">
       <%= form_for @bowl do |f| %>
@@ -46,7 +51,7 @@
       this.description = description;
       this.priority = priority || 0;
       this.format = function() {
-        return `${this.description}<br />`;
+        return `${this.description} x<br />`;
       };
     };
 
@@ -201,16 +206,6 @@
             } else {
               $(".random-bowl").removeAttr("href");
             };
-
-            // Change style of previous/next button
-            // if (adjascentBowlIndex == response.length-1) {
-            //   $("a.next").attr("class", "next none");
-            // } else if (adjascentBowlIndex == 0) {
-            //   $("a.previous").attr("class", "previous none");
-            // } else {
-            //   $("a.next").attr("class", "next");
-            //   $("a.previous").attr("class", "previous");
-            // };
           });
         };
       }); // .get request
