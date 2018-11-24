@@ -115,32 +115,33 @@ label, input[type=submit] {
 
 .add-glyph {
   position: relative;
-  height: 200px;
-  width: 200px;
+  height: 130px;
+  width: 220px;
+  margin: 50px auto;
   /* border: 1px solid white; */
 }
 
 .horizontal-line {
   position: absolute;
-  /* margin: 95px auto; */
+  /* margin: 50px auto; */
   overflow: none;
-  width: 150px;
+  width: 130px;
   height: 10px;
   background-color: white;
   border: 0px solid rgba(255,255,255,.9);
-  top: 95px;
-  left: 25px;
+  top: 55px;
+  left: 45px;
 }
 
 /* vertical */
 .vertical-line {
   position: absolute;
-  top: 25px;
-  left: 95px;
+  top: -5px;
+  left: 105px;
   /* margin: auto 95px; */
   overflow: none;
   width: 10px;
-  height: 150px;
+  height: 130px;
   background-color: white;
   border: 0px solid rgba(255,255,255,.9);
 }
