@@ -71,7 +71,6 @@ class BowlsController < ApplicationController
       @bowl.scraps.delete(scrap)
     end
     render json: @bowl, status: 200
-    # redirect_to @bowl
   end
 
   def no_scraps

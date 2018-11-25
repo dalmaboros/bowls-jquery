@@ -23,13 +23,6 @@
         <%= f.submit %>
       <% end %>
     </div>
-    <p><a id="remove-scraps">remove scraps</a></p>
-    <div id="remove-scraps-form">
-      <%= form_for @bowl do |f| %>
-        <%= render 'remove_scrap_form', f: f %>
-        <%= f.submit %>
-      <% end %>
-    </div>
 
     <p><%= link_to "edit bowl", edit_bowl_path, id: "edit-bowl" %></p>
   </div>
@@ -64,12 +57,7 @@
       $("#scraps-form").slideToggle();
     });
 
-    // Event Listener: #remove-scraps button
-    $("#remove-scraps").click(function(){
-      $("#remove-scraps-form").slideToggle();
-    });
-
-    // Event Listener: .remove-scrap link
+    // Event Listener: .delete-scrap link
     $('#scraps').on('click', 'a.delete-scrap', function(event) {
       event.preventDefault();
       removeScrapFromBowl(this.href, this.dataset.description);
