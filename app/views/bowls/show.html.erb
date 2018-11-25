@@ -14,12 +14,12 @@
     <h2 class="bowl-name"><%= @bowl.name %></h2>
     <a class="next">&#8250;</a>
 
-    <p><a id="show-scraps-button">show scraps</a></p>
+    <p><a id="show-scraps-button">scraps</a></p>
     <div id="scraps">
       <div id="display-scraps">
       </div>
       <div id="add-scraps">
-        <p><a id="add-scraps-button">add scraps</a></p>
+        <p><a id="add-scraps-button">add scrap</a></p>
         <div id="scraps-form">
           <%= form_for @bowl do |f| %>
             <%= render 'scrap_form', f: f %>
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <p><%= link_to "edit bowl", edit_bowl_path, id: "edit-bowl" %></p>
+    <p><%= link_to "edit", edit_bowl_path, id: "edit-bowl" %></p>
   </div>
 </div>
 
@@ -110,7 +110,8 @@
       } else {
         $('#display-scraps').append("This bowl has no scraps");
       }
-      toggleShowScrapsLink();
+      // toggleShowScrapsLink();
+      $("#scraps").slideToggle();
     };
 
     // Append scraps to #scraps div
@@ -124,13 +125,13 @@
       $('#display-scraps').append(newScrapFormat);
     };
 
-    // Toggle "show scraps"/"hide scraps" text
+    // Toggle "scraps"/"hide scraps" text
     function toggleShowScrapsLink() {
       $("#scraps").slideToggle();
-      if ($("#show-scraps-button").text() == "show scraps") {
+      if ($("#show-scraps-button").text() == "scraps") {
         $("#show-scraps-button").text("hide scraps");
       } else {
-        $("#show-scraps-button").text("show scraps");
+        $("#show-scraps-button").text("scraps");
         // hideScraps();
       };
     };
