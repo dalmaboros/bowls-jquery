@@ -1,3 +1,0 @@
-<% if !current_user.scraps.empty? %>
-  <%= f.collection_check_boxes :scrap_ids, current_user.scraps, :id, :description %></p>
-<% end %>
