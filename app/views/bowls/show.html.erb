@@ -189,10 +189,11 @@
     // Load previous/next bowl
     function getAdjascentBowl(incrementer) {
       // Hide scraps if displayed
-      if ($("#show-scraps-button").text() == "hide scraps") {
+      let hidden = $('#scraps').is(":hidden");
+      if (!hidden) {
         $('#show-scraps-button').click();
       };
-      $('#elementid').click();
+      
       // Retrieve current bowl as JS object
       $.get("/bowls.json", function(response) { // respone => array of bowl objects
         let currentBowlIndex = response.findIndex(function(bowl) {
