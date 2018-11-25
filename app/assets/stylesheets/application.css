@@ -73,6 +73,26 @@ a.delete-scrap {
     text-shadow: none;
 }
 
+#plus {
+  display: inline-block;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.rotate {
+  /* Safari */
+  -webkit-transform: rotate(-45deg);
+  /* Firefox */
+  -moz-transform: rotate(-45deg);
+  /* IE */
+  -ms-transform: rotate(-45deg);
+  /* Opera */
+  -o-transform: rotate(-45deg);
+  /*  */
+  transform: rotate(-45deg);
+}
 
 div a.random-bowl {
   padding: 0;

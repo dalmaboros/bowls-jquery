@@ -21,7 +21,7 @@
           <div id="display-scraps">
           </div>
           <div id="add-scraps">
-            <p><a id="add-scraps-button">+</a></p>
+            <p><a id="add-scraps-button"><span id="plus">+</span></a></p>
             <div id="scraps-form">
               <%= form_for @bowl do |f| %>
                 <%= render 'scrap_form', f: f %>
@@ -63,12 +63,26 @@
     // Event Listener: #add-scraps-button button
     $("#add-scraps-button").click(function(){
       $("#scraps-form").slideToggle();
+      toggleAddScrapsButton();
     });
+
+    // Toggle "scraps"/"hide scraps" text
+    function toggleAddScrapsButton() {
+      // $("#scraps").slideToggle();
+      if ($("#plus").hasClass("rotate")) {
+        $("#plus").removeClass("rotate", 500, "ease");
+      } else {
+        $("#plus").addClass("rotate", 500, "ease");
+        // hideScraps();
+      };
+    };
 
     // Event Listener: .delete-scrap link
     $('#display-scraps').on('click', 'a.delete-scrap', function(event) {
       event.preventDefault();
-      removeScrapFromBowl(this.href, this.dataset.description);
+      if (confirm("Delete scrap from bowl?")) {
+        removeScrapFromBowl(this.href, this.dataset.description);
+      };
       return false;
     });
 
