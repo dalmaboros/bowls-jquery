@@ -14,14 +14,19 @@
     <h2 class="bowl-name"><%= @bowl.name %></h2>
     <a class="next">&#8250;</a>
 
-    <p><a id="show-scraps">show scraps</a></p>
-    <div id="scraps"></div>
-    <p><a id="add-scraps">add scraps</a></p>
-    <div id="scraps-form">
-      <%= form_for @bowl do |f| %>
-        <%= render 'scrap_form', f: f %>
-        <%= f.submit %>
-      <% end %>
+    <p><a id="show-scraps-button">show scraps</a></p>
+    <div id="scraps">
+      <div id="display-scraps">
+      </div>
+      <div id="add-scraps">
+        <p><a id="add-scraps-button">add scraps</a></p>
+        <div id="scraps-form">
+          <%= form_for @bowl do |f| %>
+            <%= render 'scrap_form', f: f %>
+            <%= f.submit %>
+          <% end %>
+        </div>
+      </div>
     </div>
 
     <p><%= link_to "edit bowl", edit_bowl_path, id: "edit-bowl" %></p>
@@ -30,6 +35,9 @@
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
+    // Hide scraps div initially
+    $("#scraps").hide();
+
     // Global Variables
     let id = $(".column").data("id");
 
@@ -43,22 +51,19 @@
       };
     };
 
-    // Hide scraps div initially
-    $("#scraps").hide();
-
-    // Event Listener: #show-scraps button
-    $("#show-scraps").on("click", function(event) {
+    // Event Listener: #show-scraps-button button
+    $("#show-scraps-button").on("click", function(event) {
       event.preventDefault();
       getScraps(id, showScraps);
     });
 
-    // Event Listener: #add-scraps button
-    $("#add-scraps").click(function(){
+    // Event Listener: #add-scraps-button button
+    $("#add-scraps-button").click(function(){
       $("#scraps-form").slideToggle();
     });
 
     // Event Listener: .delete-scrap link
-    $('#scraps').on('click', 'a.delete-scrap', function(event) {
+    $('#display-scraps').on('click', 'a.delete-scrap', function(event) {
       event.preventDefault();
       removeScrapFromBowl(this.href, this.dataset.description);
       return false;
@@ -97,13 +102,13 @@
 
     // Display scraps and toggle "show/hide scrap" button
     function showScraps(scraps) {
-      $('#scraps').html("");
+      $('#display-scraps').html("");
       if (scraps.length > 0) {
         scraps.forEach(function(params) {
           appendScrap(params);
         });
       } else {
-        $('#scraps').append("This bowl has no scraps");
+        $('#display-scraps').append("This bowl has no scraps");
       }
       toggleShowScrapsLink();
     };
@@ -113,26 +118,26 @@
       const newScrap = new Scrap(scrap.id, scrap.description, scrap.priority);
       const newScrapFormat = newScrap.format();
       // Clear #scraps div if the bowl has no scraps
-      if ($('#scraps:contains("This bowl has no scraps")').length) {
-        $('#scraps').html("");
+      if ($('#display-scraps:contains("This bowl has no scraps")').length) {
+        $('#display-scraps').html("");
       };
-      $('#scraps').append(newScrapFormat);
+      $('#display-scraps').append(newScrapFormat);
     };
 
     // Toggle "show scraps"/"hide scraps" text
     function toggleShowScrapsLink() {
       $("#scraps").slideToggle();
-      if ($("#show-scraps").text() == "show scraps") {
-        $("#show-scraps").text("hide scraps");
+      if ($("#show-scraps-button").text() == "show scraps") {
+        $("#show-scraps-button").text("hide scraps");
       } else {
-        $("#show-scraps").text("show scraps");
-        hideScraps();
+        $("#show-scraps-button").text("show scraps");
+        // hideScraps();
       };
     };
 
     // Clear #scraps div
     function hideScraps() {
-      $("#scraps").html("");
+      $("#scraps").slideToggle();
     };
 
     // Form submit
@@ -180,8 +185,8 @@
     // Load previous/next bowl
     function getAdjascentBowl(incrementer) {
       // Hide scraps if displayed
-      if ($("#show-scraps").text() == "hide scraps") {
-        $('#show-scraps').click();
+      if ($("#show-scraps-button").text() == "hide scraps") {
+        $('#show-scraps-button').click();
       };
       $('#elementid').click();
       // Retrieve current bowl as JS object
