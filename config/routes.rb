@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :scraps
+  resources :scraps, except: [:show]
 
   resources :bowls do
     resources :scraps, except: [:destroy]
