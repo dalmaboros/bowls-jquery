@@ -16,11 +16,6 @@
 
     <p><a id="show-scraps">show scraps</a></p>
     <div id="scraps"></div>
-    TEST
-    <% @bowl.scraps.each do |scrap| %>
-      <%= scrap.description %>
-      <%= link_to 'x', bowl_scrap_path(@bowl, scrap), method: :delete %>
-    <% end %>
     <p><a id="add-scraps">add scraps</a></p>
     <div id="scraps-form">
       <%= form_for @bowl do |f| %>
@@ -46,12 +41,12 @@
     let id = $(".column").data("id");
 
     // Scrap Prototype
-    function Scrap(id, description, priority) {
-      this.id = id;
+    function Scrap(scrap_id, description, priority) {
+      this.id = scrap_id;
       this.description = description;
       this.priority = priority || 0;
       this.format = function() {
-        return `${this.description} x<br />`;
+        return `<li class="scrap-li">${this.description} <a href="/bowls/${id}/scraps/${this.id}" data-method="delete" class="delete-scrap" data-id="${this.id}" data-description="${this.description}">x</a></li>`;
       };
     };
 
@@ -73,6 +68,29 @@
     $("#remove-scraps").click(function(){
       $("#remove-scraps-form").slideToggle();
     });
+
+    // Event Listener: .remove-scrap link
+    $('#scraps').on('click', 'a.delete-scrap', function(event) {
+      event.preventDefault();
+      removeScrapFromBowl(this.href, this.dataset.description);
+      return false;
+    });
+
+    function removeScrapFromBowl(href, scrapDescription) {
+      $.ajax({
+        url: href,
+        type: "DELETE",
+        // headers: { 'Content-Type': 'application/json' },
+        success: function(response) { // response => bowl object
+          if ($(`#scraps li:contains(${scrapDescription})`).length) {
+            $(`#scraps li:contains(${scrapDescription})`).remove();
+          };
+          if ($(`#scraps li`).length == 0) {
+            $('#scraps').append("This bowl has no scraps");
+          };
+        }
+      });
+    };
 
     // Fetch scraps from database
     function getScraps(id, callback) {
@@ -135,25 +153,25 @@
       let data = $(this).serialize();
       let url = `/bowls/${id}`;
 
-        $.ajax({
-          url: url,
-          type: "PUT",
-          data: data,
-          // headers: { 'Content-Type': 'application/json' },
-          success: function(response) { // response => bowl object
-            $(`#edit_bowl_${id}`)[0].reset();
-            if (typeof response == "object") {
-              let newScrap = response.scraps[response.scraps.length-1];
-              appendScrap(newScrap);
-            } else {
-              // Presumably the ojbect already exists, as that is
-              // our only validation on the BowlScrap model
-              alert("Scrap already exists!");
-              // but let's implement a prettier error handler?
-            };
-          }
-        });
+      $.ajax({
+        url: url,
+        type: "PUT",
+        data: data,
+        // headers: { 'Content-Type': 'application/json' },
+        success: function(response) { // response => bowl object
+          $(`#edit_bowl_${id}`)[0].reset();
+          if (typeof response == "object") {
+            let newScrap = response.scraps[response.scraps.length-1];
+            appendScrap(newScrap);
+          } else {
+            // Presumably the ojbect already exists, as that is
+            // our only validation on the BowlScrap model
+            alert("Scrap already exists!");
+            // but let's implement a prettier error handler?
+          };
+        }
       });
+    });
 
     // Sifting Through Bowls
 
