@@ -6,7 +6,6 @@
   <%= form_for @bowl do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= render 'bowl_form', f: f %>
-    <%= render 'scrap_form', f: f %>
     <%= f.submit %>
   <% end %>
 </div>
