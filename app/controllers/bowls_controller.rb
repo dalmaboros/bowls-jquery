@@ -63,13 +63,14 @@ class BowlsController < ApplicationController
     end
   end
 
-  def remove_scrap_form_bowl
-    bowl = Bowl.find(params[:bowl][:id])
-    scrap = bowl.scraps.find(params[:scrap][:id])
+  def remove_scrap_from_bowl
+    @bowl = Bowl.find(params[:bowl_id])
+    scrap = @bowl.scraps.find(params[:id])
 
     if scrap
-      bowl.scraps.delete(scrap)
+      @bowl.scraps.delete(scrap)
     end
+    render json: @bowl, status: 200
   end
 
   def no_scraps

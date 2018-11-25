@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   resources :scraps
 
   resources :bowls do
-    resources :scraps
+    resources :scraps, except: [:destroy]
   end
 
-  delete 'bowls/:id/scraps/:id', :to => 'bowls#delete_scrap_from_bowl'
+  delete 'bowls/:bowl_id/scraps/:id', :to => 'bowls#remove_scrap_from_bowl'
 
   # Do this with AJAX:
   get '/bowls/no_scraps', to: 'bowls#no_scraps', as: 'no_scraps'

@@ -19,7 +19,7 @@
     TEST
     <% @bowl.scraps.each do |scrap| %>
       <%= scrap.description %>
-      <%= link_to 'x', bowl_scrap_url(@bowl, scrap), method: :delete %>
+      <%= link_to 'x', bowl_scrap_path(@bowl, scrap), method: :delete %>
     <% end %>
     <p><a id="add-scraps">add scraps</a></p>
     <div id="scraps-form">
