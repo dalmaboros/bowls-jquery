@@ -82,6 +82,7 @@ a.delete-scrap {
 }
 
 .rotate {
+  display: inline-block;
   /* Safari */
   -webkit-transform: rotate(-45deg);
   /* Firefox */

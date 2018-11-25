@@ -50,7 +50,7 @@
       this.description = description;
       this.priority = priority || 0;
       this.format = function() {
-        return `<li class="scrap-li">${this.description} <a href="/bowls/${id}/scraps/${this.id}" data-method="delete" class="delete-scrap" data-id="${this.id}" data-description="${this.description}">x</a></li>`;
+        return `<li class="scrap-li">${this.description} <a href="/bowls/${id}/scraps/${this.id}" data-method="delete" class="delete-scrap" data-id="${this.id}" data-description="${this.description}"><span class="rotate">+</span></a></li>`;
       };
     };
 
@@ -66,14 +66,12 @@
       toggleAddScrapsButton();
     });
 
-    // Toggle "scraps"/"hide scraps" text
+    // Toggle +/x on #add-scraps-button
     function toggleAddScrapsButton() {
-      // $("#scraps").slideToggle();
       if ($("#plus").hasClass("rotate")) {
         $("#plus").removeClass("rotate", 500, "ease");
       } else {
         $("#plus").addClass("rotate", 500, "ease");
-        // hideScraps();
       };
     };
 
