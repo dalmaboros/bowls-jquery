@@ -10,17 +10,19 @@
       <a class="random-bowl"><div class="bowl-glyph"></div></a>
     <% end %>
 
-    <a class="previous">&#8249;</a>
-    <h2 class="bowl-name"><%= @bowl.name %></h2>
-    <a class="next">&#8250;</a>
+    <div id="bowl-name" style="border:1px solid black;">
+      <a class="previous">&#8249;</a>
+      <h2 class="bowl-name"><%= @bowl.name %></h2>
+      <a class="next">&#8250;</a>
+    </div>
 
     <div>
       <div id="scrap-stuff">
         <p><a id="show-scraps-button">scraps</a></p>
-        <div id="scraps">
+        <div id="scraps" >
           <div id="display-scraps">
           </div>
-          <div id="add-scraps">
+          <div id="add-scraps" >
             <p><a id="add-scraps-button"><span id="plus">+</span></a></p>
             <div id="scraps-form">
               <%= form_for @bowl do |f| %>
@@ -31,7 +33,9 @@
           </div> <!-- add-scraps -->
         </div> <!-- scraps -->
       </div> <!-- scrap-stuff -->
-      <p><%= link_to "edit", edit_bowl_path, id: "edit-bowl" %></p>
+      <div id="bowl-stuff" style="border:1px solid black;">
+        <p><%= link_to "edit", edit_bowl_path, id: "edit-bowl" %></p>
+      </div> <!-- bowl stuff -->
     </div>
   </div>
 </div>

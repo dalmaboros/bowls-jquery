@@ -235,34 +235,6 @@ li.scrap-li {
   display:block;
 }
 
-.btn {
-  display:inline-block;
-  min-width:24px;
-  height:24px;
-  line-height: 16px;
-  margin:0 5px 5px 0;
-  background: transparent;
-  /*font-size: 10pt;
-  font-weight: bold;
-  text-decoration: none;*/
-  border-radius:5px;
-  padding:10px;
-  position:absolute;
-  top: 24px;
-  right: 24px;
-}
-
-.icon-gear:before {
-  width:24px;
-  height:24px;
-  color: rgba(255,255,255,0.9);
-  box-shadow:0 0 0 4px inset;
-  border-radius:20px;
-  border:2px dashed;
-  top:-2px;
-  left:-1px;
-}
-
 /* Burger menu button */
 .burger {
 	width: 28px;
@@ -280,12 +252,6 @@ li.scrap-li {
 	transition: border-bottom 1s ease-in-out;
 	-webkit-transition: border-bottom 1s ease-in-out;
 }
-
-/* Fix for extra space in Firefox */
-/* 	&::-moz-focus-inner {
-		border: 0;
-		padding: 0;
-	}	  */
 
 .burger::before {
   content: "";
