@@ -33,7 +33,7 @@
           </div> <!-- add-scraps -->
         </div> <!-- scraps -->
       </div> <!-- scrap-stuff -->
-      <div id="bowl-stuff" style="border:1px solid black;">
+      <div id="bowl-stuff">
         <p><%= link_to "edit", edit_bowl_path, id: "edit-bowl" %></p>
       </div> <!-- bowl stuff -->
     </div>
@@ -54,7 +54,7 @@
       this.description = description;
       this.priority = priority || 0;
       this.format = function() {
-        return `<li class="scrap-li">${this.description} <a href="/bowls/${id}/scraps/${this.id}" data-method="delete" class="delete-scrap" data-id="${this.id}" data-description="${this.description}"><span class="rotate">+</span></a></li>`;
+        return `<li class="scrap-li"><a href="/scraps/${this.id}/edit">${this.description}</a> <a href="/bowls/${id}/scraps/${this.id}" data-method="delete" class="delete-scrap" data-id="${this.id}" data-description="${this.description}"><span class="rotate">+</span></a></li>`;
       };
     };
 

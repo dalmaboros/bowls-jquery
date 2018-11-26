@@ -59,7 +59,7 @@ a.none:hover {
 
 a.delete-scrap {
   background-color: transparent;
-  color: white;
+  color: rgba(255,255,255,.9);
   padding: 0;
 }
 
@@ -209,6 +209,12 @@ label, input[type=submit] {
 
 li.scrap-li {
   list-style-type: none;
+}
+
+li.scrap-li a {
+  background-color: transparent;
+  color: rgba(255,255,255,.9);
+  padding: 0;
 }
 
 .error_explanation {
