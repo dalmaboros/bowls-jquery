@@ -5,11 +5,11 @@
     <h2>"<%= @scrap.description %>"</h2>
   </div>
 
-  <%= link_to "again", bowl_scrap_path(@bowl, @bowl.scraps.sample) %>
+  <%= link_to "another", bowl_scrap_path(@bowl, @bowl.scraps.sample) %>
   <p><%= link_to "edit", edit_scrap_path(@scrap) %></p>
 </div>
 
-<script type="text/javascript" charset="utf-8">
+<!-- <script type="text/javascript" charset="utf-8">
   // Timer Function
   var start = new Date();
   var startInSeconds = start.getMinutes()*60 + start.getSeconds();
@@ -23,4 +23,4 @@
     var myResult = parseInt(remainingTime / 60) + ':' + remainingTime % 60;
       document.getElementById('my-timer').innerHTML = myResult;
   }, 500);
-</script>
+</script> -->
