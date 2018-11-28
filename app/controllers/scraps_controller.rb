@@ -65,7 +65,7 @@ class ScrapsController < ApplicationController
 
   def destroy
     @scrap.destroy
-    redirect_to scraps_path
+    redirect_to bowls_path
   end
 
   def no_bowls
