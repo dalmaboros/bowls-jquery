@@ -17,7 +17,6 @@ class BowlsController < ApplicationController
   end
 
   def index
-    Bowl.create(name: "first_bowl", user: current_user) if current_user.bowls.all.empty?
     @bowls = current_user.bowls.all
     respond_to do |format|
       format.html { render :index }
