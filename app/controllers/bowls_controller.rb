@@ -44,11 +44,14 @@ class BowlsController < ApplicationController
 
   def update
     if @bowl.user == current_user
-      if @bowl.update(bowl_params) # BUG: bowls#update deletes the last AJAX-created scrap!!
+      if @bowl.update(bowl_params)
         # If we don't set_bowl, @bowl.scraps will not contain newly
         # created scrap, even though Bowl.find(3).scraps does have it
         set_bowl
-        render json: @bowl, status: 200
+        respond_to do |format|
+          format.json { render json: @bowl, status: 200 }
+          format.html { render :show }
+        end
       else
         @bowl.restore_attributes(@bowl.errors.keys)
         render :edit
