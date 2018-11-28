@@ -1,13 +1,6 @@
-<% if !@bowl.errors[:scraps].empty? %>
-  <div class="error_explanation">
-    <%= @bowl.errors.full_messages_for(:scraps)[0].downcase %>
-  </div>
-<% else %>
-  scrap description <span class="required">*</span><br />
-<% end %>
-
 <%= f.fields_for :scraps, @bowl.scraps.build do |scraps_fields| %>
   <%= scraps_fields.hidden_field :user_id, value: current_user.id %>
+  <%= scraps_fields.label :description, "scrap description" %>
   <%= scraps_fields.text_field :description, autocomplete: :off, required: true %></p>
 
   <%= scraps_fields.fields_for :bowl_scraps, @bowl.scraps.build.bowl_scraps.build do |bowl_scrap_form| %>
