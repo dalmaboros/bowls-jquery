@@ -44,8 +44,8 @@ class BowlsController < ApplicationController
   def update
     if @bowl.user == current_user
       if @bowl.update(bowl_params)
-        # If we don't set_bowl, @bowl.scraps will not contain newly
-        # created scrap, even though Bowl.find(3).scraps does have it
+        # If we don't set_bowl, instance variable @bowl.scraps will not contain newly
+        # created scrap, even though database entry Bowl.find(id).scraps does have it
         set_bowl
         respond_to do |format|
           format.json { render json: @bowl, status: 200 }

@@ -139,6 +139,32 @@ label, input[type=submit] {
     border-bottom-right-radius: 110px;
     border: 10px solid rgba(255,255,255,.9);
     border-top: 0;
+    position: relative;
+}
+
+.bowl-fill {
+  opacity: 0;
+  transition: opacity .5s;
+  height: 100%;
+  /* background-color: yellow; */
+  border-bottom-left-radius: 110px;
+  border-bottom-right-radius: 110px;
+}
+
+.bowl-fill:hover {
+  opacity: 1;
+}
+
+.bowl-cta {
+  font-size: 0.8em;
+  color: rgba(255,255,255,.9);
+  display: inline;
+  /* opacity: 0;
+  transition: opacity .5s; */
+}
+
+.bowl-cta:hover {
+  opacity: 1;
 }
 
 .add-glyph {
