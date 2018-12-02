@@ -35,7 +35,10 @@
   - Added uniqueness validation on BowlScrap model 11/23
 - [x] On bowls show page, the previous AJAX-created scrap is deleted before the new one is created (11/14) (fixed with removal of f.collection "Add existing scrap" checkboxes 11/23)
 - [x] New scraps don't add on AJAX-loaded bowl
+- [ ] bowls/no_scraps route doesn't work
+- [ ] scraps/no_bowls page doesn't display expected results
+- [ ] no error on scraps/:id/edit when "add to new bowl" description input is existing bowl
 
 ## Next Steps
 
-- [x] Go back and make sure next/previous buttons still work
+- [ ] Refactor bowls/show.html.erb
