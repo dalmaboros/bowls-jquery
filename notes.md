@@ -42,3 +42,4 @@
 ## Next Steps
 
 - [ ] Refactor bowls/show.html.erb
+- [ ] Scrap exists error handler
