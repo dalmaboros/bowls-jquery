@@ -45,3 +45,5 @@
 - [ ] Scrap exists error handler
 - [ ] Factor out getAdjascentBowl
 - [ ] Factor out appendScrap?
+- [ ] add arrow functions
+- readme file
