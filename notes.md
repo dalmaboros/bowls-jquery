@@ -43,3 +43,5 @@
 
 - [ ] Refactor bowls/show.html.erb
 - [ ] Scrap exists error handler
+- [ ] Factor out getAdjascentBowl
+- [ ] Factor out appendScrap?
