@@ -137,32 +137,15 @@ $(document).on('turbolinks:load', () => {
   $(".next").click((event) => {
     event.preventDefault();
     const incrementer = 1;
-    siftBowl(incrementer);
+    getAdjascentBowl(incrementer);
   });
 
   // Event listener: .previous button
   $(".previous").click((event) => {
     event.preventDefault();
     const incrementer = -1;
-    siftBowl(incrementer);
-  });
-
-  // Load previous/next bowl on page
-  const siftBowl = (incrementer) => {
-    // Hide scraps if displayed
-    // hideScraps();
-    // Retrieve previous/next bowl
     getAdjascentBowl(incrementer);
-  };
-
-  const hideScraps = () => {
-    if (!($('#scraps').is(":hidden"))) {
-      $('#show-scraps-button').click();
-    };
-    if (!($('#scraps-form').is(":hidden"))) {
-      $('#add-scraps-button').click();
-    };
-  };
+  });
 
   const getAdjascentBowl = (incrementer) => {
     $.get("/bowls.json", (response) => { // respone => array of bowl objects
@@ -183,6 +166,15 @@ $(document).on('turbolinks:load', () => {
       };
     }); // .get request
   }; // getAdjascentBowl
+
+  const hideScraps = () => {
+    if (!($('#scraps').is(":hidden"))) {
+      $('#show-scraps-button').click();
+    };
+    if (!($('#scraps-form').is(":hidden"))) {
+      $('#add-scraps-button').click();
+    };
+  };
 
   const updateDOM = (adjBowlResponse) => {
     // Update bowlId to be adjascentBowl's id
