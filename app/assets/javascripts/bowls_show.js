@@ -57,6 +57,7 @@ $(document).on('turbolinks:load', () => {
     const newFormattedScrap = newScrap.format();
     if ($('#display-scraps:contains("This bowl has no scraps")').length) {
       $('#display-scraps').html("");
+      // can pull scrap from bowl now
     };
     $('#display-scraps').append(newFormattedScrap);
   };
@@ -188,8 +189,10 @@ $(document).on('turbolinks:load', () => {
     if (adjBowlResponse.scraps.length > 0) {
       const randomScrap = adjBowlResponse.scraps[Math.floor(Math.random()*adjBowlResponse.scraps.length)];
       $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${randomScrap.id}`);
+      $(".bowl-cta").text("pull a scrap");
     } else {
       $(".random-bowl").removeAttr("href");
+      $(".bowl-cta").text("");
     };
   }; // updateDOM
 
