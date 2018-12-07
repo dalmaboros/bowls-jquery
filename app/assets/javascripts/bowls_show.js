@@ -150,7 +150,7 @@ $(document).on('turbolinks:load', () => {
   // Load previous/next bowl on page
   const siftBowl = (incrementer) => {
     // Hide scraps if displayed
-    hideScraps();
+    // hideScraps();
     // Retrieve previous/next bowl
     getAdjascentBowl(incrementer);
   };
@@ -176,6 +176,7 @@ $(document).on('turbolinks:load', () => {
 
       // If adjascent bowl exists, grab its data
       if (adjascentBowl != undefined) {
+        hideScraps();
         $.get(`/bowls/${adjascentBowl.id}.json`, (adjBowlResponse) => {
           updateDOM(adjBowlResponse);
         });
