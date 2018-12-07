@@ -80,7 +80,7 @@ $(document).on('turbolinks:load', () => {
   };
 
   // Submitting form data
-  $('form').submit(function(event) { //arrow function breaks behavior here
+  $('#scraps-form form').submit(function(event) { //arrow function breaks behavior here
     event.preventDefault();
     const data = $(this).serialize();
 
@@ -88,7 +88,7 @@ $(document).on('turbolinks:load', () => {
       url: `/bowls/${bowlId}`,
       type: "PUT",
       data: data,
-      success: (response) => { // response => bowl object
+      success: function(response) { // response => bowl object
         $(`#edit_bowl_${bowlId}`)[0].reset();
         if (typeof response == "object") {
           const newScrap = response.scraps[response.scraps.length-1];
