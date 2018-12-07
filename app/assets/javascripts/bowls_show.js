@@ -33,7 +33,7 @@ $(document).on('turbolinks:load', () => {
       return response.json();
     })
     .then(data => {
-      let scraps = data.scraps;
+      const scraps = data.scraps;
       callback(scraps);
     });
   };
@@ -82,7 +82,7 @@ $(document).on('turbolinks:load', () => {
   // Submitting form data
   $('form').submit(function(event) { //arrow function breaks behavior here
     event.preventDefault();
-    let data = $(this).serialize();
+    const data = $(this).serialize();
 
     $.ajax({
       url: `/bowls/${bowlId}`,
@@ -91,7 +91,7 @@ $(document).on('turbolinks:load', () => {
       success: (response) => { // response => bowl object
         $(`#edit_bowl_${bowlId}`)[0].reset();
         if (typeof response == "object") {
-          let newScrap = response.scraps[response.scraps.length-1];
+          const newScrap = response.scraps[response.scraps.length-1];
           appendScrap(newScrap);
         } else {
           // Presumably the ojbect already exists, as that is
@@ -136,14 +136,14 @@ $(document).on('turbolinks:load', () => {
   // Event listener: .next
   $(".next").click((event) => {
     event.preventDefault();
-    let incrementer = 1;
+    const incrementer = 1;
     siftBowl(incrementer);
   });
 
   // Event listener: .previous button
   $(".previous").click((event) => {
     event.preventDefault();
-    let incrementer = -1;
+    const incrementer = -1;
     siftBowl(incrementer);
   });
 
@@ -166,13 +166,13 @@ $(document).on('turbolinks:load', () => {
 
   const getAdjascentBowl = (incrementer) => {
     $.get("/bowls.json", (response) => { // respone => array of bowl objects
-      let currentBowlIndex = response.findIndex((bowl) => {
+      const currentBowlIndex = response.findIndex((bowl) => {
         return bowl.id == bowlId;
       });
 
       // Retrieve adjascent bowl as JS object
-      let adjascentBowlIndex = currentBowlIndex+incrementer;
-      let adjascentBowl = response[adjascentBowlIndex];
+      const adjascentBowlIndex = currentBowlIndex+incrementer;
+      const adjascentBowl = response[adjascentBowlIndex];
 
       // If adjascent bowl exists, grab its data
       if (adjascentBowl != undefined) {
@@ -193,7 +193,7 @@ $(document).on('turbolinks:load', () => {
     $("form.edit_bowl").attr("id", `edit_bowl_${bowlId}`);
 
     if (adjBowlResponse.scraps.length > 0) {
-      let randomScrap = adjBowlResponse.scraps[Math.floor(Math.random()*adjBowlResponse.scraps.length)];
+      const randomScrap = adjBowlResponse.scraps[Math.floor(Math.random()*adjBowlResponse.scraps.length)];
       $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${randomScrap.id}`);
     } else {
       $(".random-bowl").removeAttr("href");
