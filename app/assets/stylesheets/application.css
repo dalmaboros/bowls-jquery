@@ -123,6 +123,12 @@ h2 {
 
 h2.bowl-name {
   display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.bowl-name-div {
+  display: inline-block;
 }
 
 label, input[type=submit] {

@@ -1,7 +1,7 @@
 <% title "#{@bowl.name}" %>
 
 <div class="column" data-id="<%= @bowl.id %>">
-    <div class="bowl-glyph">
+  <div class="bowl-glyph">
     <% if !@bowl.scraps.empty? %>
       <%= link_to bowl_scrap_path(@bowl, @bowl.scraps.sample), class: "random-bowl" do %>
           <div class="bowl-fill">
@@ -12,15 +12,15 @@
       <% end %>
     <% else %>
       <a class="random-bowl">
-          <div class="bowl-fill">
-            <div class="bowl-cta">
-            </div>
+        <div class="bowl-fill">
+          <div class="bowl-cta">
           </div>
+        </div>
       </a>
     <% end %>
     </div> <!-- bowl-glyph -->
 
-    <div id="bowl-name-div">
+    <div class="bowl-name-div">
       <a class="previous">&#8249;</a>
       <h2 class="bowl-name"><%= @bowl.name %></h2>
       <a class="next">&#8250;</a>
