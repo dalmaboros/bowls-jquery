@@ -1,28 +1,24 @@
 <% title "#{@bowl.name}" %>
-<!-- this needs to be refactored to use JQUERY -->
+
 <div class="column" data-id="<%= @bowl.id %>">
-  <div class="bowl_container">
+    <div class="bowl-glyph">
     <% if !@bowl.scraps.empty? %>
       <%= link_to bowl_scrap_path(@bowl, @bowl.scraps.sample), class: "random-bowl" do %>
-        <div class="bowl-glyph">
           <div class="bowl-fill">
             <div class="bowl-cta">
               pull a scrap
-            </div>
-          </div>
-        </div>
+            </div> <!-- bowl-cta -->
+          </div> <!-- bowl-fill -->
       <% end %>
     <% else %>
       <a class="random-bowl">
-        <div class="bowl-glyph">
           <div class="bowl-fill">
             <div class="bowl-cta">
-              
             </div>
           </div>
-        </div>
       </a>
     <% end %>
+    </div> <!-- bowl-glyph -->
 
     <div id="bowl-name-div">
       <a class="previous">&#8249;</a>
@@ -51,5 +47,4 @@
         <p><%= link_to "edit", edit_bowl_path, id: "edit-bowl" %></p>
       </div> <!-- bowl stuff -->
     </div>
-  </div>
 </div>

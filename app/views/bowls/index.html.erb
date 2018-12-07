@@ -2,12 +2,10 @@
 
 <% @bowls.each do |bowl| %>
   <div class="column">
-    <div class="bowl-container">
       <%= link_to bowl_path(bowl), class: "random-bowl" do %>
         <div class="bowl-glyph"></div>
         <%= link_to bowl.name, bowl_path(bowl) %>
       <% end %>
-    </div>
   </div>
 <% end %> <!-- each do -->
 
