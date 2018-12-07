@@ -12,9 +12,9 @@
 # Project Repo Specs:
 ## Read Me file contains:
 - [ ] Application Description
-- [ ] Installation guide (e.g. fork and clone repo, migrate db, bundle install, etc)
-- [ ] Contributors guide (e.g. file an issue, file an issue with a pull request, etc)
-- [ ] Licensing statement at the bottom (e.g. This project has been licensed under the MIT open source license.)
+- [x] Installation guide (e.g. fork and clone repo, migrate db, bundle install, etc)
+- [x] Contributors guide (e.g. file an issue, file an issue with a pull request, etc)
+- [x] Licensing statement at the bottom (e.g. This project has been licensed under the MIT open source license.)
 
 ## Repo General
 - [x] You have a large number of small Git commits
