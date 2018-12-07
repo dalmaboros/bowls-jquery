@@ -41,9 +41,7 @@
 
 ## Next Steps
 
-- [ ] Refactor bowls/show.html.erb
-- [ ] Scrap exists error handler
-- [ ] Factor out getAdjascentBowl (RECORD VIDEO)
-- [ ] Factor out appendScrap?
+- [x] Refactor bowls/show.html.erb
+- [x] Factor out getAdjascentBowl (RECORD VIDEO)
 - [ ] add arrow functions
 - readme file

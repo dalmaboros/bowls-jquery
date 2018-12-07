@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', () => {
   // Global Variables
   let bowlId = $(".column").data("id");
 
@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function() {
     this.id = scrap_id;
     this.description = description;
     this.priority = priority || 0;
-    this.format = function() {
+    this.format = () => {
       return `<li class="scrap-li"><a href="/scraps/${this.id}/edit">${this.description}</a> <a href="/bowls/${bowlId}/scraps/${this.id}" data-method="delete" class="delete-scrap" data-id="${this.id}" data-description="${this.description}"><span class="rotate">+</span></a></li>`;
     };
   };
@@ -18,13 +18,13 @@ $(document).on('turbolinks:load', function() {
   /*** Displaying Scraps ***/
 
   // Event Listener: #show-scraps-button
-  $("#show-scraps-button").on("click", function(event) {
+  $("#show-scraps-button").on("click", (event) => {
     event.preventDefault();
     getScraps(bowlId, showScraps);
   });
 
   // Fetch scraps from database
-  function getScraps(bowlId, callback) {
+  const getScraps = (bowlId, callback) => {
     fetch(`/bowls/${bowlId}.json`, {
       contentType: 'application/json',
       method: 'GET',
@@ -38,11 +38,11 @@ $(document).on('turbolinks:load', function() {
     });
   };
 
-  // Call appendScrap function and toggle #scraps div
-  function showScraps(scraps) {
+  // Call appendScrap(params) and toggle #scraps div
+  const showScraps = (scraps) => {
     $('#display-scraps').html("");
     if (scraps.length > 0) {
-      scraps.forEach(function(params) {
+      scraps.forEach((params) => {
         appendScrap(params);
       });
     } else {
@@ -52,7 +52,7 @@ $(document).on('turbolinks:load', function() {
   };
 
   // Create and append scrap JS objects to #display-scraps div
-  function appendScrap(scrap) {
+  const appendScrap = (scrap) => {
     const newScrap = new Scrap(scrap.id, scrap.description, scrap.priority);
     const newFormattedScrap = newScrap.format();
     if ($('#display-scraps:contains("This bowl has no scraps")').length) {
@@ -64,14 +64,14 @@ $(document).on('turbolinks:load', function() {
   /*** Adding Scraps ***/
 
   // Event Listener: #add-scraps-button
-  $("#add-scraps-button").click(function(){
+  $("#add-scraps-button").click(() => {
     $("#scraps-form").slideToggle();
     $("#bowl_scraps_attributes_0_description").focus();
     toggleAddScrapsButton();
   });
 
   // Toggle '+/x' on #add-scraps-button
-  function toggleAddScrapsButton() {
+  const toggleAddScrapsButton = () => {
     if ($("#plus").hasClass("rotate")) {
       $("#plus").removeClass("rotate", 500, "ease");
     } else {
@@ -80,7 +80,7 @@ $(document).on('turbolinks:load', function() {
   };
 
   // Submitting form data
-  $('form').submit(function(event) {
+  $('form').submit(function(event) { //arrow function breaks behavior here
     event.preventDefault();
     let data = $(this).serialize();
 
@@ -88,7 +88,7 @@ $(document).on('turbolinks:load', function() {
       url: `/bowls/${bowlId}`,
       type: "PUT",
       data: data,
-      success: function(response) { // response => bowl object
+      success: (response) => { // response => bowl object
         $(`#edit_bowl_${bowlId}`)[0].reset();
         if (typeof response == "object") {
           let newScrap = response.scraps[response.scraps.length-1];
@@ -96,8 +96,9 @@ $(document).on('turbolinks:load', function() {
         } else {
           // Presumably the ojbect already exists, as that is
           // our only validation on the BowlScrap model
-          alert("Scrap already exists!");
-          // but let's implement a prettier error handler?
+          alert("scrap already exists!");
+          // $("label[for='bowl_scraps_attributes_0_description']").text("scrap already exists");
+          // $("label[for='bowl_scraps_attributes_0_description']").attr("class", "error_explanation");
         };
       }
     });
@@ -106,7 +107,7 @@ $(document).on('turbolinks:load', function() {
   /*** Deleting Scraps ***/
 
   // Event Listener: .delete-scrap ('x')
-  $('#display-scraps').on('click', 'a.delete-scrap', function(event) {
+  $('#display-scraps').on('click', 'a.delete-scrap', function(event) { //doesn't like arrow function here
     event.preventDefault();
     if (confirm("Delete scrap from bowl?")) {
       removeScrapFromBowl(this.href, this.dataset.description);
@@ -115,11 +116,11 @@ $(document).on('turbolinks:load', function() {
   });
 
   // Remove scrap from bowl
-  function removeScrapFromBowl(href, scrapDescription) {
+  const removeScrapFromBowl = (href, scrapDescription) => {
     $.ajax({
       url: href,
       type: "DELETE",
-      success: function(response) { // response => bowl object
+      success: (response) => { // response => bowl object
         if ($(`#scraps li:contains(${scrapDescription})`).length) {
           $(`#scraps li:contains(${scrapDescription})`).remove();
         };
@@ -133,28 +134,28 @@ $(document).on('turbolinks:load', function() {
   /*** Sifting Through Bowls ***/
 
   // Event listener: .next
-  $(".next").click(function(event) {
+  $(".next").click((event) => {
     event.preventDefault();
     let incrementer = 1;
     siftBowl(incrementer);
   });
 
   // Event listener: .previous button
-  $(".previous").click(function(event) {
+  $(".previous").click((event) => {
     event.preventDefault();
     let incrementer = -1;
     siftBowl(incrementer);
   });
 
   // Load previous/next bowl on page
-  function siftBowl(incrementer) {
+  const siftBowl = (incrementer) => {
     // Hide scraps if displayed
     hideScraps();
     // Retrieve previous/next bowl
     getAdjascentBowl(incrementer);
   };
 
-  function hideScraps() {
+  const hideScraps = () => {
     if (!($('#scraps').is(":hidden"))) {
       $('#show-scraps-button').click();
     };
@@ -163,9 +164,9 @@ $(document).on('turbolinks:load', function() {
     };
   };
 
-  function getAdjascentBowl(incrementer) {
-    $.get("/bowls.json", function(response) { // respone => array of bowl objects
-      let currentBowlIndex = response.findIndex(function(bowl) {
+  const getAdjascentBowl = (incrementer) => {
+    $.get("/bowls.json", (response) => { // respone => array of bowl objects
+      let currentBowlIndex = response.findIndex((bowl) => {
         return bowl.id == bowlId;
       });
 
@@ -175,14 +176,14 @@ $(document).on('turbolinks:load', function() {
 
       // If adjascent bowl exists, grab its data
       if (adjascentBowl != undefined) {
-        $.get(`/bowls/${adjascentBowl.id}.json`, function(adjBowlResponse) {
+        $.get(`/bowls/${adjascentBowl.id}.json`, (adjBowlResponse) => {
           updateDOM(adjBowlResponse);
         });
       };
     }); // .get request
   }; // getAdjascentBowl
 
-  function updateDOM(adjBowlResponse) {
+  const updateDOM = (adjBowlResponse) => {
     // Update bowlId to be adjascentBowl's id
     bowlId = adjBowlResponse.id;
     // Populate DOM with JSON data
