@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   // Global Variables
   let bowlId = $(".column").data("id");
 
