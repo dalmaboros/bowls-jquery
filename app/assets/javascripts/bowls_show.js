@@ -136,59 +136,67 @@ $(document).on('turbolinks:load', function() {
   $(".next").click(function(event) {
     event.preventDefault();
     let incrementer = 1;
-    getAdjascentBowl(incrementer);
+    siftBowl(incrementer);
   });
 
   // Event listener: .previous button
   $(".previous").click(function(event) {
     event.preventDefault();
     let incrementer = -1;
-    getAdjascentBowl(incrementer);
+    siftBowl(incrementer);
   });
 
-  // Load previous/next bowl
-  function getAdjascentBowl(incrementer) {
+  // Load previous/next bowl on page
+  function siftBowl(incrementer) {
     // Hide scraps if displayed
-    let scrapsHidden = $('#scraps').is(":hidden");
-    let formHidden = $('#scraps-form').is(":hidden");
-    if (!scrapsHidden) {
+    hideScraps();
+    // Retrieve previous/next bowl
+    getAdjascentBowl(incrementer);
+  };
+
+  function hideScraps() {
+    if (!($('#scraps').is(":hidden"))) {
       $('#show-scraps-button').click();
     };
-    if (!formHidden) {
+    if (!($('#scraps-form').is(":hidden"))) {
       $('#add-scraps-button').click();
     };
+  };
 
-    // Retrieve current bowl as JS object
+  function getAdjascentBowl(incrementer) {
     $.get("/bowls.json", function(response) { // respone => array of bowl objects
       let currentBowlIndex = response.findIndex(function(bowl) {
         return bowl.id == bowlId;
       });
+
       // Retrieve adjascent bowl as JS object
       let adjascentBowlIndex = currentBowlIndex+incrementer;
       let adjascentBowl = response[adjascentBowlIndex];
 
       // If adjascent bowl exists, grab its data
       if (adjascentBowl != undefined) {
-        $.get(`/bowls/${adjascentBowl.id}.json`, function(adjBowlJsonData) {
-          // Update id to be adjascentBowl's id
-          bowlId = adjBowlJsonData.id;
-          // Populate DOM with JSON data
-          $(".bowl-name").html(adjBowlJsonData.name);
-          $(document).prop('title', `BOWLS | ${adjBowlJsonData.name}`);
-          $("#edit-bowl").attr("href", `/bowls/${bowlId}/edit`);
-          $("form.edit_bowl").attr("id", `edit_bowl_${bowlId}`);
-          // $("form.edit_bowl").attr("action", `/bowls/${bowlId}`);
-
-          // Set href for .random-bowl
-          if (adjBowlJsonData.scraps.length > 0) {
-            let randomScrap = adjBowlJsonData.scraps[Math.floor(Math.random()*adjBowlJsonData.scraps.length)];
-            $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${randomScrap.id}`);
-          } else {
-            $(".random-bowl").removeAttr("href");
-          };
+        $.get(`/bowls/${adjascentBowl.id}.json`, function(adjBowlResponse) {
+          updateDOM(adjBowlResponse);
         });
       };
     }); // .get request
   }; // getAdjascentBowl
+
+  function updateDOM(adjBowlResponse) {
+    // Update bowlId to be adjascentBowl's id
+    bowlId = adjBowlResponse.id;
+    // Populate DOM with JSON data
+    $(".bowl-name").html(adjBowlResponse.name);
+    $(document).prop('title', `BOWLS | ${adjBowlResponse.name}`);
+    $("#edit-bowl").attr("href", `/bowls/${bowlId}/edit`);
+    $("form.edit_bowl").attr("id", `edit_bowl_${bowlId}`);
+
+    if (adjBowlResponse.scraps.length > 0) {
+      let randomScrap = adjBowlResponse.scraps[Math.floor(Math.random()*adjBowlResponse.scraps.length)];
+      $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${randomScrap.id}`);
+    } else {
+      $(".random-bowl").removeAttr("href");
+    };
+  }; // updateDOM
 
 });
