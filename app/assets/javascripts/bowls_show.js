@@ -185,6 +185,7 @@ $(document).on('turbolinks:load', () => {
     $(document).prop('title', `BOWLS | ${adjBowlResponse.name}`);
     $("#edit-bowl").attr("href", `/bowls/${bowlId}/edit`);
     $("form.edit_bowl").attr("id", `edit_bowl_${bowlId}`);
+    $("div.column").attr("data-id", `${bowlId}`);
 
     if (adjBowlResponse.scraps.length > 0) {
       const randomScrap = adjBowlResponse.scraps[Math.floor(Math.random()*adjBowlResponse.scraps.length)];
