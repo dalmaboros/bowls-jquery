@@ -20,7 +20,10 @@ $(document).on('turbolinks:load', () => {
   // Event Listener: #show-scraps-button
   $("#show-scraps-button").on("click", (event) => {
     event.preventDefault();
-    getScraps(bowlId, showScraps);
+    if ($("#scraps").is(":hidden")) {
+      getScraps(bowlId, showScraps);
+    };
+    $("#scraps").slideToggle();
   });
 
   // Fetch scraps from database
@@ -47,8 +50,7 @@ $(document).on('turbolinks:load', () => {
       });
     } else {
       $('#display-scraps').append("This bowl has no scraps");
-    }
-    $("#scraps").slideToggle();
+    };
   };
 
   // Create and append scrap JS objects to #display-scraps div
@@ -205,7 +207,6 @@ $(document).on('turbolinks:load', () => {
 
   const pullRandomScrap = (scraps) => {
     const randomScrap = scraps[Math.floor(Math.random()*scraps.length)];
-
     $(".scrap-h2").html(`"${randomScrap.description}"`);
     $(".edit-scrap").attr("href", `/scraps/${randomScrap.id}/edit`);
   };
