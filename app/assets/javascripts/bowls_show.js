@@ -96,7 +96,7 @@ $(document).on('turbolinks:load', () => {
         if (typeof response == "object") {
           const newScrap = response.scraps[response.scraps.length-1];
           appendScrap(newScrap);
-          populateBowlGlyph(response);
+          addCTA(response);
         } else {
           // Presumably the ojbect already exists, as that is
           // our only validation on the BowlScrap model
@@ -108,7 +108,7 @@ $(document).on('turbolinks:load', () => {
     });
   });
 
-  const populateBowlGlyph = (bowl) => {
+  const addCTA = (bowl) => {
     $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${returnRandomScrap(bowl.scraps).id}`);
     $(".bowl-cta").text("pull a scrap");
   };
