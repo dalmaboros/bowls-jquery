@@ -197,4 +197,17 @@ $(document).on('turbolinks:load', () => {
     };
   }; // updateDOM
 
+  // Pull another scrap
+  $(".another").on("click", (event) => {
+    event.preventDefault();
+    getScraps(bowlId, pullRandomScrap);
+  });
+
+  const pullRandomScrap = (scraps) => {
+    const randomScrap = scraps[Math.floor(Math.random()*scraps.length)];
+
+    $(".scrap-h2").html(`"${randomScrap.description}"`);
+    $(".edit-scrap").attr("href", `/scraps/${randomScrap.id}/edit`);
+  };
+
 });
