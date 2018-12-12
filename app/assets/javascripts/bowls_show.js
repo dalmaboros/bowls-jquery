@@ -136,6 +136,8 @@ $(document).on('turbolinks:load', () => {
         };
         if ($(`#scraps li`).length == 0) {
           $('#display-scraps').append("This bowl has no scraps");
+          $(".random-bowl").removeAttr("href");
+          $('.bowl-cta').text("");
         };
       }
     });
