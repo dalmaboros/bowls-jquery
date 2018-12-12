@@ -109,9 +109,12 @@ $(document).on('turbolinks:load', () => {
   });
 
   const populateBowlGlyph = (bowl) => {
-    const randomScrap = bowl.scraps[Math.floor(Math.random()*bowl.scraps.length)];
-    $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${randomScrap.id}`);
+    $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${returnRandomScrap(bowl.scraps).id}`);
     $(".bowl-cta").text("pull a scrap");
+  };
+
+  const returnRandomScrap = (scraps) => {
+    return scraps[Math.floor(Math.random()*scraps.length)]
   };
 
   /*** Deleting Scraps ***/
@@ -199,8 +202,7 @@ $(document).on('turbolinks:load', () => {
     $("div.column").attr("data-id", `${bowlId}`);
 
     if (adjBowlResponse.scraps.length > 0) {
-      const randomScrap = adjBowlResponse.scraps[Math.floor(Math.random()*adjBowlResponse.scraps.length)];
-      $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${randomScrap.id}`);
+      $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${returnRandomScrap(adjBowlResponse.scraps).id}`);
       $(".bowl-cta").text("pull a scrap");
     } else {
       $(".random-bowl").removeAttr("href");
@@ -215,9 +217,8 @@ $(document).on('turbolinks:load', () => {
   });
 
   const pullRandomScrap = (scraps) => {
-    const randomScrap = scraps[Math.floor(Math.random()*scraps.length)];
-    $(".scrap-h2").html(`"${randomScrap.description}"`);
-    $(".edit-scrap").attr("href", `/scraps/${randomScrap.id}/edit`);
+    $(".scrap-h2").html(`"${returnRandomScrap(scraps).description}"`);
+    $(".edit-scrap").attr("href", `/scraps/${returnRandomScrap(scraps).id}/edit`);
   };
 
 });
