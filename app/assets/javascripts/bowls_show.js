@@ -21,13 +21,13 @@ $(document).on('turbolinks:load', () => {
   $("#show-scraps-button").on("click", (event) => {
     event.preventDefault();
     if ($("#scraps").is(":hidden")) {
-      getScraps(bowlId, showScraps);
+      getBowlScraps(bowlId, showScraps);
     };
     $("#scraps").slideToggle();
   });
 
   // Fetch scraps from database
-  const getScraps = (bowlId, callback) => {
+  const getBowlScraps = (bowlId, callback) => {
     fetch(`/bowls/${bowlId}.json`, {
       contentType: 'application/json',
       method: 'GET',
@@ -213,10 +213,11 @@ $(document).on('turbolinks:load', () => {
   // Pull another scrap
   $(".another").on("click", (event) => {
     event.preventDefault();
-    getScraps(bowlId, pullRandomScrap);
+    getBowlScraps(bowlId, pullRandomScrap);
   });
 
   const pullRandomScrap = (scraps) => {
+    alert(`${returnRandomScrap(scraps).description}`);
     $(".scrap-h2").html(`"${returnRandomScrap(scraps).description}"`);
     $(".edit-scrap").attr("href", `/scraps/${returnRandomScrap(scraps).id}/edit`);
   };
