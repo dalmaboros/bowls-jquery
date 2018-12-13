@@ -220,7 +220,7 @@ $(document).on('turbolinks:load', () => {
   });
 
   const pullAnotherScrap = (allBowlScraps) => {
-    let remainingScraps = allBowlScraps.filter(e => !pulledScrapIds.find(a => e.id == a));
+    const remainingScraps = allBowlScraps.filter(bowlScrap => !pulledScrapIds.find(pulledScrapId => bowlScrap.id == pulledScrapId));
     let randomScrap = "";
     if (remainingScraps.length > 0) {
       randomScrap = returnRandomScrap(remainingScraps);
@@ -231,10 +231,10 @@ $(document).on('turbolinks:load', () => {
     updateScrapDOM(randomScrap);
   };
 
-  const updateScrapDOM(scrap) {
-    $(".scrap-h2").html(`"${randomScrap.description}"`);
-    $(".scrap-h2").attr(`data-scrap-id`, randomScrap.id);
-    $(".edit-scrap").attr("href", `/scraps/${randomScrap.id}/edit`);
+  const updateScrapDOM = (scrap) => {
+    $(".scrap-h2").html(`"${scrap.description}"`);
+    $(".scrap-h2").attr(`data-scrap-id`, scrap.id);
+    $(".edit-scrap").attr("href", `/scraps/${scrap.id}/edit`);
   };
 
 });
