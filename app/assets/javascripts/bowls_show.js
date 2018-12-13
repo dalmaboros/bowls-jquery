@@ -122,7 +122,7 @@ $(document).on('turbolinks:load', () => {
   // Event Listener: .delete-scrap ('x')
   $('#display-scraps').on('click', 'a.delete-scrap', function(event) { //doesn't like arrow function here
     event.preventDefault();
-    if (confirm("Delete scrap from bowl?")) {
+    if (confirm("Delete scrap from this bowl?")) {
       removeScrapFromBowl(this.href, this.dataset.description);
     };
     return false;

@@ -44,4 +44,4 @@
 - [x] Refactor bowls/show.html.erb
 - [x] Factor out getAdjascentBowl (RECORD VIDEO)
 - [x] add arrow functions
-- readme file
+- [ ] readme file
