@@ -211,15 +211,30 @@ $(document).on('turbolinks:load', () => {
   }; // updateDOM
 
   // Pull another scrap
+  let pulledScrapIds = [];
+
   $(".another").on("click", (event) => {
     event.preventDefault();
-    getBowlScraps(bowlId, pullRandomScrap);
+    pulledScrapIds.push($(".scrap-h2").attr("data-scrap-id"));
+    getBowlScraps(bowlId, pullAnotherScrap);
   });
 
-  const pullRandomScrap = (scraps) => {
-    alert(`${returnRandomScrap(scraps).description}`);
-    $(".scrap-h2").html(`"${returnRandomScrap(scraps).description}"`);
-    $(".edit-scrap").attr("href", `/scraps/${returnRandomScrap(scraps).id}/edit`);
+  const pullAnotherScrap = (allBowlScraps) => {
+    let remainingScraps = allBowlScraps.filter(e => !pulledScrapIds.find(a => e.id == a));
+    let randomScrap = "";
+    if (remainingScraps.length > 0) {
+      randomScrap = returnRandomScrap(remainingScraps);
+    } else {
+      randomScrap = returnRandomScrap(allBowlScraps);
+      pulledScrapIds = [];
+    };
+    updateScrapDOM(randomScrap);
+  };
+
+  const updateScrapDOM(scrap) {
+    $(".scrap-h2").html(`"${randomScrap.description}"`);
+    $(".scrap-h2").attr(`data-scrap-id`, randomScrap.id);
+    $(".edit-scrap").attr("href", `/scraps/${randomScrap.id}/edit`);
   };
 
 });

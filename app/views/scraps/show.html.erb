@@ -2,7 +2,7 @@
 
 <div class="column" data-id="<%= @bowl.id %>">
   <div class="scrap">
-    <h2 class="scrap-h2">"<%= @scrap.description %>"</h2>
+    <h2 class="scrap-h2" data-scrap-id="<%= @scrap.id %>">"<%= @scrap.description %>"</h2>
   </div>
 
   <%= link_to "another", bowl_scrap_path(@bowl, @bowl.scraps.sample), class: "another" %>
