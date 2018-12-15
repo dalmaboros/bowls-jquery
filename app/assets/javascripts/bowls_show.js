@@ -141,10 +141,17 @@ $(document).on('turbolinks:load', () => {
           $('#display-scraps').append("This bowl has no scraps");
           $(".random-bowl").removeAttr("href");
           $('.bowl-cta').text("");
+        } else {
+          // if this deleted scrap was the random scrap to be pulled, change that href
+          if (href.toLowerCase().indexOf($(`.random-bowl`).attr('href')) >= 0) {
+            getBowlScraps(bowlId, (bowlScraps) => {
+              $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${returnRandomScrap(bowlScraps).id}`);
+            });
+          };
         };
-      }
-    });
-  };
+      } // success
+    }); // ajax
+  }; // removeScrapFromBowl
 
   /*** Sifting Through Bowls ***/
 
