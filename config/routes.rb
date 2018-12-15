@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
+  # Do this with AJAX:
+  get '/bowls/no_scraps', to: 'bowls#no_scraps', as: 'no_scraps'
+  get '/scraps/no_bowls', to: 'scraps#no_bowls', as: 'no_bowls'
+  
   resources :scraps
 
   resources :bowls do
@@ -15,9 +19,6 @@ Rails.application.routes.draw do
 
   delete 'bowls/:bowl_id/scraps/:id', :to => 'bowls#remove_scrap_from_bowl'
 
-  # Do this with AJAX:
-  get '/bowls/no_scraps', to: 'bowls#no_scraps', as: 'no_scraps'
-  get '/scraps/no_bowls', to: 'scraps#no_bowls', as: 'no_bowls'
 
   get '*path' => redirect('/')
 
