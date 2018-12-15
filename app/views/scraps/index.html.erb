@@ -2,7 +2,7 @@
 
 <div class="column">
   <% if @bowl %>
-    <h2>scraps in '<%= @bowl.name %>'</h2>
+    <h2>scraps in <%= link_to @bowl.name, bowl_path(@bowl) %></h2>
   <% else %>
     <h2>all scraps</h2>
   <% end %>
