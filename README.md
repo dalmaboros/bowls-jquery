@@ -1,10 +1,15 @@
 # Bowls
-Bowls is a digital "idea bowl" app.
 
-This project uses Rails version 4.2.7.1. Dependencies can be found in the [Gemfile](https://github.com/dalmaboros/bowls-jquery/blob/master/Gemfile.lock).
+## Description
+Bowls is a digital version of something I call an "idea bowl," which is a bowl that contains scraps of paper on which are written activities that interest you. When you have spare time, you reach into this bowl, pull out a scrap, and do the activity.
+
+Bowls, the application, lets you create digital bowls containing digital scraps with activities, and it lets you pull these scraps at random.
 
 ## How to Use
-*link to demo video*
+To watch a video demonstration of Bowls, click [here](https://www.youtube.com/watch?v=pTkqv5MzIBU&feature=youtu.be).
+
+## Technical Details
+This project uses Rails version 4.2.7.1. Dependencies can be found in the [Gemfile](https://github.com/dalmaboros/bowls-jquery/blob/master/Gemfile.lock).
 
 ## Installation Guide
 1. [Fork this repository](https://help.github.com/articles/fork-a-repo/).
