@@ -56,12 +56,11 @@ $(document).on('turbolinks:load', () => {
   // Create and append scrap JS objects to #display-scraps div
   const appendScrap = (scrap) => {
     const newScrap = new Scrap(scrap.id, scrap.description, scrap.priority);
-    const newFormattedScrap = newScrap.format();
     if ($('#display-scraps:contains("This bowl has no scraps")').length) {
       $('#display-scraps').html("");
       // can pull scrap from bowl now
     };
-    $('#display-scraps').append(newFormattedScrap);
+    $('#display-scraps').append(newScrap.format());
   };
 
   /*** Adding Scraps ***/

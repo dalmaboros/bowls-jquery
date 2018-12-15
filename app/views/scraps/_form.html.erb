@@ -9,9 +9,6 @@
 <% end %>
 <%= f.text_field :description, autocomplete: :off, maxlength: 140 %></p>
 
-<% if @bowl %>
-  <%= f.hidden_field :bowl_ids, :multiple => true, :value => @bowl.id %>
-<% else %>
   add to existing bowl<br />
   <%= f.collection_check_boxes :bowl_ids, current_user.bowls, :id, :name %></p>
 
@@ -30,6 +27,5 @@
       <%= bowl_scrap_form.hidden_field :priority, value: nil %>
     <% end %>
   <% end %>
-<% end %>
 
 <%= f.submit %>

@@ -29,7 +29,7 @@ class ScrapsController < ApplicationController
         redirect_to scraps_path, alert: "scrap not in that bowl."
       end
     else
-      render json: @scrap, status: 200
+      # render json: @scrap, status: 200
     end
   end
 
@@ -55,11 +55,7 @@ class ScrapsController < ApplicationController
 
   def update
     if @scrap.update(scrap_params)
-      @scrap.save
-      @bowl = Bowl.find(scrap_params[:bowl_ids][0])
-      if @bowl
-        redirect_to bowl_scrap_path(@bowl, @scrap)
-      else
+      if @scrap.save
         redirect_to scrap_path(@scrap)
       end
     else

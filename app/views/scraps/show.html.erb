@@ -1,12 +1,22 @@
 <% title @scrap.description %>
 
-<div class="column" data-id="<%= @bowl.id %>">
+
+<div
+  class="column"
+  <% if @bowl %>
+  data-id="<%= @bowl.id %>"
+  <% end %>
+  >
   <div class="scrap">
     <h2 class="scrap-h2" data-scrap-id="<%= @scrap.id %>">"<%= @scrap.description %>"</h2>
   </div>
 
-  <%= link_to "another", bowl_scrap_path(@bowl, @bowl.scraps.sample), class: "another" %>
-  <p><%= link_to "edit", edit_bowl_scrap_path(@bowl, @scrap), class: "edit-scrap" %></p>
+  <% if @bowl %>
+    <%= link_to "another", bowl_scrap_path(@bowl, @bowl.scraps.sample), class: "another" %>
+    <p><%= link_to "edit", edit_bowl_scrap_path(@bowl, @scrap), class: "edit-scrap" %></p>
+  <% else %>
+    <p><%= link_to "edit", edit_scrap_path(@scrap), class: "edit-scrap" %></p>
+  <% end %>
 </div>
 
 <!-- <script type="text/javascript" charset="utf-8">
