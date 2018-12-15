@@ -56,7 +56,12 @@ class ScrapsController < ApplicationController
   def update
     if @scrap.update(scrap_params)
       @scrap.save
-      redirect_to scrap_path(@scrap)
+      @bowl = Bowl.find(scrap_params[:bowl_ids][0])
+      if @bowl
+        redirect_to bowl_scrap_path(@bowl, @scrap)
+      else
+        redirect_to scrap_path(@scrap)
+      end
     else
       @scrap.restore_attributes(@scrap.errors.keys)
       render :edit
