@@ -120,7 +120,6 @@ $(document).on('turbolinks:load', () => {
   };
 
   const returnRandomBowlScrapHref = (bowlId, scrapsArray) => {
-    debugger;
     return `/bowls/${bowlId}/scraps/${returnRandomScrap(scrapsArray).id}`;
   };
 
@@ -223,7 +222,8 @@ $(document).on('turbolinks:load', () => {
     };
   }; // updateDOM
 
-  // Pull another scrap
+  /*** Pulling Another Scrap ***/
+  
   let pulledScrapIds = [];
 
   $(".another").on("click", (event) => {
