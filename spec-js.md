@@ -26,11 +26,11 @@
     ([bowls_show.js Lines 10-12](https://github.com/dalmaboros/bowls-jquery/blob/master/app/assets/javascripts/bowls_show.js#L10-L12))
 
 # Project Repo Specs:
-## Read Me file contains:
-- [x] Application Description
-- [x] Installation guide (e.g. fork and clone repo, migrate db, bundle install, etc)
-- [x] Contributors guide (e.g. file an issue, file an issue with a pull request, etc)
-- [x] Licensing statement at the bottom (e.g. This project has been licensed under the MIT open source license.)
+## [Read Me file](https://github.com/dalmaboros/bowls-jquery/blob/master/README.md) contains:
+- [x] [Application Description](https://github.com/dalmaboros/bowls-jquery/blob/master/README.md#description)
+- [x] [Installation guide](https://github.com/dalmaboros/bowls-jquery/blob/master/README.md#installation-guide) (e.g. fork and clone repo, migrate db, bundle install, etc)
+- [x] [Contributors guide](https://github.com/dalmaboros/bowls-jquery/blob/master/README.md#contributors-guide) (e.g. file an issue, file an issue with a pull request, etc)
+- [x] [Licensing statement at the bottom](https://github.com/dalmaboros/bowls-jquery/blob/master/README.md#licensing-statement) (e.g. This project has been licensed under the MIT open source license.)
 
 ## Repo General
 - [x] You have a large number of small Git commits
