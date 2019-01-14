@@ -169,8 +169,8 @@ $(document).on('turbolinks:load', () => {
 
   const getAdjascentBowl = (incrementer) => {
     $.get("/bowls.json", (response) => { // respone => array of bowl objects
-      const currentBowlIndex = response.findIndex((bowl) => {
-        return bowl.id == bowlId;
+      const currentBowlIndex = response.findIndex((element) => {
+        return element.id == bowlId;
       });
 
       // Retrieve adjascent bowl as JS object
