@@ -110,6 +110,11 @@ $(document).on('turbolinks:load', () => {
     $(".bowl-cta").text("pull a scrap");
   };
 
+  const removeCTA = () => {
+    $(".random-bowl").removeAttr("href");
+    $(".bowl-cta").text("");
+  };
+
   const returnRandomScrap = (scraps) => {
     return scraps[Math.floor(Math.random()*scraps.length)]
   };
@@ -137,8 +142,7 @@ $(document).on('turbolinks:load', () => {
         };
         if ($(`#scraps li`).length == 0) {
           $('#display-scraps').append("This bowl has no scraps");
-          $(".random-bowl").removeAttr("href");
-          $('.bowl-cta').text("");
+          removeCTA();
         } else {
           // if this deleted scrap was the random scrap to be pulled, change that href
           if (href.toLowerCase().indexOf($(`.random-bowl`).attr('href')) >= 0) {
@@ -177,7 +181,7 @@ $(document).on('turbolinks:load', () => {
       const adjascentBowlIndex = currentBowlIndex+incrementer;
       const adjascentBowl = response[adjascentBowlIndex];
 
-      // If adjascent bowl exists, grab its data
+      // If an adjascent bowl exists, grab its data
       if (adjascentBowl != undefined) {
         hideScraps();
         $.get(`/bowls/${adjascentBowl.id}.json`, (adjBowlResponse) => {
@@ -210,8 +214,7 @@ $(document).on('turbolinks:load', () => {
       $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${returnRandomScrap(adjBowlResponse.scraps).id}`);
       $(".bowl-cta").text("pull a scrap");
     } else {
-      $(".random-bowl").removeAttr("href");
-      $(".bowl-cta").text("");
+      removeCTA();
     };
   }; // updateDOM
 
