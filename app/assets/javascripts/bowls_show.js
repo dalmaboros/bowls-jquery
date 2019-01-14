@@ -106,7 +106,7 @@ $(document).on('turbolinks:load', () => {
   });
 
   const addCTA = (bowl) => {
-    $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${returnRandomScrap(bowl.scraps).id}`);
+    $(".random-bowl").attr("href", returnRandomBowlScrapHref(bowlId, bowl.scraps));
     $(".bowl-cta").text("pull a scrap");
   };
 
@@ -116,7 +116,12 @@ $(document).on('turbolinks:load', () => {
   };
 
   const returnRandomScrap = (scraps) => {
-    return scraps[Math.floor(Math.random()*scraps.length)]
+    return scraps[Math.floor(Math.random()*scraps.length)];
+  };
+
+  const returnRandomBowlScrapHref = (bowlId, scrapsArray) => {
+    debugger;
+    return `/bowls/${bowlId}/scraps/${returnRandomScrap(scrapsArray).id}`;
   };
 
   /*** Deleting Scraps ***/
@@ -147,7 +152,7 @@ $(document).on('turbolinks:load', () => {
           // if this deleted scrap was the random scrap to be pulled, change that href
           if (href.toLowerCase().indexOf($(`.random-bowl`).attr('href')) >= 0) {
             getBowlScraps(bowlId, (bowlScraps) => {
-              $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${returnRandomScrap(bowlScraps).id}`);
+              $(".random-bowl").attr("href", returnRandomBowlScrapHref(bowlId, bowlScraps));
             });
           };
         };
@@ -211,7 +216,7 @@ $(document).on('turbolinks:load', () => {
     $("div.column").attr("data-id", `${bowlId}`);
 
     if (adjBowlResponse.scraps.length > 0) {
-      $(".random-bowl").attr("href", `/bowls/${bowlId}/scraps/${returnRandomScrap(adjBowlResponse.scraps).id}`);
+      $(".random-bowl").attr("href", returnRandomBowlScrapHref(bowlId, adjBowlResponse.scraps));
       $(".bowl-cta").text("pull a scrap");
     } else {
       removeCTA();
