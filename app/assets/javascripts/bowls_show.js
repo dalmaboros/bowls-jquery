@@ -45,8 +45,8 @@ $(document).on('turbolinks:load', () => {
   const showScraps = (scraps) => {
     $('#display-scraps').html("");
     if (scraps.length > 0) {
-      scraps.forEach((params) => {
-        appendScrap(params);
+      scraps.forEach((element) => {
+        appendScrap(element);
       });
     } else {
       $('#display-scraps').append("This bowl has no scraps");
@@ -100,8 +100,6 @@ $(document).on('turbolinks:load', () => {
           // Presumably the ojbect already exists, as that is
           // our only validation on the BowlScrap model
           alert("scrap already exists!");
-          // $("label[for='bowl_scraps_attributes_0_description']").text("scrap already exists");
-          // $("label[for='bowl_scraps_attributes_0_description']").attr("class", "error_explanation");
         };
       }
     });
@@ -124,6 +122,7 @@ $(document).on('turbolinks:load', () => {
     if (confirm("Delete scrap from this bowl?")) {
       removeScrapFromBowl(this.href, this.dataset.description);
     };
+    // The following line prevents a redirect to the deleted scrap_path
     return false;
   });
 
