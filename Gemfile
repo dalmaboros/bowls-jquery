@@ -1,17 +1,19 @@
 source 'https://rubygems.org'
 
 gem 'active_model_serializers'
-gem 'actionview', '~> 4.2.7.1'
-gem 'activerecord', '~> 4.2.7.1'
+gem 'actionview', '5.0.2'
+gem 'activerecord', '5.0.2'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pry'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7.1'
+gem 'rails', '5.0.2'
 # Use Postgres for launching on heroku
-gem 'pg'
+gem 'pg', '~> 0.21'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
