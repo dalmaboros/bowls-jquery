@@ -3,8 +3,8 @@ $(document).on('turbolinks:load', () => {
   let bowlId = $(".column").data("id");
 
   // Scrap Prototype
-  function Scrap(scrap_id, description, priority) {
-    this.id = scrap_id;
+  function Scrap(scrapId, description, priority) {
+    this.id = scrapId;
     this.description = description;
     this.priority = priority || 0;
     this.format = () => {
@@ -28,9 +28,12 @@ $(document).on('turbolinks:load', () => {
 
   // Fetch scraps from database
   const getBowlScraps = (bowlId, callback) => {
-    fetch(`/bowls/${bowlId}.json`, {
-      contentType: 'application/json',
-      method: 'GET',
+    fetch(`/bowls/${bowlId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      'method': 'GET'
     })
     .then(response => {
       return response.json();
@@ -122,6 +125,30 @@ $(document).on('turbolinks:load', () => {
   const returnRandomBowlScrapHref = (bowlId, scrapsArray) => {
     return `/bowls/${bowlId}/scraps/${returnRandomScrap(scrapsArray).id}`;
   };
+
+  /*** Alphabetizing ScrAPS ***/
+
+  $('#alphabetize').on('click', function(event) {
+    getBowlScraps(bowlId, alphabetizeScraps);
+  })
+
+  const alphabetizeScraps = (scraps) => {
+    $('#display-scraps').html("");
+    const alphabetizedScraps = scraps.sort(function(a, b){
+      var x = a.description.toLowerCase();
+      var y = b.description.toLowerCase();
+      if (x < y) {return -1;}
+      if (x > y) {return 1;}
+      return 0;
+    });
+    if (alphabetizedScraps.length > 0) {
+      alphabetizedScraps.forEach((element) => {
+        appendScrap(element);
+      });
+    } else {
+      $('#display-scraps').append("This bowl has no scraps");
+    };
+  }
 
   /*** Deleting Scraps ***/
 
@@ -223,7 +250,7 @@ $(document).on('turbolinks:load', () => {
   }; // updateDOM
 
   /*** Pulling Another Scrap ***/
-  
+
   let pulledScrapIds = [];
 
   $(".another").on("click", (event) => {
