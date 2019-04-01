@@ -38,7 +38,7 @@
             <div id="scraps-form">
               <%= form_for @bowl do |f| %>
                 <%= render 'scrap_form', f: f %>
-                <%= f.submit "add scrap" %>
+                <%= f.submit "add scrap", data: { disable_with: false } %>
               <% end %>
             </div> <!-- scraps-form -->
           </div> <!-- add-scraps -->
