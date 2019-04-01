@@ -1,7 +1,6 @@
 <% title "bowls" %>
 
 <div class="column">
-  <div class="bowl-container">
     <%= link_to new_bowl_path, class: "random-bowl" do %>
       <div class="add-glyph">
         <div class="horizontal-line"></div>
@@ -9,7 +8,6 @@
       </div>
       <%= link_to "new_bowl", new_bowl_path %>
     <% end %>
-  </div>
 </div>
 
 <% @bowls.each do |bowl| %>
