@@ -2,15 +2,15 @@ source 'https://rubygems.org'
 ruby '2.4.0'
 
 gem 'active_model_serializers'
-gem 'actionview', '5.0.2'
-gem 'activerecord', '5.0.2'
+gem "actionview", '>= 5.0.7.2'
+gem 'activerecord', '5.0.7.2'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pry'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.2'
+gem 'rails', '5.0.7.2'
 # Use Postgres for launching on heroku
 gem 'pg', '~> 0.21'
 # Use SCSS for stylesheets
