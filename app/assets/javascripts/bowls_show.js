@@ -126,7 +126,7 @@ $(document).on('turbolinks:load', () => {
     return `/bowls/${bowlId}/scraps/${returnRandomScrap(scrapsArray).id}`;
   };
 
-  /*** Alphabetizing ScrAPS ***/
+  /*** Alphabetizing Scraps ***/
 
   $('#alphabetize').on('click', function(event) {
     getBowlScraps(bowlId, alphabetizeScraps);
