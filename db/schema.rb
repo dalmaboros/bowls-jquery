@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -22,10 +21,9 @@ ActiveRecord::Schema.define(version: 20171204184856) do
     t.integer  "priority"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["bowl_id"], name: "index_bowl_scraps_on_bowl_id", using: :btree
+    t.index ["scrap_id"], name: "index_bowl_scraps_on_scrap_id", using: :btree
   end
-
-  add_index "bowl_scraps", ["bowl_id"], name: "index_bowl_scraps_on_bowl_id", using: :btree
-  add_index "bowl_scraps", ["scrap_id"], name: "index_bowl_scraps_on_scrap_id", using: :btree
 
   create_table "bowls", force: :cascade do |t|
     t.integer  "user_id"
@@ -60,10 +58,9 @@ ActiveRecord::Schema.define(version: 20171204184856) do
     t.string   "uid"
     t.string   "first_name"
     t.string   "last_name"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "bowl_scraps", "bowls"
   add_foreign_key "bowl_scraps", "scraps"

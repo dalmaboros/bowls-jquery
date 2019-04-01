@@ -28,5 +28,11 @@
     <span class="heart">&#9829;</span> <a href="http://www.dalmaboros.com" target="_blank">DB 2019</a>
   </div>
 
+  <% if user_signed_in? %>
+    <div class="log-in-out">
+      <%= link_to("log out", destroy_user_session_path, method: :delete) %>
+    </div>
+  <% end %>
+
 </body>
 </html>
