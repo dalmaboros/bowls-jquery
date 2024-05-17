@@ -11,7 +11,7 @@
       <li><%= link_to(destroy_user_session_path, destroy_user_session_path, method: :delete) %></li>
       <!-- Not sure what next line is trying to do -->
       <li><%#= link_to "/users/dalma", edit_user_registration_path(current_user) if current_user unless current_user && current_user.uid %></li>
-      <li>user: <%= current_user.first_name.downcase if current_user && current_user.uid %></li>
+      <li>user: <%= current_user.email %></li>
     <% end %> <!-- end if user_signed_in? -->
   </ul>
 </nav>
