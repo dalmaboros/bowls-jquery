@@ -1,4 +1,4 @@
-$(document).on('document:load', () => {
+$(function() {
   // Global Variables
   let bowlId = $(".column").data("id");
 
