@@ -1,4 +1,4 @@
-class CreateBowlScraps < ActiveRecord::Migration
+class CreateBowlScraps < ActiveRecord::Migration[7.1]
   def change
     create_table :bowl_scraps do |t|
       t.belongs_to :bowl, index: true, foreign_key: true

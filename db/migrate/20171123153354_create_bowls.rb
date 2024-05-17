@@ -1,4 +1,4 @@
-class CreateBowls < ActiveRecord::Migration
+class CreateBowls < ActiveRecord::Migration[7.1]
   def change
     create_table :bowls do |t|
       t.integer :user_id
