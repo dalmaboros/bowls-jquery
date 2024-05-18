@@ -14,7 +14,7 @@ gem 'rails', '7.1.3.3'
 gem 'sass-rails'
 # gem 'sdoc', group: :doc
 # gem 'therubyracer', platforms: :ruby
-gem 'uglifier'
+# gem 'uglifier'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
