@@ -17,3 +17,7 @@ test:
 production:
   <<: *default
   database: bowls_database_production
+  url: <%= ENV['DATABASE_URL'] %>
+  username: bowls_user
+  password: <%= ENV["BOWLS_DATABASE_PASSWORD"] %>
+
