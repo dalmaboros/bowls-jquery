@@ -1,0 +1,111 @@
+macbookair@M2-MacbookAir my-mcat % npm run dev
+
+> ai-saas@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.13
+  - Local:        http://localhost:3000
+  - Environments: .env
+  - Experiments (use with caution):
+    · turbo
+
+ ✓ Starting...
+   automatically enabled Fast Refresh for 1 custom loader
+ ✓ Ready in 1966ms
+ ✓ Compiled /middleware in 380ms (184 modules)
+ ○ Compiling / ...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled / in 6.4s (3710 modules)
+[PATH_CHECK] Root path is exempt
+[ONBOARDING] Complete via target score: false
+ GET /?debug=true 200 in 7530ms
+ ✓ Compiled in 1298ms (1765 modules)
+ ⚠ The "images.domains" configuration is deprecated. Please use "images.remotePatterns" configuration instead.
+ ○ Compiling /api/user-info/profile ...
+ ✓ Compiled /api/user-info/profile in 2.5s (2057 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 4.2s (3813 modules)
+ GET /tutors/CNU.png 404 in 4504ms
+ ⨯ The requested resource isn't a valid image for /tutors/CNU.png received text/html; charset=utf-8
+ GET /api/user-info 200 in 9100ms
+ GET /api/user-info/profile 200 in 9279ms
+ GET /api/user-info/profile 200 in 427ms
+ ○ Compiling /sign-in/[[...sign-in]] ...
+ GET /api/user-info 200 in 760ms
+ ✓ Compiled /sign-in/[[...sign-in]] in 2s (3830 modules)
+ GET /sign-in/SignIn_clerk_catchall_check_1744343310668 200 in 121ms
+ ○ Compiling /home ...
+ ✓ Compiled /home in 4.6s (7982 modules)
+ ○ Compiling /api/notifications ...
+ ✓ Compiled /api/notifications in 6s (8815 modules)
+[Debug] ProfileButton render - profileLoading: true profile: null forceShowProfile: false
+ GET /api/calendar-activity 200 in 7322ms
+ GET /api/notifications 200 in 7456ms
+ GET /api/user-info/profile 200 in 7463ms
+ GET /api/user-info 200 in 7538ms
+ GET /api/subscription 200 in 7408ms
+ GET /ankiclinic 200 in 1004ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/css/app/(dashboard)/(routes)/home/react-big-calendar.css.map 404 in 145ms
+ ⨯ Error: aborted
+    at abortIncoming (node:_http_server:797:17)
+    at socketOnClose (node:_http_server:791:3)
+    at Socket.emit (node:events:531:35)
+    at TCP.<anonymous> (node:net:338:12)
+    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 4.3s (9039 modules)
+ ○ Compiling /api/clinic ...
+ ✓ Compiled /api/clinic in 1247ms (4639 modules)
+ ✓ Compiled /favicon.ico in 1ms (4642 modules)
+ GET /api/notifications 200 in 2552ms
+ ✓ Compiled in 1ms (4670 modules)
+ ✓ Compiled in 7ms (4670 modules)
+ GET /api/user-info/profile 200 in 7038ms
+ GET /api/user-report 200 in 7226ms
+ ✓ Compiled in 1ms (4670 modules)
+ GET /api/clinic 200 in 7578ms
+ GET /api/user-info 200 in 7502ms
+ ✓ Compiled in 1ms (4670 modules)
+ GET /favicon.ico 200 in 7621ms
+ GET /api/notifications 200 in 6651ms
+ ✓ Compiled /api/daily-calculations in 1ms (4670 modules)
+ ✓ Compiled in 1ms (4674 modules)
+ ✓ Compiled in 3ms (4674 modules)
+ GET /api/user-info 200 in 6332ms
+ GET /api/user-info/profile 200 in 6838ms
+ ✓ Compiled in 0ms (4674 modules)
+ GET /api/notifications 200 in 5753ms
+ ✓ Compiled in 6ms (4674 modules)
+ GET /api/global-leaderboard 200 in 8750ms
+ POST /api/daily-calculations 200 in 9409ms
+ ✓ Compiled in 3ms (4674 modules)
+ ✓ Compiled in 2ms (4674 modules)
+ GET /api/user-info/profile 200 in 5831ms
+ GET /api/user-info 200 in 6024ms
+ ✓ Compiled in 1ms (4674 modules)
+ GET /api/notifications 200 in 6767ms
+ GET /api/global-leaderboard 200 in 6102ms
+ GET /api/user-info/profile 200 in 3907ms
+ GET /api/user-info/profile 200 in 3834ms
+ GET /api/user-info 200 in 2503ms
+ GET /api/user-info 200 in 4026ms
+ GET /api/user-info/profile 200 in 401ms
+ GET /api/user-info 200 in 925ms
+ GET /api/user-info/profile 200 in 1656ms
+ GET /api/user-info 200 in 3238ms
+ GET /api/user-info/profile 200 in 673ms
+ GET /api/user-info/profile 200 in 324ms
+ GET /api/user-info/profile 200 in 471ms
+ GET /api/user-info/profile 200 in 228ms
+ GET /api/user-info 200 in 1157ms
+ GET /api/user-info 200 in 844ms
+ GET /api/user-info/profile 200 in 257ms
+ GET /api/user-info 200 in 811ms
+ GET /api/user-info/profile 200 in 217ms
+ PUT /api/user-info 200 in 1029ms
+ GET /api/user-info/profile 200 in 232ms
+ GET /api/user-info 200 in 494ms
+ GET /api/user-info 200 in 365ms
