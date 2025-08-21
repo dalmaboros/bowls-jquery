@@ -1,5 +1,7 @@
 # Bowls
 
+Archived legacy project from 2019. Modern refactor lives at ➜ [https://github.com/dalmaboros/bowls-hotwire](https://github.com/dalmaboros/bowls-hotwire).
+
 ## Description
 Bowls is a digital version of something I call an "idea bowl," which is a bowl that contains scraps of paper on which are written activities that interest you. When you have spare time, you reach into this bowl, pull out a scrap, and do the activity.
 
